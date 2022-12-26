@@ -1,30 +1,43 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
+  <!--<div class="wrapper">
+    <NavbarBack />
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <MainSidebar />
+    </aside>
+    <div class="content-wrapper" style="margin-top:30px">
+      <div class="content" style="background-color: white;">
+        <div class="container-fluid">
+          <router-view/>
+        </div>
+      </div>
+    </div>
+    <aside class="control-sidebar control-sidebar-dark">
+      <div class="p-3">
+        <h5>Title</h5>
+        <p>Sidebar content</p>
+      </div>
+    </aside>
+    <MainFooterBack />
+  </div>-->
   <router-view/>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+<script>
+import MainSidebar from './components/BackEnd/MainSidebar.vue'
+import NavbarBack from './components/BackEnd/NavbarBack.vue'
+import MainFooterBack from './components/BackEnd/MainFooterBack.vue'
+export default {
+  name: 'App',
+  components: {
+    MainSidebar,
+    NavbarBack,
+    MainFooterBack
+  }
 }
+</script>
 
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
+<style scoped>
+.main-sidebar {
+    background-color: #ffffff !important;
 }
 </style>
