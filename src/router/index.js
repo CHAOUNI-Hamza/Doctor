@@ -4,8 +4,28 @@ import HomeView from '../views/HomeView.vue'
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: HomeView
+    name: 'homefront',
+    component: () => import(/* webpackChunkName: "dashboard" */ '../views/FrontEnd/HomeFront')
+  },
+  {
+    path: '/Doctors',
+    name: 'doctorsfront',
+    component: () => import(/* webpackChunkName: "dashboard" */ '../views/FrontEnd/DoctorsFront')
+  },
+  {
+    path: '/Patients',
+    name: 'patientsfront',
+    component: () => import(/* webpackChunkName: "dashboard" */ '../views/FrontEnd/PatientsFront')
+  },
+  {
+    path: '/Pharmacy',
+    name: 'pharmacyfront',
+    component: () => import(/* webpackChunkName: "dashboard" */ '../views/FrontEnd/PharmacyFront')
+  },
+  {
+    path: '/Blog',
+    name: 'blogfront',
+    component: () => import(/* webpackChunkName: "dashboard" */ '../views/FrontEnd/BlogFront')
   },
   {
     path: '/admin',

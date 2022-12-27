@@ -3,6 +3,10 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
+// Globale Component
+import NavbarFront from './components/FrontEnd/NavbarFront.vue'
+import FooterFront from './components/FrontEnd/FooterFront.vue'
+
 // file style css
 import style from '../public/style.css'
 
@@ -27,7 +31,9 @@ import {
     faUserPlus,
     faUsers,
     faSliders,
-    faRightFromBracket 
+    faAngleDown,
+    faRightFromBracket,
+    faHotel 
 } from '@fortawesome/free-solid-svg-icons'
 import { faMoon, faSun, faAddressCard, faCircleXmark, faChartBar, faMessage, faUser } from '@fortawesome/free-regular-svg-icons'
 import { faFacebookF, faTwitter, faLinkedinIn } from '@fortawesome/free-brands-svg-icons'
@@ -35,9 +41,11 @@ import { faFacebookF, faTwitter, faLinkedinIn } from '@fortawesome/free-brands-s
 /* add icons to the library */
 library.add(
     faUserSecret,
+    faAngleDown,
     faMoon,
     faFacebookF,
     faTwitter,
+    faHotel,
     faLinkedinIn,
     faSun,
     faCircleXmark,
@@ -65,4 +73,6 @@ createApp(App)
 .use(style)
 .use(store)
 .use(router)
+.component('NavbarFront', NavbarFront)
+.component('FooterFront', FooterFront)
 .mount('#app')
