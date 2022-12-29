@@ -33,7 +33,8 @@ import {
     faSliders,
     faAngleDown,
     faRightFromBracket,
-    faHotel 
+    faHotel,
+    faStar
 } from '@fortawesome/free-solid-svg-icons'
 import { faMoon, faSun, faAddressCard, faCircleXmark, faChartBar, faMessage, faUser } from '@fortawesome/free-regular-svg-icons'
 import { faFacebookF, faTwitter, faLinkedinIn } from '@fortawesome/free-brands-svg-icons'
@@ -41,6 +42,7 @@ import { faFacebookF, faTwitter, faLinkedinIn } from '@fortawesome/free-brands-s
 /* add icons to the library */
 library.add(
     faUserSecret,
+    faStar,
     faAngleDown,
     faMoon,
     faFacebookF,
