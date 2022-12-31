@@ -210,8 +210,9 @@
     
     <style scoped>
     .footer {
-        padding: 80px;
-    }
+    padding: 50px 30px;
+    background-color: #15558d;
+}
     .footer-logo {
         display: inline-block;
         margin-right: 30px;

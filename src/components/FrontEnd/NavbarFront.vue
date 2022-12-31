@@ -28,7 +28,7 @@
                 </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link header-login" href="/template/login">login / Signup </a>
+              <router-link :to="{ name: 'loginfront' }" class="nav-link header-login" href="/template/login">login / Signup </router-link>
             </li>
           </ul>
         </div>

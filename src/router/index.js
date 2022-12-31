@@ -8,6 +8,21 @@ const routes = [
     component: () => import(/* webpackChunkName: "dashboard" */ '../views/FrontEnd/HomeFront')
   },
   {
+    path: '/login',
+    name: 'loginfront',
+    component: () => import(/* webpackChunkName: "loginfront" */ '../views/FrontEnd/LoginFront')
+  },
+  {
+    path: '/forgot-password',
+    name: 'forgotpassword',
+    component: () => import(/* webpackChunkName: "forgot-password" */ '../views/FrontEnd/ForgotPasswordFront')
+  },
+  {
+    path: '/register',
+    name: 'registerfront',
+    component: () => import(/* webpackChunkName: "registerfront" */ '../views/FrontEnd/RegisterFront')
+  },
+  {
     path: '/Doctors',
     name: 'doctorsfront',
     component: () => import(/* webpackChunkName: "dashboard" */ '../views/FrontEnd/DoctorsFront')

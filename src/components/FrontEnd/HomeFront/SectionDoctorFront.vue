@@ -18,38 +18,43 @@
                     </div>
                 </div>
                 <div class="col-lg-8">
-                    <div class="card" style="width: 18rem;">
-                        <img src="https://www.pngitem.com/pimgs/m/515-5158817_telemedicine-doctor-hd-png-download.png" class="card-img-top p-3" alt="...">
-                        <div class="card-body pt-0">
-                            <div class="pro-content">
-                                <h3 class="title">
-                                    <a href="/template/patient/doctor-profile text-light">Sofia Brient</a>
-                                    <font-awesome-icon icon="fa-solid fa-star" />
-                                </h3>
-                                <p class="speciality">MBBS, MS - General Surgery, MCh - Urology</p>
-                                <div class="rating">
-                                    <font-awesome-icon icon="fa-solid fa-star" />
-                                    <font-awesome-icon icon="fa-solid fa-star" />
-                                    <font-awesome-icon icon="fa-solid fa-star" />
-                                    <font-awesome-icon icon="fa-solid fa-star" />
-                                    <span class="d-inline-block average-rating">(4)</span>
-                                </div>
-                                <ul class="available-info pl-0 mt-2">
-                                    <li><font-awesome-icon icon="fa-solid fa-star" class="mr-1" /> Louisiana, USA</li>
-                                    <li><font-awesome-icon icon="fa-solid fa-star" class="mr-1" /> Available on Fri, 22 Mar</li>
-                                    <li><font-awesome-icon icon="fa-solid fa-star" class="mr-1" /> $150 - $250<font-awesome-icon icon="fa-solid fa-star" /></li>
-                                </ul>
-                                <div class="row row-sm">
-                                    <div class="col-6">
-                                        <a class="btn view-btn" href="/template/patient/doctor-profile">View Profile</a>
-                                    </div>
-                                    <div class="col-6">
-                                        <a class="btn book-btn" href="/template/patient/booking">Book Now</a>
+                    <div class="row">
+                        <div class="col-md-4" v-for="item in 3">
+                            <div class="card" style="width: 100%;">
+                                <img src="https://www.pngitem.com/pimgs/m/515-5158817_telemedicine-doctor-hd-png-download.png" class="card-img-top p-3" alt="...">
+                                <div class="card-body pt-0">
+                                    <div class="pro-content">
+                                        <h3 class="title">
+                                            <a href="/template/patient/doctor-profile text-light">Sofia Brient</a>
+                                            <font-awesome-icon icon="fa-solid fa-star" />
+                                        </h3>
+                                        <p class="speciality">MBBS, MS - General Surgery, MCh - Urology</p>
+                                        <div class="rating">
+                                            <font-awesome-icon icon="fa-solid fa-star" />
+                                            <font-awesome-icon icon="fa-solid fa-star" />
+                                            <font-awesome-icon icon="fa-solid fa-star" />
+                                            <font-awesome-icon icon="fa-solid fa-star" />
+                                            <span class="d-inline-block average-rating">(4)</span>
+                                        </div>
+                                        <ul class="available-info pl-0 mt-2">
+                                            <li><font-awesome-icon icon="fa-solid fa-star" class="mr-1" /> Louisiana, USA</li>
+                                            <li><font-awesome-icon icon="fa-solid fa-star" class="mr-1" /> Available on Fri, 22 Mar</li>
+                                            <li><font-awesome-icon icon="fa-solid fa-star" class="mr-1" /> $150 - $250<font-awesome-icon icon="fa-solid fa-star" /></li>
+                                        </ul>
+                                        <div class="row row-sm">
+                                            <div class="col-6">
+                                                <a class="btn view-btn" href="/template/patient/doctor-profile">View Profile</a>
+                                            </div>
+                                            <div class="col-6">
+                                                <a class="btn book-btn" href="/template/patient/booking">Book Now</a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    
                 </div>
             </div>
         </div>
@@ -85,7 +90,9 @@ p.speciality {
     padding: 6px;
 }
 
-
+.card-img-top {
+    height: 216px;
+}
 
 .section-doctor {
     background-color: #f8f9fa;
