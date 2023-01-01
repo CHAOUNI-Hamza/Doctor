@@ -60,7 +60,7 @@
         </div>
     </section>
 </template>
-<style>
+<style scoped>
 p.speciality {
     font-size: 13px;
     color: #757575;

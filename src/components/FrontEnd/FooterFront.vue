@@ -11,38 +11,32 @@
                         <img class="img-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/The_Good_Doctor_logo_2.svg/2560px-The_Good_Doctor_logo_2.svg.png" alt="">
                       </p>
                       <div class="text">
-                        <p>55 Gallaxy Enque,<br>2568 steet, 23568 NY
-                        </p>
-                        <p>
-                          <b>Phone </b>: 06 55 72 81 55
-                        </p>
-                        <p>
-                          <b>Email </b><a href="">: chaouni@gmail.com</a>
-                        </p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
                       </div>
                       <ul class="social-icons">
                         <li>
-                          <a href=""><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                          <a href=""><font-awesome-icon icon="fa-brands fa-facebook-f" /></a>
                         </li>
                         <li>
-                          <a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                          <a href=""><font-awesome-icon icon="fa-brands fa-twitter" /></a>
                         </li>
                         <li>
-                          <a href=""><i class="fa fa-pinterest-p" aria-hidden="true"></i></a>
+                          <a href=""><font-awesome-icon icon="fa-brands fa-linkedin-in" /></a>
                         </li>
                         <li>
-                          <a href=""><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                          <a href=""><font-awesome-icon icon="fa-brands fa-instagram" /></a>
                         </li>
                       </ul>
                     </div>
                   </div>
                   <div class="col-lg-3 col-md-6 lign">
                     <div class="footer-links">
-                      <h4 @click="showInformation = !showInformation">INFORMATION v</h4>
+                      <h4 @click="showInformation = !showInformation" class="font-weight-bold">For Patients</h4>
                       <Transition>
-                        <ul v-if="showInformation">
-                          <li v-for="item in listsInformation" :key="item.id">
-                            <a href="">qdsdqs</a>
+                        <ul v-if="showInformation" class="list-unstyled p-0">
+                          <li class="links mb-2 d-flex align-items-center" v-for="item in listsInformation" :key="item.id">
+                            <font-awesome-icon class="mr-2" icon="fa-solid fa-angles-right" />
+                            <a href="">{{ item.title }}</a>
                           </li>
                         </ul>
                     </Transition>
@@ -50,11 +44,12 @@
                   </div>
                   <div class="col-lg-3 col-md-6 lign">
                     <div class="footer-links">
-                      <h4 @click="showQuickShop = !showQuickShop">QUICK SHOP v</h4>
+                      <h4 class="font-weight-bold" @click="showQuickShop = !showQuickShop">For Doctors</h4>
                       <Transition>
-                        <ul v-if="showQuickShop">
-                          <li v-for="item in listsQuickShop" :key="item.id">
-                            <a href="">qdsdqs</a>
+                        <ul v-if="showQuickShop" class="list-unstyled p-0">
+                          <li class="links mb-2 d-flex align-items-center" v-for="item in listsQuickShop" :key="item.id">
+                            <font-awesome-icon class="mr-2" icon="fa-solid fa-angles-right" />
+                            <a href="">{{ item.title }}</a>
                           </li>
                         </ul>
                       </Transition>
@@ -62,23 +57,42 @@
                   </div>
                   <div class="col-lg-3 col-md-6 lign">
                     <div class="footer-newletter">
-                      <h4>NEWSLETTER</h4>
-                      <p>
-                        Enter your email to receive daily news and get 20% off coupon for all items.
-                      </p>
-                      <form>
-                        <div class="mb-3">
-                          <input 
-                          v-model="subscribe.email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email address"
-                          >
+                      <h4 class="font-weight-bold">Contact Us</h4>
+                      <div class="footer-contact-info">
+                        <div class="footer-address d-flex mb-2">
+                          <span class="icon">
+                            <font-awesome-icon class="mr-2" icon="fa-solid fa-location-dot" />
+                          </span>
+                          <p class="mb-0">
+                            3556 Beech Street, San Francisco,California, CA 94108
+                          </p>
                         </div>
-                        <button type="submit" class="btn">SUBSCRIBE</button>
-                      </form>
+                        <div class="footer-address d-flex mb-2">
+                          <span class="icon">
+                            <font-awesome-icon class="mr-2" icon="fa-solid fa-phone" />
+                          </span>
+                          <p>
+                            
+                            +212 6 10 20 52 13
+                          </p>
+                        </div>
+                        <div class="footer-address d-flex mb-2">
+                          <span class="icon">
+                            <font-awesome-icon class="mr-2" icon="fa-solid fa-envelope" />
+                          </span>
+                          <p class="mb-0">
+                            
+                            chaounihamza19@gmail.com
+                          </p>
+                        </div>
+                        
+                        
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <!--<div class="footer-bottom">
+              <div class="footer-bottom">
                 <div class="row justify-content-between">
                   <div class="col-md-5 left">
                     <p>
@@ -86,23 +100,12 @@
                     </p>
                   </div>
                   <div class="col-md-3 right">
-                    <ul>
-                      <li>
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMB6KwAcMDUZz3BiN7DD3vNksHmhiHlwQ8Qg&usqp=CAU" alt="">
-                      </li>
-                      <li>
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMB6KwAcMDUZz3BiN7DD3vNksHmhiHlwQ8Qg&usqp=CAU" alt="">
-                      </li>
-                      <li>
-                        <img src="https://lesalarie.ma/wp-content/uploads/2021/12/mastercard-logo-wallpapers-3-1101x570.png" alt="">
-                      </li>
-                      <li>
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Old_Visa_Logo.svg/2560px-Old_Visa_Logo.svg.png" alt="">
-                      </li>
-                    </ul>
+                    <p>
+                      Terms and ConditionsPolicy
+                    </p>
                   </div>
                 </div>
-              </div>-->
+              </div>
             </footer>
           </div>
         </footer>
@@ -116,49 +119,45 @@
         return {
             listsInformation: [
               {
-                title: 'About us',
+                title: 'Search for Doctors',
                 link: 'about'
               },
               {
-                title: 'Contact Us',
+                title: 'Login',
                 link: 'contact'
               },
               {
-                title: 'Career',
+                title: 'Register',
                 link: ''
               },
               {
-                title: 'My Account',
+                title: 'Booking',
                 link: ''
               },
               {
-                title: 'Orders and Returns',
+                title: 'Patient Dashboard',
                 link: ''
               }
             ],
             listsQuickShop: [
               {
-                title: 'Fashion',
+                title: 'Appointments',
                 link: ''
               },
               {
-                title: 'Men',
+                title: 'Chat',
                 link: ''
               },
               {
-                title: 'Furniture',
+                title: 'Login',
                 link: ''
               },
               {
-                title: 'Home',
+                title: 'Register',
                 link: ''
               },
               {
-                title: 'Home Decor',
-                link: ''
-              },
-              {
-                title: 'Shoes',
+                title: 'Doctor Dashboard',
                 link: ''
               }
             ],
@@ -209,10 +208,19 @@
     </script>
     
     <style scoped>
+    .footer-bottom {
+      padding-top: 30px;
+    border-top: 1px solid #ffffff14;
+    padding-bottom: 10px;
+  }
+  .footer-top {
+      padding-bottom: 40px;
+  }
     .footer {
-    padding: 50px 30px;
-    background-color: #15558d;
-}
+        padding: 50px 30px 0 30px;
+        background-color: #15558d;
+        color: white;
+    }
     .footer-logo {
         display: inline-block;
         margin-right: 30px;
@@ -222,6 +230,28 @@
         max-width: 100%;
         height: auto;
     }
+    .social-icons {
+        list-style: none;
+        display: flex;
+        margin: 0;
+        padding: 0;
+        font-size: 25px;
+    }
+    .social-icons li {
+      margin-right: 15px;
+    }
+
+    a {
+    color: #ffffff;
+    text-decoration: none;
+    background-color: transparent;
+}
+.links a {
+  transition: 1s;
+}
+.links:hover a {
+  margin-left: 10px;
+}
     </style>
     
     
