@@ -4,7 +4,7 @@
             <div class="section-header text-center aos aos-init aos-animate" data-aos="fade-up">
                 <h2>Clinic and Specialities</h2>
                 <p class="sub-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                     do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                     do   eiusmod tempor incididunt ut labore et dolore magna aliqua.
                 </p>
             </div>
         </div>
