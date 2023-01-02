@@ -26,20 +26,30 @@
                                     <div class="pro-content">
                                         <h3 class="title">
                                             <a href="/template/patient/doctor-profile text-light">Sofia Brient</a>
-                                            <font-awesome-icon icon="fa-solid fa-star" />
+                                            <font-awesome-icon class="check" icon="fa-solid fa-circle-check" />
                                         </h3>
                                         <p class="speciality">MBBS, MS - General Surgery, MCh - Urology</p>
                                         <div class="rating">
-                                            <font-awesome-icon icon="fa-solid fa-star" />
-                                            <font-awesome-icon icon="fa-solid fa-star" />
-                                            <font-awesome-icon icon="fa-solid fa-star" />
-                                            <font-awesome-icon icon="fa-solid fa-star" />
+                                            <font-awesome-icon class="start" icon="fa-solid fa-star" />
+                                            <font-awesome-icon class="start" icon="fa-solid fa-star" />
+                                            <font-awesome-icon class="start" icon="fa-solid fa-star" />
+                                            <font-awesome-icon class="start" icon="fa-solid fa-star" />
                                             <span class="d-inline-block average-rating">(4)</span>
                                         </div>
                                         <ul class="available-info pl-0 mt-2">
-                                            <li><font-awesome-icon icon="fa-solid fa-star" class="mr-1" /> Louisiana, USA</li>
-                                            <li><font-awesome-icon icon="fa-solid fa-star" class="mr-1" /> Available on Fri, 22 Mar</li>
-                                            <li><font-awesome-icon icon="fa-solid fa-star" class="mr-1" /> $150 - $250<font-awesome-icon icon="fa-solid fa-star" /></li>
+                                            <li>
+                                                <font-awesome-icon class="mr-1" icon="fa-solid fa-location-dot" />
+                                                <span>Louisiana, USA</span>
+                                            </li>
+                                            <li>
+                                                <font-awesome-icon class="mr-1" icon="fa-regular fa-clock" />
+                                                <span>Available on Fri, 22 Mar</span>
+                                            </li>
+                                            <li>
+                                                <font-awesome-icon class="mr-1" icon="fa-solid fa-sack-dollar" />
+                                                <span>$150 - $250</span>
+                                                <font-awesome-icon icon="fa-solid fa-star" class="ml-1 text-warning" />
+                                            </li>
                                         </ul>
                                         <div class="row row-sm">
                                             <div class="col-6">
@@ -61,6 +71,18 @@
     </section>
 </template>
 <style scoped>
+.rating .start {
+    color: #ffeb00;
+}
+.title {
+    display: flex;
+    align-items: center;
+}
+.title .check {
+    color: limegreen;
+    font-size: 20px;
+    margin-left: 10px;
+}
 p.speciality {
     font-size: 13px;
     color: #757575;
@@ -69,6 +91,10 @@ p.speciality {
 }
 .available-info {
     list-style: none;
+}
+.available-info li .mr-1 {
+    width: 25px;
+    color: #3333337a;
 }
 .view-btn {
     color: #0de0fe;

@@ -38,7 +38,9 @@ import {
     faStar,
     faEnvelope,
     faPhone,
-    faAnglesRight
+    faAnglesRight,
+    faSackDollar,
+    faCircleCheck
 } from '@fortawesome/free-solid-svg-icons'
 import { faMoon, faSun, faAddressCard, faCircleXmark, faChartBar, faMessage, faUser, faClock } from '@fortawesome/free-regular-svg-icons'
 import { faFacebookF, faTwitter, faLinkedinIn, faGoogle, faInstagram } from '@fortawesome/free-brands-svg-icons'
@@ -46,6 +48,7 @@ import { faFacebookF, faTwitter, faLinkedinIn, faGoogle, faInstagram } from '@fo
 /* add icons to the library */
 library.add(
     faUserSecret,
+    faCircleCheck,
     faPhone,
     faAnglesRight,
     faInstagram,
@@ -54,6 +57,7 @@ library.add(
     faStar,
     faGoogle,
     faClock,
+    faSackDollar,
     faAngleDown,
     faMoon,
     faFacebookF,
