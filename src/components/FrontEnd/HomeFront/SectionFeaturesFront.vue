@@ -11,11 +11,27 @@
                             <p>It is a long established fact that a reader will be distracted by the readable 
                                 content of a page when looking at its layout. </p>
                         </div>
-                        <div class="row mt-3">
-                            <div class="col-md-3 text-center" v-for="item in 4">
-                                <div class="cercle">
-                                    <img src="https://www.vie-publique.fr/sites/default/files/styles/large_full/public/en_bref/image_principale/H%C3%B4pital_0.jpg?itok=juWf2GYd" alt="" width="100">
+                        <div class="mt-3">
+                            <div class="text-center">
+                                <div class="specialities-slider slider">
+                                    <swiper
+                                        :slides-per-view="5"
+                                        :space-between="50"
+                                        @swiper="onSwiper"
+                                        @slideChange="onSlideChange"
+                                        :pagination="true"
+                                        :modules="modules"
+                                        class="mySwiper"
+                                    >
+                                        <swiper-slide v-for="item in 20" :key="item">
+                                            <div tabindex="-1" style="width: 100%; display: inline-block;">
+                                                <div class="cercle">
+                                    <img src="https://www.vie-publique.fr/sites/default/files/styles/large_full/public/en_bref/image_principale/H%C3%B4pital_0.jpg?itok=juWf2GYd" alt="">
                                     <p class="mt-2">Medical</p>
+                                </div>
+                                            </div>
+                                        </swiper-slide>
+                                    </swiper>
                                 </div>
                             </div>
                         </div>
@@ -24,10 +40,47 @@
         </div>
     </section>        
 </template>
+<script>
+  // Import Swiper Vue.js components
+  import { Swiper, SwiperSlide } from 'swiper/vue';
+
+  // Import Swiper styles
+  import 'swiper/css';
+  import "swiper/css/pagination";
+
+  //import "./style.css";
+
+  // import required modules
+  import { Pagination } from "swiper";
+
+  export default {
+    components: {
+      Swiper,
+      SwiperSlide,
+    },
+    setup() {
+      const onSwiper = (swiper) => {
+        console.log(swiper);
+      };
+      const onSlideChange = () => {
+        console.log('slide change');
+      };
+      return {
+        onSwiper,
+        onSlideChange,
+        Pagination
+      };
+    },
+    data() {
+        return {
+        }
+    }
+  };
+</script>
 <style scoped>
 .section-features {
     background-color: #fff;
-    padding: 80px 0;
+    padding: 80px 40px;
 }
 .section-header h2 {
     font-size: 42px;
@@ -50,5 +103,42 @@
 .cercle p {
     font-weight: 600;
     color: #333;
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  object-fit: cover;
+  border-radius: 100%;
+  box-shadow: 2px 2px 13px rgb(0 0 0 / 26%);
+}
+.speicality-item p {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 10px 0 0;
 }
 </style>

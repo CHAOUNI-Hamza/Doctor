@@ -19,7 +19,7 @@
                 </div>
                 <div class="col-lg-8">
                     <div class="row">
-                        <div class="col-md-4" v-for="item in 3">
+                        <div class="col-md-4" v-for="item in 3" :key="item">
                             <div class="card" style="width: 100%;">
                                 <img src="https://www.pngitem.com/pimgs/m/515-5158817_telemedicine-doctor-hd-png-download.png" class="card-img-top p-3" alt="...">
                                 <div class="card-body pt-0">
@@ -30,10 +30,10 @@
                                         </h3>
                                         <p class="speciality">MBBS, MS - General Surgery, MCh - Urology</p>
                                         <div class="rating">
-                                            <font-awesome-icon class="start" icon="fa-solid fa-star" />
-                                            <font-awesome-icon class="start" icon="fa-solid fa-star" />
-                                            <font-awesome-icon class="start" icon="fa-solid fa-star" />
-                                            <font-awesome-icon class="start" icon="fa-solid fa-star" />
+                                            <font-awesome-icon class="text-warning" icon="fa-solid fa-star" />
+                                            <font-awesome-icon class="text-warning" icon="fa-solid fa-star" />
+                                            <font-awesome-icon class="text-warning" icon="fa-solid fa-star" />
+                                            <font-awesome-icon class="text-warning" icon="fa-solid fa-star" />
                                             <span class="d-inline-block average-rating">(4)</span>
                                         </div>
                                         <ul class="available-info pl-0 mt-2">
@@ -71,9 +71,6 @@
     </section>
 </template>
 <style scoped>
-.rating .start {
-    color: #ffeb00;
-}
 .title {
     display: flex;
     align-items: center;
@@ -122,7 +119,7 @@ p.speciality {
 
 .section-doctor {
     background-color: #f8f9fa;
-    padding: 80px 0;
+    padding: 80px 40px;
 }
 .section-doctor .section-header h2 {
     font-size: 36px;

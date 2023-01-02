@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="row">
-                        <div class="col-md-3" v-for="item in 4">
+                        <div class="col-md-3" v-for="item in 4" :key="item">
                             <div class="card" style="width: 100%;">
                                 <img src="https://www.pngitem.com/pimgs/m/515-5158817_telemedicine-doctor-hd-png-download.png" class="card-img-top p-3" alt="...">
                                 <div class="card-body pt-0">
@@ -118,7 +118,7 @@ p.speciality {
 
 .section-doctor {
     background-color: #f8f9fa;
-    padding: 80px 0;
+    padding: 80px 40px;
 }
 .section-doctor .section-header h2 {
     font-size: 36px;
