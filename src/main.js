@@ -40,7 +40,7 @@ import {
     faPhone,
     faAnglesRight,
     faSackDollar,
-    faCircleCheck
+    faCircleCheck,
 } from '@fortawesome/free-solid-svg-icons'
 import { faMoon, faSun, faAddressCard, faCircleXmark, faChartBar, faMessage, faUser, faClock } from '@fortawesome/free-regular-svg-icons'
 import { faFacebookF, faTwitter, faLinkedinIn, faGoogle, faInstagram } from '@fortawesome/free-brands-svg-icons'

@@ -3,6 +3,11 @@ import HomeView from '../views/HomeView.vue'
 
 const routes = [
   {
+    path: '/doctor-dashboard',
+    name: 'doctordashboard',
+    component: () => import(/* webpackChunkName: "doctordashboard" */ '../views/FrontEnd/DoctorsFront')
+  },
+  {
     path: '/',
     name: 'homefront',
     component: () => import(/* webpackChunkName: "dashboard" */ '../views/FrontEnd/HomeFront')
