@@ -27,8 +27,7 @@
                                         :key="tab"
                                         :class="['tab-button ml-2', { active: currentTab === tab }]"
                                         @click="currentTab = tab"
-                                    >
-                                        
+                                    >         
                                         <font-awesome-icon icon="fa-solid fa-table-columns" />
                                         <a class="nav-link active" href="#">{{ tab }}</a>
                                     </li>
