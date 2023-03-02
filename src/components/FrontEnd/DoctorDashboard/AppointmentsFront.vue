@@ -1,9 +1,14 @@
 <template>
   <div class="appointment">
-    <div class="appointment-list d-flex align-items-center mb-3" v-for="item in 6" :key="item">
+    <div
+      class="appointment-list d-flex align-items-center mb-3"
+      v-for="item in 6"
+      :key="item">
       <div class="profile-info-widget d-flex align-items-center">
         <a class="booking-doc-img" href="/template/doctor/patient-profile">
-          <img src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bWFsZSUyMHByb2ZpbGV8ZW58MHx8MHx8&w=1000&q=80" alt="User">
+          <img
+            src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bWFsZSUyMHByb2ZpbGV8ZW58MHx8MHx8&w=1000&q=80"
+            alt="User" />
         </a>
         <div class="profile-det-info">
           <h3>
@@ -34,11 +39,15 @@
           <i class="far fa-eye"></i>
           View
         </a>
-        <a class="btn btn-sm bg-info ml-2" href="/template/doctor/appointments#0">
+        <a
+          class="btn btn-sm bg-info ml-2"
+          href="/template/doctor/appointments#0">
           <i class="fas fa-check"></i>
           Accept
         </a>
-        <a class="btn btn-sm bg-warning ml-2" href="/template/doctor/appointments#0">
+        <a
+          class="btn btn-sm bg-warning ml-2"
+          href="/template/doctor/appointments#0">
           <i class="fas fa-times"></i>
           Cancel
         </a>
@@ -46,47 +55,41 @@
     </div>
   </div>
 </template>
-  
-  <script>
-  export default {
-    components: {
 
-    },
-    data() {
-      return {
-  
-      }
-    }
-  }
-  </script>
-  <style scoped>
-  .profile-info-widget {
-    text-align: left;
-    margin-right: auto;
-  }
-  .booking-doc-img img {
-    width: 150px;
-    height: 150px;
-    margin-right: 10px;
-    border-radius: 8px;
+<script>
+export default {
+  components: {},
+  data() {
+    return {};
+  },
+};
+</script>
+<style scoped>
+.profile-info-widget {
+  text-align: left;
+  margin-right: auto;
+}
+.booking-doc-img img {
+  width: 150px;
+  height: 150px;
+  margin-right: 10px;
+  border-radius: 8px;
 }
 .appointment-list {
-    border: 1px solid #33333314;
-    border-radius: 5px;
-    padding: 14px;
+  border: 1px solid #33333314;
+  border-radius: 5px;
+  padding: 14px;
 }
 .profile-det-info h3 a {
-    color: black;
-    font-size: 24px;
+  color: black;
+  font-size: 24px;
 }
 .patient-details h5 {
-    font-size: 17px;
-    color: #33333394
+  font-size: 17px;
+  color: #33333394;
 }
 .btn {
-    padding: 4px 17px;
-    color: white;
+  padding: 4px 17px;
+  color: white;
 }
-
 </style>
-  

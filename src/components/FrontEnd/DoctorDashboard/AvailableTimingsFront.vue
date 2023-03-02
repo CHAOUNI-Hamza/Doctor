@@ -1,19 +1,13 @@
 <template>
-    <div>test</div>
+  <div>test</div>
 </template>
-  
-  <script>
-  export default {
-    components: {
 
-    },
-    data() {
-      return {
-  
-      }
-    }
-  }
-  </script>
-  <style scoped>
-  </style>
-  
+<script>
+export default {
+  components: {},
+  data() {
+    return {};
+  },
+};
+</script>
+<style scoped></style>
