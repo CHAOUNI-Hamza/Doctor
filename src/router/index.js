@@ -49,6 +49,14 @@ const routes = [
       ),
   },
   {
+    path: "/Doctors/:id",
+    name: "invoicesOneFront",
+    component: () =>
+      import(
+        /* webpackChunkName: "dashboard" */ "../views/FrontEnd/InvoicesOneFront"
+      ),
+  },
+  {
     path: "/Patients",
     name: "patientsfront",
     component: () =>
