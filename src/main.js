@@ -56,6 +56,9 @@ import {
   faPaperPlane,
   faVideo,
   faArrowUpFromBracket,
+  faCaretUp,
+  faArrowRight,
+  faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faMoon,
@@ -68,7 +71,7 @@ import {
   faUser,
   faFaceLaugh,
   faClock,
-  faCircleUp
+  faCircleUp,
 } from "@fortawesome/free-regular-svg-icons";
 import {
   faFacebookF,
@@ -81,6 +84,9 @@ import {
 /* add icons to the library */
 library.add(
   faUserSecret,
+  faChevronRight,
+  faCaretUp,
+  faArrowRight,
   faVideo,
   faMicrophone,
   faPaperPlane,
