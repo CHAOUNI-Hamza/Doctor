@@ -5,9 +5,7 @@
         <ul class="comments-list list-unstyled">
           <li class="list-style-none">
             <div class="comment">
-              <img
-                class="avatar rounded-circle"
-                alt="User Image"
+              <img class="avatar rounded-circle" alt="User Image"
                 src="https://www.shutterstock.com/image-photo/profile-picture-smiling-young-caucasian-260nw-1954278664.jpg" />
               <div class="comment-body ml-3">
                 <div class="meta-data">
@@ -51,9 +49,7 @@
             <ul class="comments-reply list-unstyled mt-3">
               <li>
                 <div class="comment">
-                  <img
-                    class="avatar rounded-circle"
-                    alt="User Image"
+                  <img class="avatar rounded-circle" alt="User Image"
                     src="https://www.shutterstock.com/image-photo/profile-picture-smiling-young-caucasian-260nw-1954278664.jpg" />
                   <div class="comment-body ml-3">
                     <div class="meta-data">
@@ -97,9 +93,11 @@ export default {
   width: 3rem;
   height: 3rem;
 }
+
 .comment {
   display: flex;
 }
+
 .comment .comment-body .meta-data {
   position: relative;
   margin-bottom: 10px;
@@ -120,12 +118,14 @@ span.comment-date {
   font-size: 16px;
   color: #757575;
 }
+
 .recommended {
   color: #28a745;
   font-size: 15px;
   font-weight: 500;
   margin: 0;
 }
+
 .comment .comment-body .meta-data .review-count {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -142,19 +142,23 @@ span.comment-date {
   padding: 0;
   width: 100%;
 }
-.review-listing > ul li .comments-reply {
+
+.review-listing>ul li .comments-reply {
   margin-left: 65px;
   padding: 0;
 }
+
 .rating .filled {
   color: #f4c150;
 }
-.review-listing > ul li .comment .comment-body .comment-reply .comment-btn {
+
+.review-listing>ul li .comment .comment-body .comment-reply .comment-btn {
   color: #20c0f3;
   display: inline-block;
   font-weight: 500;
   font-size: 15px;
 }
+
 .review-listing .recommend-btn {
   float: right;
   color: #757575;
@@ -162,6 +166,7 @@ span.comment-date {
   padding: 5px 0;
   margin-bottom: 0;
 }
+
 .review-listing .recommend-btn {
   float: right;
   color: #757575;
@@ -169,6 +174,7 @@ span.comment-date {
   padding: 5px 0;
   margin-bottom: 0;
 }
+
 .review-listing .recommend-btn a {
   border: 1px solid rgba(128, 137, 150, 0.4);
   border-radius: 4px;
@@ -179,9 +185,9 @@ span.comment-date {
   margin-right: 3px;
   transition: all 0.3s;
 }
+
 .reviews {
   border: 1px solid #33333314;
   border-radius: 5px;
   padding: 14px;
-}
-</style>
+}</style>

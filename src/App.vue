@@ -19,25 +19,47 @@
     </aside>
     <MainFooterBack />
   </div>-->
-  <router-view/>
+  <router-view />
+  <!-- your page content goes here -->
+  <GoToTopButton v-if="isShow" />
 </template>
 
 <script>
 import MainSidebar from './components/BackEnd/MainSidebar.vue'
 import NavbarBack from './components/BackEnd/NavbarBack.vue'
 import MainFooterBack from './components/BackEnd/MainFooterBack.vue'
+
 export default {
-  name: 'App',
   components: {
     MainSidebar,
     NavbarBack,
     MainFooterBack
-  }
-}
+  },
+  data() {
+    return {
+      isShow: false,
+    };
+  },
+  created() {
+    window.addEventListener("scroll", this.handleScroll);
+  },
+  destroyed() {
+    window.removeEventListener("scroll", this.handleScroll);
+  },
+  methods: {
+    handleScroll() {
+      if (window.pageYOffset > 300) {
+        this.isShow = true;
+      } else {
+        this.isShow = false;
+      }
+    },
+  },
+};
 </script>
 
 <style scoped>
 .main-sidebar {
-    background-color: #ffffff !important;
+  background-color: #ffffff !important;
 }
 </style>

@@ -24,12 +24,8 @@
               </div>
               <div class="dashboard-widget">
                 <ul class="nav flex-column">
-                  <li
-                    class="nav-item d-flex align-items-center"
-                    v-for="tab in tabs"
-                    :key="tab"
-                    :class="['tab-button ml-2', { active: currentTab === tab }]"
-                    @click="currentTab = tab">
+                  <li class="nav-item d-flex align-items-center" v-for="tab in tabs" :key="tab"
+                    :class="['tab-button ml-2', { active: currentTab === tab }]" @click="currentTab = tab">
                     <font-awesome-icon icon="fa-solid fa-table-columns" />
                     <a class="nav-link active" href="#">{{ tab }}</a>
                   </li>
@@ -60,6 +56,7 @@ import Reviews from "./../../components/FrontEnd/DoctorDashboard/ReviewsFront.vu
 import Message from "./../../components/FrontEnd/DoctorDashboard/MessageFront.vue";
 import SocialeMedia from "./../../components/FrontEnd/DoctorDashboard/SocialeMediaFront.vue";
 import ChangePassword from "./../../components/FrontEnd/DoctorDashboard/ChangePasswordFront.vue";
+import ProfileSettings from "./../../components/FrontEnd/DoctorDashboard/ProfileSettings.vue";
 export default {
   components: {
     BreadCrumbFront,
@@ -74,6 +71,7 @@ export default {
     Message,
     SocialeMedia,
     ChangePassword,
+    ProfileSettings
   },
   data() {
     return {
@@ -88,6 +86,7 @@ export default {
         "Accounts",
         "Reviews",
         "Message",
+        "ProfileSettings",
         "SocialeMedia",
         "ChangePassword",
         "Logout",
@@ -101,22 +100,27 @@ export default {
   border-bottom: 1px solid #f0f0f0;
   padding: 9px 20px;
 }
+
 .dashboard-widget .nav-item .nav-link {
   color: #757575 !important;
   font-weight: 500;
 }
+
 .content {
   padding: 15px;
 }
+
 .profile-sidebar {
   border: 1px solid #f0f0f0;
   border-radius: 4px;
   overflow: hidden;
 }
+
 .widget-profile {
   border-bottom: 1px solid #f0f0f0;
   padding: 10px;
 }
+
 .doc-img {
   background-color: #f7f7f7;
   width: auto;
@@ -124,18 +128,20 @@ export default {
   padding: 8px;
   border-radius: 50%;
 }
+
 .doc-img img {
   border-radius: 50%;
   width: 120px;
   height: 120px;
 }
+
 .profile-info h3 {
   font-size: 21px;
   font-weight: 700;
   margin-top: 14px;
 }
+
 .patient-details h5 {
   color: #757575;
   font-size: 17px;
-}
-</style>
+}</style>

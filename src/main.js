@@ -6,6 +6,7 @@ import store from "./store";
 // Globale Component
 import NavbarFront from "./components/FrontEnd/NavbarFront.vue";
 import FooterFront from "./components/FrontEnd/FooterFront.vue";
+import GoToTopButton from "./components/FrontEnd/GoToTopButton.vue";
 
 // file style css
 import style from "../public/style.css";
@@ -67,6 +68,7 @@ import {
   faUser,
   faFaceLaugh,
   faClock,
+  faCircleUp
 } from "@fortawesome/free-regular-svg-icons";
 import {
   faFacebookF,
@@ -129,7 +131,8 @@ library.add(
   faChartBar,
   faRightFromBracket,
   faUser,
-  faReply
+  faReply,
+  faCircleUp
 );
 
 createApp(App)
@@ -139,4 +142,5 @@ createApp(App)
   .use(router)
   .component("NavbarFront", NavbarFront)
   .component("FooterFront", FooterFront)
+  .component("GoToTopButton", GoToTopButton)
   .mount("#app");
