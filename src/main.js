@@ -19,6 +19,8 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 /* import specific icons */
 import {
   faUserSecret,
+  faBars,
+  faRepeat,
   faMagnifyingGlass,
   faBell,
   faPenToSquare,
@@ -46,6 +48,13 @@ import {
   faEye,
   faClipboardCheck,
   faPrint,
+  faReply,
+  faThumbsUp,
+  faMicrophone,
+  faThumbsDown,
+  faPaperPlane,
+  faVideo,
+  faArrowUpFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faMoon,
@@ -54,7 +63,9 @@ import {
   faCircleXmark,
   faChartBar,
   faMessage,
+  faCommentDots,
   faUser,
+  faFaceLaugh,
   faClock,
 } from "@fortawesome/free-regular-svg-icons";
 import {
@@ -68,12 +79,22 @@ import {
 /* add icons to the library */
 library.add(
   faUserSecret,
+  faVideo,
+  faMicrophone,
+  faPaperPlane,
   faEye,
   faPrint,
+  faArrowUpFromBracket,
+  faCommentDots,
   faXmark,
+  faBars,
+  faRepeat,
+  faFaceLaugh,
   faClipboardCheck,
   faCircleCheck,
   faCirclePlus,
+  faThumbsUp,
+  faThumbsDown,
   faPhone,
   faAnglesRight,
   faInstagram,
@@ -107,7 +128,8 @@ library.add(
   faTableColumns,
   faChartBar,
   faRightFromBracket,
-  faUser
+  faUser,
+  faReply
 );
 
 createApp(App)
