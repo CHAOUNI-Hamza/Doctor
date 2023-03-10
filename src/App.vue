@@ -1,13 +1,13 @@
 <template>
-  <!--<div class="wrapper">
+  <div class="wrapper">
     <NavbarBack />
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <MainSidebar />
+      <MainSidebar />
     </aside>
-    <div class="content-wrapper" style="margin-top:30px">
-      <div class="content" style="background-color: white;">
+    <div class="content-wrapper" style="margin-top: 30px">
+      <div class="content" style="background-color: white">
         <div class="container-fluid">
-          <router-view/>
+          <router-view />
         </div>
       </div>
     </div>
@@ -18,22 +18,22 @@
       </div>
     </aside>
     <MainFooterBack />
-  </div>-->
-  <router-view />
-  <!-- your page content goes here -->
+  </div>
+  <!--<router-view />
+   your page content goes here -->
   <GoToTopButton v-if="isShow" />
 </template>
 
 <script>
-import MainSidebar from './components/BackEnd/MainSidebar.vue'
-import NavbarBack from './components/BackEnd/NavbarBack.vue'
-import MainFooterBack from './components/BackEnd/MainFooterBack.vue'
+import MainSidebar from "./components/BackEnd/MainSidebar.vue";
+import NavbarBack from "./components/BackEnd/NavbarBack.vue";
+import MainFooterBack from "./components/BackEnd/MainFooterBack.vue";
 
 export default {
   components: {
     MainSidebar,
     NavbarBack,
-    MainFooterBack
+    MainFooterBack,
   },
   data() {
     return {

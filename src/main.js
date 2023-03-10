@@ -70,6 +70,7 @@ import {
   faCommentDots,
   faUser,
   faFaceLaugh,
+  faCreditCard,
   faClock,
   faCircleUp,
 } from "@fortawesome/free-regular-svg-icons";
@@ -84,6 +85,7 @@ import {
 /* add icons to the library */
 library.add(
   faUserSecret,
+  faCreditCard,
   faChevronRight,
   faCaretUp,
   faArrowRight,

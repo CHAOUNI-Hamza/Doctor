@@ -125,6 +125,20 @@ const routes = [
       ),
   },
   {
+    path: "/admin/reviews",
+    name: "reviews",
+    component: () =>
+      import(/* webpackChunkName: "settings" */ "../views/BackEnd/ReviewsBack"),
+  },
+  {
+    path: "/admin/transactions",
+    name: "transactions",
+    component: () =>
+      import(
+        /* webpackChunkName: "settings" */ "../views/BackEnd/TransactionsBack"
+      ),
+  },
+  {
     path: "/admin/profile",
     name: "profile",
     component: () =>
