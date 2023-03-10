@@ -59,6 +59,7 @@ import {
   faCaretUp,
   faArrowRight,
   faChevronRight,
+  faPrescriptionBottleMedical
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faMoon,
@@ -132,6 +133,7 @@ library.add(
   faGauge,
   faAddressCard,
   faSliders,
+  faPrescriptionBottleMedical,
   faUsers,
   faUserPlus,
   faCube,

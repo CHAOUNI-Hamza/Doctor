@@ -3,33 +3,24 @@
   <a v-if="LogoBigSmall" href="index3.html" class="brand-link">
     <img
       src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/The_Good_Doctor_logo_2.svg/2560px-The_Good_Doctor_logo_2.svg.png"
-      alt="AdminLTE Logo"
-      class="logo"
-      style="opacity: 0.8" />
+      alt="AdminLTE Logo" class="logo" style="opacity: 0.8" />
   </a>
   <a v-if="!LogoBigSmall" href="index3.html" class="brand-link">
-    <img
-      src="https://www.pgdesign.be/wp-content/uploads/2020/06/Logo-bleu-400.png"
-      alt="AdminLTE Logo"
-      class="logo"
+    <img src="https://www.pgdesign.be/wp-content/uploads/2020/06/Logo-bleu-400.png" alt="AdminLTE Logo" class="logo"
       style="opacity: 0.8" />
   </a>
   <!-- Sidebar -->
   <div class="sidebar">
     <!-- Sidebar Menu -->
     <nav class="mt-2">
-      <ul
-        class="nav nav-pills nav-sidebar flex-column"
-        data-widget="treeview"
-        role="menu"
-        data-accordion="false">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <!-- Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library -->
         <li class="nav-item menu-open">
           <ul class="nav nav-treeview">
             <li v-for="nav in listsNav" :key="nav.id" class="nav-item">
               <router-link :to="{ name: nav.link }" class="nav-link">
-                <font-awesome-icon style="color: #333" :icon="nav.icone" />
+                <font-awesome-icon style="color: #333" class="icone" :icon="nav.icone" />
                 <p>{{ nav.title }}</p>
               </router-link>
             </li>
@@ -92,6 +83,16 @@ export default {
           icone: "fa-solid fa-sliders",
         },
         {
+          title: "Pharmacies",
+          link: "pharmacies",
+          icone: "fa-solid fa-prescription-bottle-medical",
+        },
+        {
+          title: "Category Pharmacies",
+          link: "categorypharmacies",
+          icone: "fa-solid fa-prescription-bottle-medical",
+        },
+        {
           title: "Profile",
           link: "profile",
           icone: "fa-regular fa-address-card",
@@ -110,16 +111,19 @@ export default {
 .nav-link {
   font-size: 18px;
 }
+
 .nav-link p {
   margin-left: 10px;
   color: #333 !important;
   font-weight: 300;
   font-size: 16px;
 }
+
 .brand-link .logo {
   opacity: 0.8;
   width: 67%;
 }
+
 .brand-link {
   border-bottom: 1px solid #4b545c30 !important;
 }
@@ -127,5 +131,9 @@ export default {
 .router-link-active {
   color: #5c8ed3 !important;
   font-weight: 700;
+}
+
+.icone {
+  width: 20px
 }
 </style>

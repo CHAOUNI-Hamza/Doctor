@@ -139,6 +139,22 @@ const routes = [
       ),
   },
   {
+    path: "/admin/pharmacies",
+    name: "pharmacies",
+    component: () =>
+      import(
+        /* webpackChunkName: "settings" */ "../views/BackEnd/PharmaciesBack"
+      ),
+  },
+  {
+    path: "/admin/pharmacies/category",
+    name: "categorypharmacies",
+    component: () =>
+      import(
+        /* webpackChunkName: "settings" */ "../views/BackEnd/CategoryPharmaciesBack"
+      ),
+  },
+  {
     path: "/admin/profile",
     name: "profile",
     component: () =>
