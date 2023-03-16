@@ -28,7 +28,7 @@
                         </div>
                     </div>
                 </div>
-    
+
                 <div class="card-body table-responsive p-0" style="height: 100vh;">
                     <table class="table table-head-fixed text-nowrap">
                         <thead>
@@ -43,13 +43,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="item in 10" :key="item">
+                            <tr v-for="item in items" :key="item.id">
                                 <td>183</td>
                                 <td>
                                     <div class="media">
                                         <div class="d-flex media-body">
                                             <a class="avatar avatar-sm me-2 user-dt" href="/template/admin/profile">
-                                                <img src="https://doccure-react.dreamguystech.com/template/32b8469a75322a6ba6b15343e65f1072.jpg" class="avatar avatar-img">
+                                                <img src="https://doccure-react.dreamguystech.com/template/32b8469a75322a6ba6b15343e65f1072.jpg"
+                                                    class="avatar avatar-img">
                                             </a>
                                             <div class="text-secondary">
                                                 <span class="user-name">Gobbs Siauw</span><br>
@@ -73,6 +74,16 @@
                                 </td>
                                 <td class="text-left">
                                     <input id="s1" type="checkbox" class="switch">
+
+                                    <div>
+                                        <label>
+                                            <input type="radio" value="active" v-model="status"> Active
+                                        </label>
+                                        <label>
+                                            <input type="radio" value="inactive" v-model="status"> Inactive
+                                        </label>
+                                        <button @click="updateStatus">Update</button>
+                                    </div>
                                 </td>
                             </tr>
                         </tbody>
@@ -81,102 +92,110 @@
             </div>
         </div>
     </div>
-    </template>
-    <script>
-    export default {
-        data() {
-            return {
-    
-            }   
-        },
-        methods: {
-    
+</template>
+<script>
+import { mapState, mapActions } from 'vuex';
+export default {
+    data() {
+        return {
+            status: 'active'
         }
-    }
-    </script>
-    <style scoped>
-    .card-title {
-        font-size: 1.3rem;
-        font-weight: bold;
-    }
-    .form-control {
-        border: none;
-        margin-right: 10px;
-    }
-    .input-group-append .btn {
-        background: none;
-        border: none;
-    }
-    select.form-control {
-        color: #00000082!important;
-    }
-    
-    .table .media {
-        align-items: flex-start;
-    }
-    .table .d-flex.media-body {
-        align-items: center!important;
-    }
-    .table .avatar {
-        position: relative;
-        display: inline-block;
-    }
-    .table .avatar-sm {
-        width: 2.5rem;
-        height: 2.5rem;
-    }
-    
-    .table .avatar > img {
-        width: 100%;
-        height: 100%;
-        -o-object-fit: cover;
-        object-fit: cover;
-        border-radius: 5px;
-    }
-    
-    .table .text-secondary {
-        margin-left: 10px;
-    }
-    .table span.user-name {
-        color: #131523;
-        font-weight: 600;
-    }
-    .table span.text-muted {
-        color: #7E84A3 !important;
-    }
-    
-    .table .Disease {
-        font-weight: bold;
-    }
-    .table .consultation-type {
-        color: #2196f3;
-        font-size: 17px;
-    }
+    },
+    methods: {
+        async updateStatus() {
+            try {
+                const response = await axios.post('/api/update-status', { status: this.status });
+                this.status = response.data.status;
+            } catch (error) {
+                console.error(error);
+            }
+        },
+        ...mapActions(['fetchItems', 'deleteItem'])
+    },
+    mounted() {
+        this.fetchItems();
+    },
+    computed: {
+        ...mapState(['items'])
+    },
+}
+</script>
+<style scoped>
+.card-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+}
 
-    .doc-badge span {
-        background: red;
-        color: white;
-        padding: 0px 2px;
-        border-radius: 2px;
-    }
-    
-    
-    /* @media */
-    @media (max-width: 390px) {
-    }
+.form-control {
+    border: none;
+    margin-right: 10px;
+}
+
+.input-group-append .btn {
+    background: none;
+    border: none;
+}
+
+select.form-control {
+    color: #00000082 !important;
+}
+
+.table .media {
+    align-items: flex-start;
+}
+
+.table .d-flex.media-body {
+    align-items: center !important;
+}
+
+.table .avatar {
+    position: relative;
+    display: inline-block;
+}
+
+.table .avatar-sm {
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+.table .avatar>img {
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.table .text-secondary {
+    margin-left: 10px;
+}
+
+.table span.user-name {
+    color: #131523;
+    font-weight: 600;
+}
+
+.table span.text-muted {
+    color: #7E84A3 !important;
+}
+
+.table .Disease {
+    font-weight: bold;
+}
+
+.table .consultation-type {
+    color: #2196f3;
+    font-size: 17px;
+}
+
+.doc-badge span {
+    background: red;
+    color: white;
+    padding: 0px 2px;
+    border-radius: 2px;
+}
 
 
-
-
-
-
-
-
-
-
-
-
-
-   
-
+/* @media */
+@media (max-width: 390px) {}
 </style>
