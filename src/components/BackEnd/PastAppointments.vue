@@ -7,10 +7,25 @@
           <div class="input-group input-group-sm" style="width: 300px">
             <select class="form-control">
               <option>Search by...</option>
-              <option>option 2</option>
-              <option>option 3</option>
-              <option>option 4</option>
-              <option>option 5</option>
+              <input
+                type="text"
+                name="name_doctor"
+                class="form-control float-right"
+                placeholder="name doctor" />
+              <option>
+                <input
+                  type="text"
+                  name="name_doctor"
+                  class="form-control float-right"
+                  placeholder="name doctor" />
+              </option>
+              <option>
+                <input
+                  type="text"
+                  name="name_patient"
+                  class="form-control float-right"
+                  placeholder="name patient" />
+              </option>
             </select>
             <div class="input-group-append">
               <button type="submit" class="btn btn-default">
@@ -118,19 +133,14 @@ export default {
   },
   computed: {
     ...mapState(["appointments"]),
-    /*...mapState({
-      appointments: "appointment/appointments",
-    }),*/
   },
   methods: {
     ...mapActions(["fetchAppointments"]),
-    /*...mapActions({
-      fetchAppointments: "appointment/fetchAppointments",
-    }),*/
   },
   mounted() {
     this.fetchAppointments({
-      status: "",
+      status: "approved",
+      status_two: "cancelled",
       name_doctor: "",
       name_patient: "",
     });

@@ -15,10 +15,12 @@
     "axios": "^1.3.4",
     "core-js": "^3.8.3",
     "html2pdf.js": "^0.10.1",
+    "laravel-vue-pagination": "^4.0.0",
     "swiper": "^8.4.5",
     "vue": "^3.2.13",
     "vue-html-to-paper": "^1.4.4",
     "vue-router": "^4.0.3",
+    "vuejs-paginate": "^2.1.0",
     "vuex": "^4.0.0"
   },
   "devDependencies": {

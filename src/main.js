@@ -17,6 +17,8 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 /* import font awesome icon component */
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
+/* Pagination */
+
 /* import specific icons */
 import {
   faUserSecret,
@@ -59,7 +61,7 @@ import {
   faCaretUp,
   faArrowRight,
   faChevronRight,
-  faPrescriptionBottleMedical
+  faPrescriptionBottleMedical,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faMoon,
