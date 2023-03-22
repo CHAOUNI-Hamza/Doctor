@@ -3,30 +3,8 @@
     <div class="card">
       <div class="card-header">
         <h3 class="card-title">Past Appointments</h3>
-        <div class="card-tools">
-          <div class="input-group input-group-sm" style="width: 300px">
-            <select class="form-control">
-              <option>Search by...</option>
-              <input
-                type="text"
-                name="name_doctor"
-                class="form-control float-right"
-                placeholder="name doctor" />
-              <option>
-                <input
-                  type="text"
-                  name="name_doctor"
-                  class="form-control float-right"
-                  placeholder="name doctor" />
-              </option>
-              <option>
-                <input
-                  type="text"
-                  name="name_patient"
-                  class="form-control float-right"
-                  placeholder="name patient" />
-              </option>
-            </select>
+        <div class="card-tools d-flex">
+          <div class="input-group input-group-sm" style="width: 200px">
             <div class="input-group-append">
               <button type="submit" class="btn btn-default">
                 <font-awesome-icon icon="fa-solid fa-magnifying-glass" />
@@ -36,7 +14,21 @@
               type="text"
               name="table_search"
               class="form-control float-right"
-              placeholder="Search" />
+              v-model="params.name_doctor"
+              placeholder="Search By Doctor" />
+          </div>
+          <div class="input-group input-group-sm" style="width: 200px">
+            <div class="input-group-append">
+              <button type="submit" class="btn btn-default">
+                <font-awesome-icon icon="fa-solid fa-magnifying-glass" />
+              </button>
+            </div>
+            <input
+              type="text"
+              name="table_search"
+              class="form-control float-right"
+              v-model="params.name_patient"
+              placeholder="Search By Patient" />
           </div>
         </div>
       </div>
@@ -55,7 +47,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="appointment in appointments" :key="appointment.id">
+            <tr v-for="appointment in appointments.data" :key="appointment.id">
               <td>183</td>
               <td>
                 <div class="media">
@@ -64,7 +56,7 @@
                       class="avatar avatar-sm me-2 user-dt"
                       href="/template/admin/profile">
                       <img
-                        src="https://doccure-react.dreamguystech.com/template/32b8469a75322a6ba6b15343e65f1072.jpg"
+                        :src="appointment.patient.photo"
                         class="avatar avatar-img" />
                     </a>
                     <div class="text-secondary">
@@ -87,7 +79,7 @@
                       class="avatar avatar-sm me-2 user-dt"
                       href="/template/admin/profile">
                       <img
-                        src="https://doccure-react.dreamguystech.com/template/2da722e671accc5ddf48b2fc8e947a3e.jpg"
+                        :src="appointment.doctor.photo"
                         class="avatar avatar-img" />
                     </a>
                     <div class="text-secondary">
@@ -123,13 +115,40 @@
         </table>
       </div>
     </div>
+    <!--<nav aria-label="Page navigation example">
+      <ul class="pagination">
+        <li class="page-item">
+          <a class="page-link" href="#">Previous</a>
+        </li>
+        <li
+          class="page-item"
+          v-for="item in appointments.last_page"
+          :key="item">
+          <a class="page-link" type="button">{{ item }}</a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+      </ul>
+    </nav>-->
   </div>
 </template>
 <script>
 import { mapState, mapActions } from "vuex";
 export default {
   data() {
-    return {};
+    return {
+      params: {
+        name_doctor: "",
+        name_patient: "",
+      },
+    };
+  },
+  watch: {
+    params: {
+      handler() {
+        this.fetchAppointments(this.params);
+      },
+      deep: true,
+    },
   },
   computed: {
     ...mapState(["appointments"]),
@@ -138,12 +157,7 @@ export default {
     ...mapActions(["fetchAppointments"]),
   },
   mounted() {
-    this.fetchAppointments({
-      status: "approved",
-      status_two: "cancelled",
-      name_doctor: "",
-      name_patient: "",
-    });
+    this.fetchAppointments(this.params);
   },
 };
 </script>

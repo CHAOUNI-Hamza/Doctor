@@ -13,18 +13,8 @@ export default {
   getters: {},
   actions: {
     async fetchAppointments({ commit }, params) {
-      const {
-        status = "approved",
-        name_doctor = "malinda96",
-        name_patient = "Wilfred Morar",
-      } = params;
-
       const response = await axios.get("/appointements/upcomming_past", {
-        params: {
-          status,
-          name_doctor,
-          name_patient,
-        },
+        params,
       });
 
       commit("setAppointments", response.data);
