@@ -109,12 +109,17 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form>
+        <form @submit.prevent="submitForm">
           <div class="modal-body">
             <div class="form-group">
               <label for="exampleInputEmail1">Speciality Name</label>
               <input
-                type="email"
+                @blur="v$.data.name.$touch"
+                :class="{
+                  'text-fields-error': v$.data.name.$error === true,
+                }"
+                v-model="data.name"
+                type="text"
                 class="form-control"
                 id="exampleInputEmail1"
                 aria-describedby="emailHelp"
@@ -122,13 +127,14 @@
             </div>
             <div class="form-group card-upload">
               <input
+                @change="onFileSelected"
                 type="file"
                 class="form-control-file"
                 id="exampleFormControlFile1" />
             </div>
           </div>
           <div class="modal-footer text-center">
-            <button type="button" class="btn btn-save">Save changes</button>
+            <button type="submit" class="btn btn-save">Save changes</button>
           </div>
         </form>
       </div>
@@ -137,14 +143,28 @@
 </template>
 <script>
 import { mapState, mapActions } from "vuex";
+import { required } from "@vuelidate/validators";
+import { useVuelidate } from "@vuelidate/core";
+
 export default {
   data() {
     return {
+      v$: useVuelidate(),
       params: {
         order_by: "id",
         name: "",
       },
+      data: {
+        name: "",
+        photo: "",
+      },
     };
+  },
+  validations: {
+    data: {
+      name: { required },
+      photo: { required },
+    },
   },
   watch: {
     params: {
@@ -158,7 +178,17 @@ export default {
     ...mapState(["specialities"]),
   },
   methods: {
+    onFileSelected(event) {
+      this.data.photo = event.target.files[0];
+    },
     ...mapActions(["fetchSpecialities"]),
+    ...mapActions(["createSpecialitie"]),
+    submitForm() {
+      this.v$.$touch();
+      if (!this.v$.$invalid) {
+        this.createSpecialitie(this.data);
+      }
+    },
   },
   mounted() {
     this.fetchSpecialities(this.params);
@@ -241,6 +271,18 @@ select.form-control {
 .card-upload .form-control-file {
   background: #00bcd4;
   padding: 6px;
+}
+
+.text-fields-error {
+  border: 1px solid #ff00008f !important;
+}
+.text-fields-error::placeholder {
+  color: #ff00008f !important;
+}
+.error-msg {
+  color: #ff00008f;
+  font-size: 13px;
+  margin-top: 5px;
 }
 
 /* @media */

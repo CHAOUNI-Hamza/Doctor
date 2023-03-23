@@ -21,6 +21,9 @@ export default createStore({
     setSpecialities(state, specialities) {
       state.specialities = specialities;
     },
+    addSpecialitie(state, speciality) {
+      state.specialities.push(speciality);
+    },
   },
   actions: {
     async fetchAppointments({ commit }, params) {
@@ -34,6 +37,19 @@ export default createStore({
         params,
       });
       commit("setSpecialities", response.data);
+    },
+    async createSpecialitie({ commit }, params) {
+      const formData = new FormData();
+      formData.append("photo", params.photo);
+      formData.append("name", params.name);
+      const response = await axios
+        .post("/specialties", formData)
+        .then((response) => {
+          commit("addSpecialitie", response.data.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
   },
   modules: {
