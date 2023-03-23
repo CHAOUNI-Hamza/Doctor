@@ -6,11 +6,7 @@
         <span class="ms-1">48</span>
       </div>
       <!-- Button trigger modal -->
-      <a
-        data-toggle="modal"
-        data-target="#exampleModal"
-        type="button"
-        class="btn btn-add">
+      <a data-toggle="modal" data-target="#exampleModal" type="button" class="btn btn-add">
         <font-awesome-icon icon="fa-solid fa-plus" />
         Add New
       </a>
@@ -31,11 +27,7 @@
                   <font-awesome-icon icon="fa-solid fa-magnifying-glass" />
                 </button>
               </div>
-              <input
-                type="text"
-                name="table_search"
-                v-model="params.name"
-                class="form-control float-right"
+              <input type="text" name="table_search" v-model="params.name" class="form-control float-right"
                 placeholder="Search" />
             </div>
           </div>
@@ -56,11 +48,8 @@
                 <td>
                   <div class="media">
                     <div class="d-flex media-body">
-                      <a
-                        class="avatar avatar-sm me-2 user-dt"
-                        href="/template/admin/profile">
-                        <img
-                          src="https://www.nicepng.com/png/detail/507-5079134_cardiology-icon-cardiology.png"
+                      <a class="avatar avatar-sm me-2 user-dt" href="/template/admin/profile">
+                        <img src="https://www.nicepng.com/png/detail/507-5079134_cardiology-icon-cardiology.png"
                           class="avatar avatar-img" />
                       </a>
                       <div class="text-secondary">
@@ -73,14 +62,10 @@
                 </td>
                 <td>
                   <span class="btn-edit mr-2">
-                    <font-awesome-icon
-                      class="mr-1"
-                      icon="fa-solid fa-pen-to-square" />Edit
+                    <font-awesome-icon class="mr-1" icon="fa-solid fa-pen-to-square" />Edit
                   </span>
                   <span class="btn-delete text-danger">
-                    <font-awesome-icon
-                      class="mr-1"
-                      icon="fa-solid fa-trash-can" />Delete
+                    <font-awesome-icon class="mr-1" icon="fa-solid fa-trash-can" />Delete
                   </span>
                 </td>
               </tr>
@@ -91,21 +76,12 @@
     </div>
   </div>
   <!-- start modal -->
-  <div
-    class="modal fade"
-    id="exampleModal"
-    tabindex="-1"
-    aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Add Speciality</h5>
-          <button
-            type="button"
-            class="close"
-            data-dismiss="modal"
-            aria-label="Close">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -113,28 +89,25 @@
           <div class="modal-body">
             <div class="form-group">
               <label for="exampleInputEmail1">Speciality Name</label>
-              <input
-                @blur="v$.data.name.$touch"
-                :class="{
-                  'text-fields-error': v$.data.name.$error === true,
-                }"
-                v-model="data.name"
-                type="text"
-                class="form-control"
-                id="exampleInputEmail1"
-                aria-describedby="emailHelp"
-                placeholder="Speciality Name..." />
+              <input @blur="v$.data.name.$touch" :class="{
+                'text-fields-error': v$.data.name.$error === true,
+              }" v-model="data.name" type="text" class="form-control" id="exampleInputEmail1"
+                aria-describedby="emailHelp" placeholder="Speciality Name..." />
             </div>
-            <div class="form-group card-upload">
-              <input
-                @change="onFileSelected"
-                type="file"
-                class="form-control-file"
-                id="exampleFormControlFile1" />
+            <div class="form-group card-upload" :class="{
+              'text-fields-error': v$.data.photo.$error === true,
+            }">
+              <input @blur="v$.data.photo.$touch" :class="{
+                'text-fields-error': v$.data.photo.$error === true,
+              }" @change="onFileSelected" type="file" class="form-control-file" id="exampleFormControlFile1" />
+            </div>
+            <div class="form-group show-image" v-if="imageUrl">
+              <img :src="imageUrl" alt="uploaded photo">
             </div>
           </div>
           <div class="modal-footer text-center">
-            <button type="submit" class="btn btn-save">Save changes</button>
+            <button v-if="v$.$invalid" type="submit" class="btn btn-save disable">Send</button>
+            <button v-if="!v$.$invalid" type="submit" class="btn btn-save">Send</button>
           </div>
         </form>
       </div>
@@ -149,6 +122,7 @@ import { useVuelidate } from "@vuelidate/core";
 export default {
   data() {
     return {
+      imageUrl: null,
       v$: useVuelidate(),
       params: {
         order_by: "id",
@@ -180,6 +154,14 @@ export default {
   methods: {
     onFileSelected(event) {
       this.data.photo = event.target.files[0];
+      this.previewImage();
+    },
+    previewImage() {
+      const reader = new FileReader();
+      reader.readAsDataURL(this.data.photo);
+      reader.onload = event => {
+        this.imageUrl = event.target.result;
+      };
     },
     ...mapActions(["fetchSpecialities"]),
     ...mapActions(["createSpecialitie"]),
@@ -187,6 +169,15 @@ export default {
       this.v$.$touch();
       if (!this.v$.$invalid) {
         this.createSpecialitie(this.data);
+        this.data = {};
+        this.imageUrl = null;
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Is Created',
+          showConfirmButton: false,
+          timer: 1500
+        })
       }
     },
   },
@@ -200,6 +191,7 @@ export default {
   font-size: 1.3rem;
   font-weight: bold;
 }
+
 .form-control {
   border-bottom: 1px solid #33333336;
   margin-right: 10px;
@@ -209,10 +201,12 @@ export default {
   border-radius: 0;
   margin-right: 10px;
 }
+
 .input-group-append .btn {
   background: none;
   border: none;
 }
+
 select.form-control {
   color: #00000082 !important;
 }
@@ -220,19 +214,22 @@ select.form-control {
 .table .media {
   align-items: flex-start;
 }
+
 .table .d-flex.media-body {
   align-items: center !important;
 }
+
 .table .avatar {
   position: relative;
   display: inline-block;
 }
+
 .table .avatar-sm {
   width: 2.5rem;
   height: 2.5rem;
 }
 
-.table .avatar > img {
+.table .avatar>img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
@@ -268,6 +265,7 @@ select.form-control {
   justify-content: center;
   border-style: dotted;
 }
+
 .card-upload .form-control-file {
   background: #00bcd4;
   padding: 6px;
@@ -276,16 +274,26 @@ select.form-control {
 .text-fields-error {
   border: 1px solid #ff00008f !important;
 }
+
 .text-fields-error::placeholder {
   color: #ff00008f !important;
 }
+
 .error-msg {
   color: #ff00008f;
   font-size: 13px;
   margin-top: 5px;
 }
 
-/* @media */
-@media (max-width: 390px) {
+.show-image img {
+  width: 100%;
 }
+
+.disable {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* @media */
+@media (max-width: 390px) {}
 </style>
