@@ -10,11 +10,7 @@
                 <font-awesome-icon icon="fa-solid fa-magnifying-glass" />
               </button>
             </div>
-            <input
-              type="text"
-              name="table_search"
-              class="form-control float-right"
-              v-model="params.name_doctor"
+            <input type="text" name="table_search" class="form-control float-right" v-model="params.name_doctor"
               placeholder="Search By Doctor" />
           </div>
           <div class="input-group input-group-sm" style="width: 200px">
@@ -23,11 +19,7 @@
                 <font-awesome-icon icon="fa-solid fa-magnifying-glass" />
               </button>
             </div>
-            <input
-              type="text"
-              name="table_search"
-              class="form-control float-right"
-              v-model="params.name_patient"
+            <input type="text" name="table_search" class="form-control float-right" v-model="params.name_patient"
               placeholder="Search By Patient" />
           </div>
         </div>
@@ -53,22 +45,15 @@
               <td>
                 <div class="media">
                   <div class="d-flex media-body">
-                    <a
-                      class="avatar avatar-sm me-2 user-dt"
-                      href="/template/admin/profile">
-                      <img
-                        :src="appointment.patient.photo"
-                        class="avatar avatar-img" />
+                    <a class="avatar avatar-sm me-2 user-dt" href="/template/admin/profile">
+                      <img :src="appointment.patient.photo" class="avatar avatar-img" />
                     </a>
                     <div class="text-secondary">
                       <span class="user-name">{{
                         appointment.patient.name
-                      }}</span
-                      ><br />
-                      <span class="d-block text-muted"
-                        >{{ appointment.patient.sex }},
-                        {{ appointment.patient.age }} Years Old</span
-                      >
+                      }}</span><br />
+                      <span class="d-block text-muted">{{ appointment.patient.sex }},
+                        {{ appointment.patient.age }} Years Old</span>
                     </div>
                   </div>
                 </div>
@@ -76,22 +61,15 @@
               <td>
                 <div class="media">
                   <div class="d-flex media-body">
-                    <a
-                      class="avatar avatar-sm me-2 user-dt"
-                      href="/template/admin/profile">
-                      <img
-                        :src="appointment.doctor.photo"
-                        class="avatar avatar-img" />
+                    <a class="avatar avatar-sm me-2 user-dt" href="/template/admin/profile">
+                      <img :src="appointment.doctor.photo" class="avatar avatar-img" />
                     </a>
                     <div class="text-secondary">
-                      <span class="d-block text-muted"
-                        >{{ appointment.doctor.sex }},
-                        {{ appointment.doctor.age }} Years Old</span
-                      >
+                      <span class="d-block text-muted">{{ appointment.doctor.sex }},
+                        {{ appointment.doctor.age }} Years Old</span>
                       <span class="user-name">{{
                         appointment.doctor.username
-                      }}</span
-                      ><br />
+                      }}</span><br />
                     </div>
                   </div>
                 </div>
@@ -106,21 +84,16 @@
                 </span>
               </td>
               <td>
-                <span class="user-name">{{ appointment.date_time }}</span
-                ><br />
+                <span class="user-name">{{ appointment.date_time }}</span><br />
                 <span class="text-muted">{{ appointment.date_time }}</span>
               </td>
               <td>{{ appointment.amount }} DH</td>
               <td>
-                <span
-                  class="badge bg-badge-grey"
-                  :class="[
-                    { 'text-danger': appointment.status == 'cancelled' },
-                    'text-success',
-                  ]"
-                  ><font-awesome-icon icon="fa-solid fa-circle" class="mr-1" />
-                  {{ appointment.status }}</span
-                >
+                <span class="badge bg-badge-grey" :class="[
+                  { 'text-danger': appointment.status == 'cancelled' },
+                  'text-success',
+                ]"><font-awesome-icon icon="fa-solid fa-circle" class="mr-1" />
+                  {{ appointment.status }}</span>
               </td>
             </tr>
           </tbody>
@@ -163,10 +136,10 @@ export default {
     },
   },
   computed: {
-    ...mapState(["appointments"]),
+    ...mapState(['appointments']),
   },
   methods: {
-    ...mapActions(["fetchAppointments"]),
+    ...mapActions(['fetchAppointments']),
   },
   mounted() {
     this.fetchAppointments(this.params);
@@ -178,14 +151,17 @@ export default {
   font-size: 1.3rem;
   font-weight: bold;
 }
+
 .form-control {
   border: none;
   margin-right: 10px;
 }
+
 .input-group-append .btn {
   background: none;
   border: none;
 }
+
 select.form-control {
   color: #00000082 !important;
 }
@@ -193,6 +169,7 @@ select.form-control {
 .page-header ul {
   display: flex;
 }
+
 .page-header ul li {
   list-style: none;
 }
@@ -206,6 +183,7 @@ select.form-control {
   border: 1px solid #5c8ed3;
   color: #2196f3;
 }
+
 .page-header ul li .btn.disbled {
   background: #0000000a;
   border: none;
@@ -214,19 +192,22 @@ select.form-control {
 .table .media {
   align-items: flex-start;
 }
+
 .table .d-flex.media-body {
   align-items: center !important;
 }
+
 .table .avatar {
   position: relative;
   display: inline-block;
 }
+
 .table .avatar-sm {
   width: 2.5rem;
   height: 2.5rem;
 }
 
-.table .avatar > img {
+.table .avatar>img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
@@ -237,10 +218,12 @@ select.form-control {
 .table .text-secondary {
   margin-left: 10px;
 }
+
 .table span.user-name {
   color: #131523;
   font-weight: 600;
 }
+
 .table span.text-muted {
   color: #7e84a3 !important;
 }
@@ -248,6 +231,7 @@ select.form-control {
 .table .Disease {
   font-weight: bold;
 }
+
 .table .consultation-type {
   color: #2196f3;
   font-size: 17px;
