@@ -16,7 +16,6 @@ export default {
       const response = await axios.get("/appointements/upcomming_past", {
         params,
       });
-
       commit("setAppointments", response.data);
     },
   },

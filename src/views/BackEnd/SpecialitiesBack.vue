@@ -6,7 +6,11 @@
         <span class="ms-1">48</span>
       </div>
       <!-- Button trigger modal -->
-      <a data-toggle="modal" data-target="#exampleModal" type="button" class="btn btn-add">
+      <a
+        data-toggle="modal"
+        data-target="#exampleModal"
+        type="button"
+        class="btn btn-add">
         <font-awesome-icon icon="fa-solid fa-plus" />
         Add New
       </a>
@@ -27,7 +31,11 @@
                   <font-awesome-icon icon="fa-solid fa-magnifying-glass" />
                 </button>
               </div>
-              <input type="text" name="table_search" v-model="params.name" class="form-control float-right"
+              <input
+                type="text"
+                name="table_search"
+                v-model="params.name"
+                class="form-control float-right"
                 placeholder="Search" />
             </div>
           </div>
@@ -48,8 +56,11 @@
                 <td>
                   <div class="media">
                     <div class="d-flex media-body">
-                      <a class="avatar avatar-sm me-2 user-dt" href="/template/admin/profile">
-                        <img src="https://www.nicepng.com/png/detail/507-5079134_cardiology-icon-cardiology.png"
+                      <a
+                        class="avatar avatar-sm me-2 user-dt"
+                        href="/template/admin/profile">
+                        <img
+                          src="https://www.nicepng.com/png/detail/507-5079134_cardiology-icon-cardiology.png"
                           class="avatar avatar-img" />
                       </a>
                       <div class="text-secondary">
@@ -62,10 +73,17 @@
                 </td>
                 <td>
                   <span class="btn-edit mr-2">
-                    <font-awesome-icon class="mr-1" icon="fa-solid fa-pen-to-square" />Edit
+                    <font-awesome-icon
+                      class="mr-1"
+                      icon="fa-solid fa-pen-to-square"
+                      data-toggle="modal"
+                      data-target="#exampleModal1"
+                      @click="fetchSpecialitie(specialitie.id)" />Edit
                   </span>
                   <span class="btn-delete text-danger">
-                    <font-awesome-icon class="mr-1" icon="fa-solid fa-trash-can" />Delete
+                    <font-awesome-icon
+                      class="mr-1"
+                      icon="fa-solid fa-trash-can" />Delete
                   </span>
                 </td>
               </tr>
@@ -75,13 +93,22 @@
       </div>
     </div>
   </div>
-  <!-- start modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <!-- start modal Add -->
+  <div
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Add Speciality</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -89,25 +116,117 @@
           <div class="modal-body">
             <div class="form-group">
               <label for="exampleInputEmail1">Speciality Name</label>
-              <input @blur="v$.data.name.$touch" :class="{
-                'text-fields-error': v$.data.name.$error === true,
-              }" v-model="data.name" type="text" class="form-control" id="exampleInputEmail1"
-                aria-describedby="emailHelp" placeholder="Speciality Name..." />
+              <input
+                @blur="v$.data.name.$touch"
+                :class="{
+                  'text-fields-error': v$.data.name.$error === true,
+                }"
+                v-model="data.name"
+                type="text"
+                class="form-control"
+                id="exampleInputEmail1"
+                aria-describedby="emailHelp"
+                placeholder="Speciality Name..." />
             </div>
-            <div class="form-group card-upload" :class="{
-              'text-fields-error': v$.data.photo.$error === true,
-            }">
-              <input @blur="v$.data.photo.$touch" :class="{
+            <div
+              class="form-group card-upload"
+              :class="{
                 'text-fields-error': v$.data.photo.$error === true,
-              }" @change="onFileSelected" type="file" class="form-control-file" id="exampleFormControlFile1" />
+              }">
+              <input
+                @blur="v$.data.photo.$touch"
+                :class="{
+                  'text-fields-error': v$.data.photo.$error === true,
+                }"
+                @change="onFileSelected"
+                type="file"
+                class="form-control-file"
+                id="exampleFormControlFile1" />
             </div>
             <div class="form-group show-image" v-if="imageUrl">
-              <img :src="imageUrl" alt="uploaded photo">
+              <img :src="imageUrl" alt="uploaded photo" />
             </div>
           </div>
           <div class="modal-footer text-center">
-            <button v-if="v$.$invalid" type="submit" class="btn btn-save disable">Send</button>
-            <button v-if="!v$.$invalid" type="submit" class="btn btn-save">Send</button>
+            <button
+              v-if="v$.$invalid"
+              type="submit"
+              class="btn btn-save disable">
+              Send
+            </button>
+            <button v-if="!v$.$invalid" type="submit" class="btn btn-save">
+              Send
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- start modal Update -->
+  <div
+    class="modal fade"
+    id="exampleModal1"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel1"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel1">Update Speciality</h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form @submit.prevent="updateForm">
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Speciality Name</label>
+              <input
+                @blur="v$.data.name.$touch"
+                :class="{
+                  'text-fields-error': v$.data.name.$error === true,
+                }"
+                v-model="data.name"
+                type="text"
+                class="form-control"
+                id="exampleInputEmail1"
+                aria-describedby="emailHelp"
+                placeholder="Speciality Name..." />
+            </div>
+            <div
+              class="form-group card-upload"
+              :class="{
+                'text-fields-error': v$.data.photo.$error === true,
+              }">
+              <input
+                @blur="v$.data.photo.$touch"
+                :class="{
+                  'text-fields-error': v$.data.photo.$error === true,
+                }"
+                @change="onFileSelected"
+                type="file"
+                class="form-control-file"
+                id="exampleFormControlFile1" />
+            </div>
+            <div class="form-group show-image" v-if="imageUrl">
+              <img :src="imageUrl" alt="uploaded photo" />
+            </div>
+          </div>
+          <div class="modal-footer text-center">
+            <button
+              v-if="v$.$invalid"
+              type="submit"
+              class="btn btn-save disable">
+              Send
+            </button>
+            <button v-if="!v$.$invalid" type="submit" class="btn btn-save">
+              Send
+            </button>
           </div>
         </form>
       </div>
@@ -118,6 +237,7 @@
 import { mapState, mapActions } from "vuex";
 import { required } from "@vuelidate/validators";
 import { useVuelidate } from "@vuelidate/core";
+import axios from "../../axios.config";
 
 export default {
   data() {
@@ -149,7 +269,7 @@ export default {
     },
   },
   computed: {
-    ...mapState(["specialities"]),
+    ...mapState({ specialities: "speciality/specialities" }),
   },
   methods: {
     onFileSelected(event) {
@@ -159,12 +279,12 @@ export default {
     previewImage() {
       const reader = new FileReader();
       reader.readAsDataURL(this.data.photo);
-      reader.onload = event => {
+      reader.onload = (event) => {
         this.imageUrl = event.target.result;
       };
     },
-    ...mapActions(["fetchSpecialities"]),
-    ...mapActions(["createSpecialitie"]),
+    ...mapActions({ fetchSpecialities: "speciality/fetchSpecialities" }),
+    ...mapActions({ createSpecialitie: "speciality/createSpecialitie" }),
     submitForm() {
       this.v$.$touch();
       if (!this.v$.$invalid) {
@@ -172,13 +292,38 @@ export default {
         this.data = {};
         this.imageUrl = null;
         Swal.fire({
-          position: 'top-end',
-          icon: 'success',
-          title: 'Is Created',
+          position: "top-end",
+          icon: "success",
+          title: "Is Created",
           showConfirmButton: false,
-          timer: 1500
-        })
+          timer: 1500,
+        });
       }
+    },
+    ...mapActions({ updateSpecialitie: "speciality/updateSpecialitie" }),
+    updateForm() {
+      this.v$.$touch();
+      if (!this.v$.$invalid) {
+        this.updateSpecialitie(this.data);
+        this.data = {};
+        this.imageUrl = null;
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Is Created",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    },
+    async fetchSpecialitie(id) {
+      const response = await axios.get(`/specialties/${id}`);
+      const specialitie = response.data.data;
+      this.data = {
+        name: specialitie.name,
+        photo: specialitie.photo,
+        id: specialitie.id,
+      };
     },
   },
   mounted() {
@@ -229,7 +374,7 @@ select.form-control {
   height: 2.5rem;
 }
 
-.table .avatar>img {
+.table .avatar > img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
@@ -294,6 +439,11 @@ select.form-control {
   pointer-events: none;
 }
 
+.btn-edit .mr-1 {
+  cursor: pointer;
+}
+
 /* @media */
-@media (max-width: 390px) {}
+@media (max-width: 390px) {
+}
 </style>
