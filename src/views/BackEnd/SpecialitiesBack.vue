@@ -3,10 +3,14 @@
     <div class="col-md-12 d-flex justify-content-end mb-3 align-items-center">
       <div class="doc-badge me-3 mr-4">
         Specialities
-        <span class="ms-1">{{ specialitiesTotal }}</span>
+        <span class="ms-1">{{ getSpecialitiesTotal }}</span>
       </div>
       <!-- Button trigger modal -->
-      <a data-toggle="modal" data-target="#exampleModal" type="button" class="btn btn-add">
+      <a
+        data-toggle="modal"
+        data-target="#exampleModal"
+        type="button"
+        class="btn btn-add">
         <font-awesome-icon icon="fa-solid fa-plus" />
         Add New
       </a>
@@ -27,7 +31,11 @@
                   <font-awesome-icon icon="fa-solid fa-magnifying-glass" />
                 </button>
               </div>
-              <input type="text" name="table_search" v-model="params.name" class="form-control float-right"
+              <input
+                type="text"
+                name="table_search"
+                v-model="params.name"
+                class="form-control float-right"
                 placeholder="Search" />
             </div>
           </div>
@@ -43,13 +51,18 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="specialitie in specialities.data" :key="specialitie">
+              <tr
+                v-for="specialitie in getSpecialities.data"
+                :key="specialitie">
                 <td>{{ specialitie.id }}</td>
                 <td>
                   <div class="media">
                     <div class="d-flex media-body">
-                      <a class="avatar avatar-sm me-2 user-dt" href="/template/admin/profile">
-                        <img src="https://www.nicepng.com/png/detail/507-5079134_cardiology-icon-cardiology.png"
+                      <a
+                        class="avatar avatar-sm me-2 user-dt"
+                        href="/template/admin/profile">
+                        <img
+                          src="https://www.nicepng.com/png/detail/507-5079134_cardiology-icon-cardiology.png"
                           class="avatar avatar-img" />
                       </a>
                       <div class="text-secondary">
@@ -62,11 +75,18 @@
                 </td>
                 <td>
                   <span class="btn-edit mr-2">
-                    <font-awesome-icon class="mr-1" icon="fa-solid fa-pen-to-square" data-toggle="modal"
-                      data-target="#exampleModal1" @click="fetchSpecialitie(specialitie.id)" />Edit
+                    <font-awesome-icon
+                      class="mr-1"
+                      icon="fa-solid fa-pen-to-square"
+                      data-toggle="modal"
+                      data-target="#exampleModal1"
+                      @click="fetchSpecialitie(specialitie.id)" />Edit
                   </span>
                   <span class="btn-delete text-danger">
-                    <font-awesome-icon class="mr-1" icon="fa-solid fa-trash-can" />Delete
+                    <font-awesome-icon
+                      class="mr-1"
+                      @click="deleteSpecialitie(specialitie.id)"
+                      icon="fa-solid fa-trash-can" />Delete
                   </span>
                 </td>
               </tr>
@@ -77,22 +97,43 @@
     </div>
     <nav aria-label="Page navigation example">
       <ul class="pagination">
-        <li class="page-item"><a class="page-link" @click="params.page = LastPage - 1" href="#">Previous</a></li>
-        <li v-for="LastPage in specialitiesLastPage" :key="LastPage" class="page-item"><a @click="params.page = LastPage"
-            class="page-link" href="#">{{
-              LastPage }}</a>
+        <li class="page-item">
+          <a class="page-link" @click="params.page = LastPage - 1" href="#"
+            >Previous</a
+          >
         </li>
-        <li class="page-item"><a class="page-link" @click="params.page = LastPage + 1" href="#">Next</a></li>
+        <li
+          v-for="LastPage in getSpecialitiesLastPage"
+          :key="LastPage"
+          class="page-item">
+          <a @click="params.page = LastPage" class="page-link" href="#">{{
+            LastPage
+          }}</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" @click="params.page = LastPage + 1" href="#"
+            >Next</a
+          >
+        </li>
       </ul>
     </nav>
   </div>
   <!-- start modal Add -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Add Speciality</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -100,24 +141,42 @@
           <div class="modal-body">
             <div class="form-group">
               <label for="exampleInputEmail1">Speciality Name</label>
-              <input @blur="v$.data.name.$touch" :class="{
-                'text-fields-error': v$.data.name.$error === true,
-              }" v-model="data.name" type="text" class="form-control" id="exampleInputEmail1"
-                aria-describedby="emailHelp" placeholder="Speciality Name..." />
+              <input
+                @blur="v$.data.name.$touch"
+                :class="{
+                  'text-fields-error': v$.data.name.$error === true,
+                }"
+                v-model="data.name"
+                type="text"
+                class="form-control"
+                id="exampleInputEmail1"
+                aria-describedby="emailHelp"
+                placeholder="Speciality Name..." />
             </div>
-            <div class="form-group card-upload" :class="{
-              'text-fields-error': v$.data.photo.$error === true,
-            }">
-              <input @blur="v$.data.photo.$touch" :class="{
+            <div
+              class="form-group card-upload"
+              :class="{
                 'text-fields-error': v$.data.photo.$error === true,
-              }" @change="onFileSelected" type="file" class="form-control-file" id="exampleFormControlFile1" />
+              }">
+              <input
+                @blur="v$.data.photo.$touch"
+                :class="{
+                  'text-fields-error': v$.data.photo.$error === true,
+                }"
+                @change="onFileSelected"
+                type="file"
+                class="form-control-file"
+                id="exampleFormControlFile1" />
             </div>
             <div class="form-group show-image" v-if="imageUrl">
               <img :src="imageUrl" alt="uploaded photo" />
             </div>
           </div>
           <div class="modal-footer text-center">
-            <button v-if="v$.$invalid" type="submit" class="btn btn-save disable">
+            <button
+              v-if="v$.$invalid"
+              type="submit"
+              class="btn btn-save disable">
               Send
             </button>
             <button v-if="!v$.$invalid" type="submit" class="btn btn-save">
@@ -130,12 +189,21 @@
   </div>
 
   <!-- start modal Update -->
-  <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+  <div
+    class="modal fade"
+    id="exampleModal1"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel1"
+    aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel1">Update Speciality</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -143,24 +211,42 @@
           <div class="modal-body">
             <div class="form-group">
               <label for="exampleInputEmail1">Speciality Name</label>
-              <input @blur="v$.data.name.$touch" :class="{
-                'text-fields-error': v$.data.name.$error === true,
-              }" v-model="data.name" type="text" class="form-control" id="exampleInputEmail1"
-                aria-describedby="emailHelp" placeholder="Speciality Name..." />
+              <input
+                @blur="v$.data.name.$touch"
+                :class="{
+                  'text-fields-error': v$.data.name.$error === true,
+                }"
+                v-model="data.name"
+                type="text"
+                class="form-control"
+                id="exampleInputEmail1"
+                aria-describedby="emailHelp"
+                placeholder="Speciality Name..." />
             </div>
-            <div class="form-group card-upload" :class="{
-              'text-fields-error': v$.data.photo.$error === true,
-            }">
-              <input @blur="v$.data.photo.$touch" :class="{
+            <div
+              class="form-group card-upload"
+              :class="{
                 'text-fields-error': v$.data.photo.$error === true,
-              }" @change="onFileSelected" type="file" class="form-control-file" id="exampleFormControlFile1" />
+              }">
+              <input
+                @blur="v$.data.photo.$touch"
+                :class="{
+                  'text-fields-error': v$.data.photo.$error === true,
+                }"
+                @change="onFileSelected"
+                type="file"
+                class="form-control-file"
+                id="exampleFormControlFile1" />
             </div>
             <div class="form-group show-image" v-if="imageUrl">
               <img :src="imageUrl" alt="uploaded photo" />
             </div>
           </div>
           <div class="modal-footer text-center">
-            <button v-if="v$.$invalid" type="submit" class="btn btn-save disable">
+            <button
+              v-if="v$.$invalid"
+              type="submit"
+              class="btn btn-save disable">
               Send
             </button>
             <button v-if="!v$.$invalid" type="submit" class="btn btn-save">
@@ -169,13 +255,11 @@
           </div>
         </form>
       </div>
-
     </div>
-
   </div>
 </template>
 <script>
-import { mapState, mapActions } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 import { required } from "@vuelidate/validators";
 import { useVuelidate } from "@vuelidate/core";
 import axios from "../../axios.config";
@@ -188,7 +272,7 @@ export default {
       params: {
         order_by: "id",
         name: "",
-        page: 1
+        page: 1,
       },
       data: {
         name: "",
@@ -211,9 +295,11 @@ export default {
     },
   },
   computed: {
-    ...mapState(["specialities"]),
-    ...mapState(["specialitiesTotal"]),
-    ...mapState(["specialitiesLastPage"])
+    ...mapGetters({
+      getSpecialitiesTotal: "Specialities/getSpecialitiesTotal",
+      getSpecialities: "Specialities/getSpecialities",
+      getSpecialitiesLastPage: "Specialities/getSpecialitiesLastPage",
+    }),
   },
   methods: {
     onFileSelected(event) {
@@ -227,8 +313,12 @@ export default {
         this.imageUrl = event.target.result;
       };
     },
-    ...mapActions(["fetchSpecialities"]),
-    ...mapActions(["createSpecialitie"]),
+    ...mapActions({
+      fetchSpecialities: "Specialities/fetchSpecialities",
+      deleteSpecialitie: "Specialities/deleteSpecialitie",
+      createSpecialitie: "Specialities/createSpecialitie",
+      updateSpecialitie: "Specialities/updateSpecialitie",
+    }),
     submitForm() {
       this.v$.$touch();
       if (!this.v$.$invalid) {
@@ -244,7 +334,6 @@ export default {
         });
       }
     },
-    ...mapActions(["updateSpecialitie"]),
     updateForm() {
       this.v$.$touch();
       if (!this.v$.$invalid) {
@@ -272,7 +361,6 @@ export default {
   },
   mounted() {
     this.fetchSpecialities(this.params);
-    console.log(this.specialities.meta)
   },
 };
 </script>
@@ -319,7 +407,7 @@ select.form-control {
   height: 2.5rem;
 }
 
-.table .avatar>img {
+.table .avatar > img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
@@ -384,10 +472,12 @@ select.form-control {
   pointer-events: none;
 }
 
-.btn-edit .mr-1 {
+.btn-edit .mr-1,
+.btn-delete .mr-1 {
   cursor: pointer;
 }
 
 /* @media */
-@media (max-width: 390px) {}
+@media (max-width: 390px) {
+}
 </style>

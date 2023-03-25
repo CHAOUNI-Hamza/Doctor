@@ -47,7 +47,9 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="appointment in appointments.data" :key="appointment.id">
+            <tr
+              v-for="appointment in getAppointments.data"
+              :key="appointment.id">
               <td>183</td>
               <td>
                 <div class="media">
@@ -115,24 +117,32 @@
         </table>
       </div>
     </div>
-    <!--<nav aria-label="Page navigation example">
+    <nav aria-label="Page navigation example">
       <ul class="pagination">
         <li class="page-item">
-          <a class="page-link" href="#">Previous</a>
+          <a class="page-link" @click="params.page = LastPage - 1" href="#"
+            >Previous</a
+          >
         </li>
         <li
-          class="page-item"
-          v-for="item in appointments.last_page"
-          :key="item">
-          <a class="page-link" type="button">{{ item }}</a>
+          v-for="LastPage in getAppointmentsLastPage"
+          :key="LastPage"
+          class="page-item">
+          <a @click="params.page = LastPage" class="page-link" href="#">{{
+            LastPage
+          }}</a>
         </li>
-        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        <li class="page-item">
+          <a class="page-link" @click="params.page = LastPage + 1" href="#"
+            >Next</a
+          >
+        </li>
       </ul>
-    </nav>-->
+    </nav>
   </div>
 </template>
 <script>
-import { mapState, mapActions } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 export default {
   data() {
     return {
@@ -151,10 +161,16 @@ export default {
     },
   },
   computed: {
-    ...mapState(["appointments"]),
+    ...mapGetters({
+      getAppointments: "Appointments/getAppointments",
+      getAppointmentsTotal: "Appointments/getAppointmentsTotal",
+      getAppointmentsLastPage: "Appointments/getAppointmentsLastPage",
+    }),
   },
   methods: {
-    ...mapActions(["fetchAppointments"]),
+    ...mapActions({
+      fetchAppointments: "Appointments/fetchAppointments",
+    }),
   },
   mounted() {
     this.fetchAppointments(this.params);
