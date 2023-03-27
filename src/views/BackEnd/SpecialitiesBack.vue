@@ -52,9 +52,9 @@
             </thead>
             <tbody>
               <tr
-                v-for="specialitie in getSpecialities.data"
-                :key="specialitie">
-                <td>{{ specialitie.id }}</td>
+                v-for="(specialitie, index) in getSpecialities.data"
+                :key="specialitie.id">
+                <td>{{ index + 1 }}</td>
                 <td>
                   <div class="media">
                     <div class="d-flex media-body">
@@ -62,7 +62,7 @@
                         class="avatar avatar-sm me-2 user-dt"
                         href="/template/admin/profile">
                         <img
-                          src="https://www.nicepng.com/png/detail/507-5079134_cardiology-icon-cardiology.png"
+                          :src="specialitie.photo"
                           class="avatar avatar-img" />
                       </a>
                       <div class="text-secondary">
@@ -80,7 +80,8 @@
                       icon="fa-solid fa-pen-to-square"
                       data-toggle="modal"
                       data-target="#exampleModal1"
-                      @click="fetchSpecialitie(specialitie.id)" />Edit
+                      @click="fetchSpecialitie(specialitie.id)" />
+                    Edit
                   </span>
                   <span class="btn-delete text-danger">
                     <font-awesome-icon
@@ -286,6 +287,13 @@ export default {
       photo: { required },
     },
   },
+  computed: {
+    ...mapGetters({
+      getSpecialitiesTotal: "Specialities/getSpecialitiesTotal",
+      getSpecialities: "Specialities/getSpecialities",
+      getSpecialitiesLastPage: "Specialities/getSpecialitiesLastPage",
+    }),
+  },
   watch: {
     params: {
       handler() {
@@ -294,13 +302,7 @@ export default {
       deep: true,
     },
   },
-  computed: {
-    ...mapGetters({
-      getSpecialitiesTotal: "Specialities/getSpecialitiesTotal",
-      getSpecialities: "Specialities/getSpecialities",
-      getSpecialitiesLastPage: "Specialities/getSpecialitiesLastPage",
-    }),
-  },
+
   methods: {
     onFileSelected(event) {
       this.data.photo = event.target.files[0];
@@ -319,35 +321,37 @@ export default {
       createSpecialitie: "Specialities/createSpecialitie",
       updateSpecialitie: "Specialities/updateSpecialitie",
     }),
+    deleteSpecialitie() {
+      this.fetchSpecialities();
+    },
     submitForm() {
       this.v$.$touch();
       if (!this.v$.$invalid) {
         this.createSpecialitie(this.data);
-        this.data = {};
-        this.imageUrl = null;
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Is Created",
-          showConfirmButton: false,
-          timer: 1500,
-        });
+        this.resetForm();
+        this.hideModal("exampleModal");
+        this.fetchSpecialities();
       }
     },
     updateForm() {
       this.v$.$touch();
       if (!this.v$.$invalid) {
         this.updateSpecialitie(this.data);
-        this.data = {};
-        this.imageUrl = null;
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Is Created",
-          showConfirmButton: false,
-          timer: 1500,
-        });
+        this.resetForm();
+        this.hideModal("exampleModal1");
+        this.fetchSpecialities();
       }
+    },
+    resetForm() {
+      this.data = {
+        name: "..",
+        photo: "..",
+      };
+      this.imageUrl = null;
+    },
+    hideModal(id) {
+      var div = document.getElementById(id);
+      div.classList.remove("show");
     },
     async fetchSpecialitie(id) {
       const response = await axios.get(`/specialties/${id}`);
@@ -357,6 +361,7 @@ export default {
         photo: specialitie.photo,
         id: specialitie.id,
       };
+      this.imageUrl = specialitie.photo;
     },
   },
   mounted() {

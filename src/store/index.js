@@ -1,6 +1,7 @@
 import { createStore } from "vuex";
 import AppointmentsModule from "./Appointments";
 import SpecialitiesModule from "./Specialities";
+import DoctorsModule from "./Doctors";
 
 export default createStore({
   state: {
@@ -17,5 +18,6 @@ export default createStore({
   modules: {
     Appointments: AppointmentsModule,
     Specialities: SpecialitiesModule,
+    Doctors: DoctorsModule,
   },
 });

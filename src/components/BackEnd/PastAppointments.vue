@@ -48,9 +48,9 @@
           </thead>
           <tbody>
             <tr
-              v-for="appointment in getAppointments.data"
+              v-for="(appointment, index) in getAppointments.data"
               :key="appointment.id">
-              <td>183</td>
+              <td>{{ index + 1 }}</td>
               <td>
                 <div class="media">
                   <div class="d-flex media-body">

@@ -37,41 +37,73 @@ export default {
   },
   actions: {
     async fetchSpecialities({ commit }, params) {
-      const response = await axios.get("/specialties", {
-        params,
-      });
-      commit("setSpecialities", response.data);
-      commit("setTotalSpecialitie", response.data.meta.total);
-      commit("setspecialitiesLastPage", response.data.meta.last_page);
+      try {
+        const response = await axios.get("/specialties", { params });
+        commit("setSpecialities", response.data);
+        commit("setTotalSpecialitie", response.data.meta.total);
+        commit("setspecialitiesLastPage", response.data.meta.last_page);
+      } catch (error) {
+        console.log(error);
+      }
     },
     async createSpecialitie({ commit }, params) {
-      const formData = new FormData();
-      formData.append("photo", params.photo);
-      formData.append("name", params.name);
-      const response = await axios
-        .post("/specialties", formData)
-        .then((response) => {
-          commit("addSpecialitie", response.data.data);
-        })
-        .catch((error) => {
-          console.log(error);
+      try {
+        const formData = new FormData();
+        formData.append("photo", params.photo);
+        formData.append("name", params.name);
+        const response = await axios.post("/specialties", formData);
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Is Created",
+          showConfirmButton: false,
+          timer: 1500,
         });
+        commit("addSpecialitie", response.data.data);
+      } catch (error) {
+        console.log(error);
+      }
     },
     async updateSpecialitie({ commit }, params) {
-      const formData = new FormData();
-      formData.append("photo", params.photo);
-      formData.append("name", params.name);
-      const response = await axios
-        .post(`/specialties/${params.id}`, formData)
-        .then((response) => {
-          commit("improveSpecialitie", response.data.data);
-        })
-        .catch((error) => {
-          console.log(error);
+      try {
+        const formData = new FormData();
+        formData.append("photo", params.photo);
+        formData.append("name", params.name);
+
+        const response = await axios.post(
+          `/specialties/${params.id}`,
+          formData
+        );
+        commit("improveSpeciality", response.data.data);
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Is Updated",
+          showConfirmButton: false,
+          timer: 1500,
         });
+      } catch (error) {
+        console.error(error);
+      }
     },
     async deleteSpecialitie({ _ }, id) {
-      const response = await axios.delete(`/specialties/${id}`).then(() => {});
+      try {
+        const result = await Swal.fire({
+          title: "Are you sure?",
+          text: "You won't be able to revert this!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes, delete it!",
+        });
+        if (result.isConfirmed) {
+          await axios.delete(`/specialties/${id}`);
+          Swal.fire("Deleted!", "Your file has been deleted.", "success");
+        }
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
   modules: {},

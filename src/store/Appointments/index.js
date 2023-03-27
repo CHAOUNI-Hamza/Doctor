@@ -31,12 +31,16 @@ export default {
   },
   actions: {
     async fetchAppointments({ commit }, params) {
-      const response = await axios.get("/appointements/upcomming_past", {
-        params,
-      });
-      commit("setAppointments", response.data);
-      commit("setTotalAppointment", response.data.meta.total);
-      commit("setappointmentsLastPage", response.data.meta.last_page);
+      try {
+        const response = await axios.get("/appointements/upcomming_past", {
+          params,
+        });
+        commit("setAppointments", response.data);
+        commit("setTotalAppointment", response.data.meta.total);
+        commit("setAppointmentsLastPage", response.data.meta.last_page);
+      } catch (error) {
+        console.error(error);
+      }
     },
   },
 };
