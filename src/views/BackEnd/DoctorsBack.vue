@@ -3,7 +3,7 @@
     <div class="col-md-12 d-flex justify-content-end mb-3 align-items-center">
       <div class="doc-badge me-3 mr-4">
         Doctors
-        <span class="ms-1">84</span>
+        <span class="ms-1">{{ getDoctorsTotal }}</span>
       </div>
     </div>
     <div class="col-12">
@@ -24,11 +24,7 @@
                   <font-awesome-icon icon="fa-solid fa-magnifying-glass" />
                 </button>
               </div>
-              <input
-                type="text"
-                name="table_search"
-                class="form-control float-right"
-                placeholder="Search" />
+              <input type="text" name="table_search" class="form-control float-right" placeholder="Search" />
             </div>
           </div>
         </div>
@@ -52,25 +48,19 @@
                 <td>
                   <div class="media">
                     <div class="d-flex media-body">
-                      <a
-                        class="avatar avatar-sm me-2 user-dt"
-                        href="/template/admin/profile">
+                      <a class="avatar avatar-sm me-2 user-dt" href="/template/admin/profile">
                         <img :src="doctor.photo" class="avatar avatar-img" />
                       </a>
                       <div class="text-secondary">
-                        <span class="user-name">{{ doctor.username }}</span
-                        ><br />
-                        <span class="d-block text-muted"
-                          >{{ doctor.sex }}, 40 Years Old</span
-                        >
+                        <span class="user-name">{{ doctor.username }}</span><br />
+                        <span class="d-block text-muted">{{ doctor.sex }}, 40 Years Old</span>
                       </div>
                     </div>
                   </div>
                 </td>
                 <td>{{ doctor.specialty.name }}</td>
                 <td>
-                  <span class="user-name">{{ doctor.created_at }}</span
-                  ><br />
+                  <span class="user-name">{{ doctor.created_at }}</span><br />
                   <span class="text-muted">{{ doctor.created_at }}</span>
                 </td>
                 <td>{{ doctor.appointments_count }}</td>
@@ -87,8 +77,9 @@
                       <input type="radio" value="inactive" v-model="status" />
                       Inactive
                     </label>
-                    <button @click="updateStatus">Update</button>
+                    <button @click="updateStatus(doctor.id)">Update</button>
                   </div>
+
                 </td>
               </tr>
             </tbody>
@@ -96,41 +87,34 @@
         </div>
       </div>
     </div>
+    <nav aria-label="Page navigation example">
+      <ul class="pagination">
+        <li class="page-item">
+          <a class="page-link" @click="params.page = LastPage - 1" href="#">Previous</a>
+        </li>
+        <li v-for="LastPage in getDoctorsLastPage" :key="LastPage" class="page-item">
+          <a @click="params.page = LastPage" class="page-link" href="#">{{
+            LastPage
+          }}</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" @click="params.page = LastPage + 1" href="#">Next</a>
+        </li>
+      </ul>
+    </nav>
   </div>
 </template>
 <script>
-/*import { mapState, mapActions } from 'vuex';
-export default {
-    data() {
-        return {
-            status: 'active'
-        }
-    },
-    methods: {
-        async updateStatus() {
-            try {
-                const response = await axios.post('/api/update-status', { status: this.status });
-                this.status = response.data.status;
-            } catch (error) {
-                console.error(error);
-            }
-        },
-        ...mapActions(['fetchItems', 'deleteItem'])
-    },
-    mounted() {
-        this.fetchItems();
-    },
-    computed: {
-        ...mapState(['items'])
-    },
-}*/
 import { mapGetters, mapActions } from "vuex";
+import axios from "../../axios.config";
 export default {
   data() {
     return {
+      status: 'active',
       params: {
         name: "",
         specialty: "",
+        page: 1,
       },
     };
   },
@@ -150,6 +134,15 @@ export default {
     }),
   },
   methods: {
+    async updateStatus(id) {
+      try {
+        const response = await axios.post(`/doctors/${id}/update-status`, { status: this.status });
+        //this.status = response.data.status;
+        console.error(response);
+      } catch (error) {
+        console.error(error);
+      }
+    },
     ...mapActions({
       fetchDoctors: "Doctors/fetchDoctors",
     }),
@@ -197,7 +190,7 @@ select.form-control {
   height: 2.5rem;
 }
 
-.table .avatar > img {
+.table .avatar>img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
@@ -235,6 +228,5 @@ select.form-control {
 }
 
 /* @media */
-@media (max-width: 390px) {
-}
+@media (max-width: 390px) {}
 </style>

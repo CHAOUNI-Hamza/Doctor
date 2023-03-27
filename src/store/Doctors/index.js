@@ -4,18 +4,18 @@ export default {
   namespaced: true,
   state: {
     doctors: [],
-    appointmentsTotal: null,
-    appointmentsLastPage: null,
+    doctorsTotal: null,
+    doctorsLastPage: null,
   },
   mutations: {
     setDoctors(state, doctors) {
       state.doctors = doctors;
     },
     setTotalDoctor(state, LastPage) {
-      state.appointmentsTotal = LastPage;
+      state.doctorsTotal = LastPage;
     },
-    setappointmentsLastPage(state, total) {
-      state.appointmentsLastPage = total;
+    setDoctorsLastPage(state, total) {
+      state.doctorsLastPage = total;
     },
   },
   getters: {
@@ -23,10 +23,10 @@ export default {
       return state.doctors;
     },
     getDoctorsTotal(state) {
-      return state.appointmentsTotal;
+      return state.doctorsTotal;
     },
     getDoctorsLastPage(state) {
-      return state.appointmentsLastPage;
+      return state.doctorsLastPage;
     },
   },
   actions: {
@@ -41,6 +41,6 @@ export default {
       } catch (error) {
         console.error(error);
       }
-    },
+    }
   },
 };
