@@ -28,7 +28,7 @@
         </div>
         <div class="col-lg-8">
           <div class="row">
-            <div class="col-md-4" v-for="item in 3" :key="item">
+            <div class="col-md-4" v-for="item in getDoctors.data" :key="item">
               <div class="card" style="width: 100%">
                 <img
                   src="https://www.pngitem.com/pimgs/m/515-5158817_telemedicine-doctor-hd-png-download.png"
@@ -37,15 +37,15 @@
                 <div class="card-body pt-0">
                   <div class="pro-content">
                     <h3 class="title">
-                      <a href="/template/patient/doctor-profile text-light"
-                        >Sofia Brient</a
-                      >
+                      <a href="/template/patient/doctor-profile text-light">{{
+                        item.username
+                      }}</a>
                       <font-awesome-icon
                         class="check"
                         icon="fa-solid fa-circle-check" />
                     </h3>
                     <p class="speciality">
-                      MBBS, MS - General Surgery, MCh - Urology
+                      {{ item.specialty.name }}
                     </p>
                     <div class="rating">
                       <font-awesome-icon
@@ -109,6 +109,68 @@
     </div>
   </section>
 </template>
+<script>
+import { mapGetters, mapActions } from "vuex";
+// Import Swiper Vue.js components
+import { Swiper, SwiperSlide } from "swiper/vue";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+
+//import "./style.css";
+
+// import required modules
+import { Pagination } from "swiper";
+export default {
+  components: {
+    Swiper,
+    SwiperSlide,
+  },
+  setup() {
+    const onSwiper = (swiper) => {
+      console.log(swiper);
+    };
+    const onSlideChange = () => {
+      console.log("slide change");
+    };
+    return {
+      onSwiper,
+      onSlideChange,
+      Pagination,
+    };
+  },
+  data() {
+    return {
+      status: "active",
+      params: {
+        limit_doctors: 3,
+      },
+    };
+  },
+  watch: {
+    params: {
+      handler() {
+        this.fetchDoctors(this.params);
+      },
+      deep: true,
+    },
+  },
+  computed: {
+    ...mapGetters({
+      getDoctors: "Doctors/getDoctors",
+    }),
+  },
+  methods: {
+    ...mapActions({
+      fetchDoctors: "Doctors/fetchDoctors",
+    }),
+  },
+  mounted() {
+    this.fetchDoctors(this.params);
+  },
+};
+</script>
 <style scoped>
 .title {
   display: flex;
