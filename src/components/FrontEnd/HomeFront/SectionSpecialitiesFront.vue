@@ -1,91 +1,108 @@
 <template>
-    <section class="section section-specialities">
-        <div class="container-fluid">
-            <div class="section-header text-center">
-                <h2>Clinic and Specialities</h2>
-                <p class="sub-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                     do   eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </p>
-            </div>
-            <div class="row justify-content-center mt-5">
-                <div class="col-md-9">
-                    <div class="specialities-slider slider">
-                        <swiper
-                            :slides-per-view="6"
-                            :space-between="50"
-                            @swiper="onSwiper"
-                            @slideChange="onSlideChange"
-                            :pagination="true"
-                            :modules="modules"
-                            class="mySwiper"
-                        >
-                            <swiper-slide v-for="item in 20" :key="item">
-                                <div tabindex="-1" style="width: 100%; display: inline-block;">
-                                    <div class="speicality-item text-center">
-                                        <div class="speicality-img">
-                                            <img src="https://w7.pngwing.com/pngs/601/514/png-transparent-cardiology-heart-health-care-computer-icons-medicine-heart.png" class="img-fluid" alt="Speciality">
-                                            <span>
-                                                <i class="fa fa-circle" aria-hidden="true"></i>
-                                            </span>
-                                        </div>
-                                        <p>Neurology</p>
-                                    </div>
-                                </div>
-                            </swiper-slide>
-                        </swiper>
+  <section class="section section-specialities">
+    <div class="container-fluid">
+      <div class="section-header text-center">
+        <h2>Clinic and Specialities</h2>
+        <p class="sub-title">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+      </div>
+      <div class="row justify-content-center mt-5">
+        <div class="col-md-9">
+          <div class="specialities-slider slider">
+            <swiper
+              :slides-per-view="6"
+              :space-between="50"
+              @swiper="onSwiper"
+              @slideChange="onSlideChange"
+              :pagination="true"
+              :modules="modules"
+              class="mySwiper">
+              <swiper-slide v-for="item in getSpecialities.data" :key="item">
+                <div tabindex="-1" style="width: 100%; display: inline-block">
+                  <div class="speicality-item text-center">
+                    <div class="speicality-img">
+                      <img
+                        :src="item.photo"
+                        class="img-fluid"
+                        alt="Speciality" />
+                      <span>
+                        <i class="fa fa-circle" aria-hidden="true"></i>
+                      </span>
                     </div>
+                    <p>{{ item.name }}</p>
+                  </div>
                 </div>
-            </div>           
+              </swiper-slide>
+            </swiper>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 </template>
 <script>
-  // Import Swiper Vue.js components
-  import { Swiper, SwiperSlide } from 'swiper/vue';
+import { mapGetters, mapActions } from "vuex";
+// Import Swiper Vue.js components
+import { Swiper, SwiperSlide } from "swiper/vue";
 
-  // Import Swiper styles
-  import 'swiper/css';
-  import "swiper/css/pagination";
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
 
-  //import "./style.css";
+//import "./style.css";
 
-  // import required modules
-  import { Pagination } from "swiper";
+// import required modules
+import { Pagination } from "swiper";
 
-  export default {
-    components: {
-      Swiper,
-      SwiperSlide,
-    },
-    setup() {
-      const onSwiper = (swiper) => {
-        console.log(swiper);
-      };
-      const onSlideChange = () => {
-        console.log('slide change');
-      };
-      return {
-        onSwiper,
-        onSlideChange,
-        Pagination
-      };
-    },
-    data() {
-        return {
-            specialties: []
-        }
-    }
-  };
+export default {
+  components: {
+    Swiper,
+    SwiperSlide,
+  },
+  setup() {
+    const onSwiper = (swiper) => {
+      console.log(swiper);
+    };
+    const onSlideChange = () => {
+      console.log("slide change");
+    };
+    return {
+      onSwiper,
+      onSlideChange,
+      Pagination,
+    };
+  },
+  data() {
+    return {
+      //
+    };
+  },
+  computed: {
+    ...mapGetters({
+      getSpecialities: "Specialities/getSpecialities",
+    }),
+  },
+  methods: {
+    ...mapActions({
+      fetchSpecialities: "Specialities/fetchSpecialities",
+    }),
+  },
+  mounted() {
+    this.fetchSpecialities();
+  },
+};
 </script>
 <style scoped>
 .section-specialities {
-    background-color: #fff;
-    padding: 80px 0;
+  background-color: #fff;
+  padding: 80px 0;
 }
 .section-specialities h2 {
-    font-size: 36px;
-    margin-bottom: 0;
-    font-weight: 500;
+  font-size: 36px;
+  margin-bottom: 0;
+  font-weight: 500;
 }
 
 .swiper {
@@ -122,8 +139,8 @@
   box-shadow: 2px 2px 13px rgb(0 0 0 / 26%);
 }
 .speicality-item p {
-    font-size: 18px;
-    font-weight: 600;
-    margin: 10px 0 0;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 10px 0 0;
 }
 </style>

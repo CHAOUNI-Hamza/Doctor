@@ -274,6 +274,7 @@ export default {
         order_by: "id",
         name: "",
         page: 1,
+        pagination: 10,
       },
       data: {
         name: "",

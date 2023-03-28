@@ -24,7 +24,11 @@
                   <font-awesome-icon icon="fa-solid fa-magnifying-glass" />
                 </button>
               </div>
-              <input type="text" name="table_search" class="form-control float-right" placeholder="Search" />
+              <input
+                type="text"
+                name="table_search"
+                class="form-control float-right"
+                placeholder="Search" />
             </div>
           </div>
         </div>
@@ -48,19 +52,25 @@
                 <td>
                   <div class="media">
                     <div class="d-flex media-body">
-                      <a class="avatar avatar-sm me-2 user-dt" href="/template/admin/profile">
+                      <a
+                        class="avatar avatar-sm me-2 user-dt"
+                        href="/template/admin/profile">
                         <img :src="doctor.photo" class="avatar avatar-img" />
                       </a>
                       <div class="text-secondary">
-                        <span class="user-name">{{ doctor.username }}</span><br />
-                        <span class="d-block text-muted">{{ doctor.sex }}, 40 Years Old</span>
+                        <span class="user-name">{{ doctor.username }}</span
+                        ><br />
+                        <span class="d-block text-muted"
+                          >{{ doctor.sex }}, 40 Years Old</span
+                        >
                       </div>
                     </div>
                   </div>
                 </td>
                 <td>{{ doctor.specialty.name }}</td>
                 <td>
-                  <span class="user-name">{{ doctor.created_at }}</span><br />
+                  <span class="user-name">{{ doctor.created_at }}</span
+                  ><br />
                   <span class="text-muted">{{ doctor.created_at }}</span>
                 </td>
                 <td>{{ doctor.appointments_count }}</td>
@@ -79,7 +89,6 @@
                     </label>
                     <button @click="updateStatus(doctor.id)">Update</button>
                   </div>
-
                 </td>
               </tr>
             </tbody>
@@ -90,15 +99,22 @@
     <nav aria-label="Page navigation example">
       <ul class="pagination">
         <li class="page-item">
-          <a class="page-link" @click="params.page = LastPage - 1" href="#">Previous</a>
+          <a class="page-link" @click="params.page = LastPage - 1" href="#"
+            >Previous</a
+          >
         </li>
-        <li v-for="LastPage in getDoctorsLastPage" :key="LastPage" class="page-item">
+        <li
+          v-for="LastPage in getDoctorsLastPage"
+          :key="LastPage"
+          class="page-item">
           <a @click="params.page = LastPage" class="page-link" href="#">{{
             LastPage
           }}</a>
         </li>
         <li class="page-item">
-          <a class="page-link" @click="params.page = LastPage + 1" href="#">Next</a>
+          <a class="page-link" @click="params.page = LastPage + 1" href="#"
+            >Next</a
+          >
         </li>
       </ul>
     </nav>
@@ -110,7 +126,7 @@ import axios from "../../axios.config";
 export default {
   data() {
     return {
-      status: 'active',
+      status: "active",
       params: {
         name: "",
         specialty: "",
@@ -136,7 +152,9 @@ export default {
   methods: {
     async updateStatus(id) {
       try {
-        const response = await axios.post(`/doctors/${id}/update-status`, { status: this.status });
+        const response = await axios.post(`/doctors/${id}/update-status`, {
+          status: this.status,
+        });
         //this.status = response.data.status;
         console.error(response);
       } catch (error) {
@@ -190,7 +208,7 @@ select.form-control {
   height: 2.5rem;
 }
 
-.table .avatar>img {
+.table .avatar > img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
@@ -228,5 +246,6 @@ select.form-control {
 }
 
 /* @media */
-@media (max-width: 390px) {}
+@media (max-width: 390px) {
+}
 </style>
