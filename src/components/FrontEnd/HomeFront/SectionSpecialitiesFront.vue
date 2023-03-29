@@ -11,22 +11,13 @@
       <div class="row justify-content-center mt-5">
         <div class="col-md-9">
           <div class="specialities-slider slider">
-            <swiper
-              :slides-per-view="6"
-              :space-between="50"
-              @swiper="onSwiper"
-              @slideChange="onSlideChange"
-              :pagination="true"
-              :modules="modules"
-              class="mySwiper">
+            <swiper :slides-per-view="6" :space-between="50" @swiper="onSwiper" @slideChange="onSlideChange"
+              :pagination="true" :modules="modules" class="mySwiper">
               <swiper-slide v-for="item in getSpecialities.data" :key="item">
                 <div tabindex="-1" style="width: 100%; display: inline-block">
                   <div class="speicality-item text-center">
                     <div class="speicality-img">
-                      <img
-                        :src="item.photo"
-                        class="img-fluid"
-                        alt="Speciality" />
+                      <img :src="item.photo" class="img-fluid" alt="Speciality" />
                       <span>
                         <i class="fa fa-circle" aria-hidden="true"></i>
                       </span>
@@ -99,6 +90,7 @@ export default {
   background-color: #fff;
   padding: 80px 0;
 }
+
 .section-specialities h2 {
   font-size: 36px;
   margin-bottom: 0;
@@ -138,9 +130,15 @@ export default {
   border-radius: 100%;
   box-shadow: 2px 2px 13px rgb(0 0 0 / 26%);
 }
+
 .speicality-item p {
   font-size: 18px;
   font-weight: 600;
   margin: 10px 0 0;
+}
+
+.speicality-img {
+  width: 150px;
+  height: 150px;
 }
 </style>
