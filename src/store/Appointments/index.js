@@ -14,7 +14,7 @@ export default {
     setTotalAppointment(state, LastPage) {
       state.appointmentsTotal = LastPage;
     },
-    setappointmentsLastPage(state, total) {
+    setAppointmentsLastPage(state, total) {
       state.appointmentsLastPage = total;
     },
   },

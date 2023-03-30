@@ -1,46 +1,46 @@
 import axios from "../../axios.config";
 
 export default {
-    namespaced: true,
-    state: {
-        patients: [],
-        patientsTotal: null,
-        patientsLastPage: null,
+  namespaced: true,
+  state: {
+    patients: [],
+    patientsTotal: null,
+    patientsLastPage: null,
+  },
+  mutations: {
+    setPatients(state, patients) {
+      state.patients = patients;
     },
-    mutations: {
-        setPatients(state, patients) {
-            state.patients = patients;
-        },
-        setTotalPatient(state, LastPage) {
-            state.patientsTotal = LastPage;
-        },
-        setPatientsLastPage(state, total) {
-            state.patientsLastPage = total;
-        },
+    setTotalPatient(state, LastPage) {
+      state.patientsTotal = LastPage;
     },
-    getters: {
-        getPatients(state) {
-            return state.patients;
-        },
-        getPatientsTotal(state) {
-            return state.patientsTotal;
-        },
-        getPatientsLastPage(state) {
-            return state.patientsLastPage;
-        },
+    setPatientsLastPage(state, total) {
+      state.patientsLastPage = total;
     },
-    actions: {
-        async fetchPatients({ commit }, params) {
-            try {
-                const response = await axios.get("/patients", {
-                    params,
-                });
-                commit("setPatients", response.data);
-                commit("setTotalPatient", response.data.meta.total);
-                commit("setPatientsLastPage", response.data.meta.last_page);
-            } catch (error) {
-                console.error(error);
-            }
-        }
+  },
+  getters: {
+    getPatients(state) {
+      return state.patients;
     },
+    getPatientsTotal(state) {
+      return state.patientsTotal;
+    },
+    getPatientsLastPage(state) {
+      return state.patientsLastPage;
+    },
+  },
+  actions: {
+    async fetchPatients({ commit }, params) {
+      try {
+        const response = await axios.get("/patients", {
+          params,
+        });
+        commit("setPatients", response.data);
+        commit("setTotalPatient", response.data.meta.total);
+        commit("setPatientsLastPage", response.data.meta.last_page);
+      } catch (error) {
+        console.error(error);
+      }
+    },
+  },
 };

@@ -4,6 +4,7 @@ import SpecialitiesModule from "./Specialities";
 import DoctorsModule from "./Doctors";
 import PatientsModule from "./Patients";
 import PharmaciesModule from "./Pharmacies";
+import CategoriesModule from "./Categories";
 
 export default createStore({
   state: {
@@ -22,6 +23,7 @@ export default createStore({
     Specialities: SpecialitiesModule,
     Doctors: DoctorsModule,
     Patients: PatientsModule,
-    Pharmacies: PharmaciesModule
+    Pharmacies: PharmaciesModule,
+    Categories: CategoriesModule,
   },
 });

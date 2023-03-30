@@ -12,12 +12,11 @@
           <h3 class="card-title">Patients</h3>
           <div class="card-tools">
             <div class="input-group input-group-sm" style="width: 300px">
-              <select class="form-control">
-                <option>Search by...</option>
-                <option>option 2</option>
-                <option>option 3</option>
-                <option>option 4</option>
-                <option>option 5</option>
+              <select v-model="params.search_by" class="form-control">
+                <option>{{ params.search_by }}</option>
+                <option value="name">Name</option>
+                <option value="sex">Sex</option>
+                <option value="blood_group">Blood Group</option>
               </select>
               <div class="input-group-append">
                 <button type="submit" class="btn btn-default">
@@ -25,6 +24,7 @@
                 </button>
               </div>
               <input
+                v-model="params.value"
                 type="text"
                 name="table_search"
                 class="form-control float-right"
@@ -117,7 +117,8 @@ export default {
     return {
       status: "active",
       params: {
-        name: "",
+        search_by: "Search by...",
+        value: "",
         specialty: "",
         page: 1,
       },

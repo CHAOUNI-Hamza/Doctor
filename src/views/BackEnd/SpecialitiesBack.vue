@@ -7,6 +7,7 @@
       </div>
       <!-- Button trigger modal -->
       <a
+        @click="resetForm"
         data-toggle="modal"
         data-target="#exampleModal"
         type="button"
@@ -322,16 +323,12 @@ export default {
       createSpecialitie: "Specialities/createSpecialitie",
       updateSpecialitie: "Specialities/updateSpecialitie",
     }),
-    deleteSpecialitie() {
-      this.fetchSpecialities();
-    },
     submitForm() {
       this.v$.$touch();
       if (!this.v$.$invalid) {
         this.createSpecialitie(this.data);
         this.resetForm();
         this.hideModal("exampleModal");
-        this.fetchSpecialities();
       }
     },
     updateForm() {
@@ -340,7 +337,6 @@ export default {
         this.updateSpecialitie(this.data);
         this.resetForm();
         this.hideModal("exampleModal1");
-        this.fetchSpecialities();
       }
     },
     resetForm() {

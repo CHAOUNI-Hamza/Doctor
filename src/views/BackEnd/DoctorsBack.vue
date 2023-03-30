@@ -87,7 +87,7 @@
                       <input type="radio" value="inactive" v-model="status" />
                       Inactive
                     </label>
-                    <button @click="updateStatus(doctor.id)">Update</button>
+                    <!--<button @click="updateStatus(doctor.id)">Update</button>-->
                   </div>
                 </td>
               </tr>
@@ -122,7 +122,7 @@
 </template>
 <script>
 import { mapGetters, mapActions } from "vuex";
-import axios from "../../axios.config";
+//import axios from "../../axios.config";
 export default {
   data() {
     return {
@@ -150,17 +150,15 @@ export default {
     }),
   },
   methods: {
-    async updateStatus(id) {
+    /*async updateStatus(id) {
       try {
         const response = await axios.post(`/doctors/${id}/update-status`, {
           status: this.status,
         });
-        //this.status = response.data.status;
-        console.error(response);
       } catch (error) {
         console.error(error);
       }
-    },
+    },*/
     ...mapActions({
       fetchDoctors: "Doctors/fetchDoctors",
     }),

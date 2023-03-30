@@ -14,14 +14,8 @@ export default {
     setSpecialities(state, specialities) {
       state.specialities = specialities;
     },
-    addSpecialitie(state, speciality) {
-      state.specialities.push(speciality);
-    },
     setTotalSpecialitie(state, total) {
       state.specialitiesTotal = total;
-    },
-    improveSpecialitie(state, speciality) {
-      state.specialities.push(speciality);
     },
   },
   getters: {
@@ -46,7 +40,7 @@ export default {
         console.log(error);
       }
     },
-    async createSpecialitie({ commit }, params) {
+    async createSpecialitie({ _ }, params) {
       try {
         const formData = new FormData();
         formData.append("photo", params.photo);
@@ -59,7 +53,6 @@ export default {
           showConfirmButton: false,
           timer: 1500,
         });
-        commit("addSpecialitie", response.data.data);
       } catch (error) {
         console.log(error);
       }
@@ -74,7 +67,6 @@ export default {
           `/specialties/${params.id}`,
           formData
         );
-        commit("improveSpeciality", response.data.data);
         Swal.fire({
           position: "top-end",
           icon: "success",
