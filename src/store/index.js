@@ -5,6 +5,7 @@ import DoctorsModule from "./Doctors";
 import PatientsModule from "./Patients";
 import PharmaciesModule from "./Pharmacies";
 import CategoriesModule from "./Categories";
+import SettingsModule from "./Settings";
 
 export default createStore({
   state: {
@@ -25,5 +26,6 @@ export default createStore({
     Patients: PatientsModule,
     Pharmacies: PharmaciesModule,
     Categories: CategoriesModule,
+    Settings: SettingsModule,
   },
 });

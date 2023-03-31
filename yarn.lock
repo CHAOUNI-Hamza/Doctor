@@ -5650,6 +5650,11 @@
   "resolved" "https://registry.npmjs.org/vue-html-to-paper/-/vue-html-to-paper-1.4.4.tgz"
   "version" "1.4.4"
 
+"vue-js-toggle-button@^1.3.3":
+  "integrity" "sha512-0b920oztgK+1SqlYF26MPiT28hAieL5aAQE7u21XEym5ryfzD4EMer4hLkgDC/1sWsCHb22GvV+t1Kb4AI6QFw=="
+  "resolved" "https://registry.npmjs.org/vue-js-toggle-button/-/vue-js-toggle-button-1.3.3.tgz"
+  "version" "1.3.3"
+
 "vue-loader@^17.0.0":
   "integrity" "sha512-/OOyugJnImKCkAKrAvdsWMuwoCqGxWT5USLsjohzWbMgOwpA5wQmzQiLMzZd7DjhIfunzAGIApTOgIylz/kwcg=="
   "resolved" "https://registry.npmjs.org/vue-loader/-/vue-loader-17.0.1.tgz"
@@ -5679,7 +5684,7 @@
   "resolved" "https://registry.npmjs.org/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.9.1.tgz"
   "version" "1.9.1"
 
-"vue@*", "vue@^2 || ^3.2.13", "vue@^2.0.0 || >=3.0.0", "vue@^3.0.0-0 || ^2.6.0", "vue@^3.2.0", "vue@^3.2.13", "vue@^3.2.41", "vue@>= 3.0.0 < 4", "vue@3.2.45":
+"vue@*", "vue@^2 || ^3.2.13", "vue@^2.0.0", "vue@^2.0.0 || >=3.0.0", "vue@^3.0.0-0 || ^2.6.0", "vue@^3.2.0", "vue@^3.2.13", "vue@^3.2.41", "vue@>= 3.0.0 < 4", "vue@3.2.45":
   "integrity" "sha512-9Nx/Mg2b2xWlXykmCwiTUCWHbWIj53bnkizBxKai1g61f2Xit700A1ljowpTIM11e3uipOeiPcSqnmBg6gyiaA=="
   "resolved" "https://registry.npmjs.org/vue/-/vue-3.2.45.tgz"
   "version" "3.2.45"
