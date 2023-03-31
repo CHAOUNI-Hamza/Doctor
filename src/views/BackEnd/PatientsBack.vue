@@ -69,8 +69,18 @@
                   </div>
                 </td>
                 <td>
-                  <span class="user-name">26 November 2022</span><br />
-                  <span class="text-muted">12/20/2022</span>
+                  <span
+                    v-for="last in patient.appointments"
+                    :key="last"
+                    class="user-name"
+                    >{{ last.created_at }}</span
+                  ><br />
+                  <span
+                    v-for="last in patient.appointments"
+                    :key="last"
+                    class="text-muted"
+                    >{{ last.created_at }}</span
+                  >
                 </td>
                 <td>
                   {{ patient.blood_group }}

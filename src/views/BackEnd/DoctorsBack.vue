@@ -12,12 +12,10 @@
           <h3 class="card-title">Doctors</h3>
           <div class="card-tools">
             <div class="input-group input-group-sm" style="width: 300px">
-              <select class="form-control">
-                <option>Search by...</option>
-                <option>option 2</option>
-                <option>option 3</option>
-                <option>option 4</option>
-                <option>option 5</option>
+              <select v-model="params.search_by" class="form-control">
+                <option>{{ params.search_by }}</option>
+                <option value="username">Username</option>
+                <option value="specialty">Specialty</option>
               </select>
               <div class="input-group-append">
                 <button type="submit" class="btn btn-default">
@@ -25,6 +23,7 @@
                 </button>
               </div>
               <input
+                v-model="params.value"
                 type="text"
                 name="table_search"
                 class="form-control float-right"
@@ -87,7 +86,7 @@
                       <input type="radio" value="inactive" v-model="status" />
                       Inactive
                     </label>
-                    <!--<button @click="updateStatus(doctor.id)">Update</button>-->
+                    <button @click="updateStatus(doctor.id)">Update</button>
                   </div>
                 </td>
               </tr>
@@ -122,14 +121,14 @@
 </template>
 <script>
 import { mapGetters, mapActions } from "vuex";
-//import axios from "../../axios.config";
+import axios from "../../axios.config";
 export default {
   data() {
     return {
       status: "active",
       params: {
-        name: "",
-        specialty: "",
+        search_by: "Search by...",
+        value: "",
         page: 1,
       },
     };
@@ -150,7 +149,10 @@ export default {
     }),
   },
   methods: {
-    /*async updateStatus(id) {
+    test() {
+      console.log("ggfdgf");
+    },
+    async updateStatus(id) {
       try {
         const response = await axios.post(`/doctors/${id}/update-status`, {
           status: this.status,
@@ -158,7 +160,7 @@ export default {
       } catch (error) {
         console.error(error);
       }
-    },*/
+    },
     ...mapActions({
       fetchDoctors: "Doctors/fetchDoctors",
     }),
