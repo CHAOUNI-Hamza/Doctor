@@ -75,7 +75,7 @@
                   </div>
                 </td>
                 <td>
-                  {{ pharmacie.category }}
+                  {{ pharmacie.category?.name }}
                 </td>
                 <td>
                   {{ pharmacie.address }}

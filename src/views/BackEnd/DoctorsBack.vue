@@ -88,6 +88,8 @@
                     </label>
                     <button @click="updateStatus(doctor.id)">Update</button>
                   </div>
+
+                  <toggle-button @click="handleChange" />
                 </td>
               </tr>
             </tbody>
@@ -122,7 +124,11 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import axios from "../../axios.config";
+import ToggleButton from "vue-js-toggle-button";
 export default {
+  components: {
+    ToggleButton,
+  },
   data() {
     return {
       status: "active",
@@ -131,6 +137,7 @@ export default {
         value: "",
         page: 1,
       },
+      value: true,
     };
   },
   watch: {
@@ -149,6 +156,9 @@ export default {
     }),
   },
   methods: {
+    handleChange() {
+      console.log("Toggle button value:");
+    },
     test() {
       console.log("ggfdgf");
     },

@@ -28,7 +28,7 @@
         </div>
         <div class="col-lg-8">
           <div class="row">
-            <div class="col-md-4" v-for="item in getDoctors.data" :key="item">
+            <div class="col-md-3" v-for="item in getDoctors.data" :key="item">
               <div class="card" style="width: 100%">
                 <img
                   src="https://www.pngitem.com/pimgs/m/515-5158817_telemedicine-doctor-hd-png-download.png"
@@ -144,7 +144,7 @@ export default {
     return {
       status: "active",
       params: {
-        limit_doctors: 3,
+        limit_doctors: 4,
       },
     };
   },

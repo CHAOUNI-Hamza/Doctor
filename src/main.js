@@ -19,8 +19,6 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 /* Pagination */
 
-import { ToggleButton } from "vue-js-toggle-button";
-
 /* import specific icons */
 import {
   faUserSecret,
@@ -159,5 +157,4 @@ createApp(App)
   .component("NavbarFront", NavbarFront)
   .component("FooterFront", FooterFront)
   .component("GoToTopButton", GoToTopButton)
-  .component("ToggleButton", ToggleButton)
   .mount("#app");
