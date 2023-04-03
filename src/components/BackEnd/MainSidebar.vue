@@ -121,12 +121,12 @@ export default {
 </script>
 <style scoped>
 .nav-link {
+  color: #333 !important;
   font-size: 18px;
 }
 
 .nav-link p {
   margin-left: 10px;
-  color: #333 !important;
   font-weight: 300;
   font-size: 16px;
 }
@@ -140,12 +140,14 @@ export default {
   border-bottom: 1px solid #4b545c30 !important;
 }
 
-.router-link-active {
-  color: #5c8ed3 !important;
+.router-link-active.router-link-exact-active {
+  color: #0939e7 !important;
   font-weight: 700;
   background: #5c8ed32b;
 }
-
+.router-link-active.router-link-exact-active.icone {
+  color: #0939e7 !important;
+}
 .icone {
   width: 20px;
 }

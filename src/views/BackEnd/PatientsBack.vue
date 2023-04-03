@@ -73,7 +73,7 @@
                     v-for="last in patient.appointments"
                     :key="last"
                     class="user-name"
-                    >{{ last.created_at }}</span
+                    ><date-format :date="last.created_at" /></span
                   ><br />
                   <span
                     v-for="last in patient.appointments"

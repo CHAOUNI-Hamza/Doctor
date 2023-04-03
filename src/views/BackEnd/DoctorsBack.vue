@@ -68,22 +68,31 @@
                 </td>
                 <td>{{ doctor.specialty.name }}</td>
                 <td>
-                  <span class="user-name">{{ doctor.created_at }}</span
+                  <span class="user-name">
+                    <date-format :date="doctor.created_at" /> </span
                   ><br />
                   <span class="text-muted">{{ doctor.created_at }}</span>
                 </td>
                 <td>{{ doctor.appointments_count }}</td>
                 <td>300.00 DH</td>
                 <td class="text-left">
-                  <input id="s1" type="checkbox" class="switch" />
+                  <span @click="status = 'inactive'">
+                    <input id="s1" type="checkbox" class="switch" />
+                  </span>
 
                   <div>
                     <label>
-                      <input type="radio" value="active" v-model="status" />
+                      <input
+                        type="radio"
+                        value="active"
+                        v-model="doctor.status" />
                       Active
                     </label>
                     <label>
-                      <input type="radio" value="inactive" v-model="status" />
+                      <input
+                        type="radio"
+                        value="inactive"
+                        v-model="doctor.status" />
                       Inactive
                     </label>
                     <button @click="updateStatus(doctor.id)">Update</button>

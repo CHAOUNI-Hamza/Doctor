@@ -18,8 +18,10 @@ export default {
   actions: {
     async update({ _ }, params) {
       try {
+        console.log(params);
         const formData = new FormData();
-        formData.append("logo", params.logo);
+        formData.append("email", params.email);
+        /*formData.append("logo", params.logo);
         formData.append("favicon", params.favicon);
         formData.append("address_one", params.address_one);
         formData.append("address_two", params.address_two);
@@ -43,9 +45,9 @@ export default {
         formData.append("stripe_option", params.stripe_option);
         formData.append("stripe_name", params.stripe_name);
         formData.append("stripe_merchant_id", params.stripe_merchant_id);
-        formData.append("stripe_rest_id", params.stripe_rest_id);
+        formData.append("stripe_rest_id", params.stripe_rest_id);*/
         formData.append("php_mail_email", params.php_mail_email);
-        formData.append("php_mail_password", params.php_mail_password);
+        /*formData.append("php_mail_password", params.php_mail_password);
         formData.append(
           "php_mail_email_from_name",
           params.php_mail_email_from_name
@@ -77,9 +79,9 @@ export default {
           "google_rechaptcha_secret",
           params.google_rechaptcha_secret
         );
-        formData.append("cookies_agreement", params.cookies_agreement);
+        formData.append("cookies_agreement", params.cookies_agreement);*/
 
-        const response = await axios.post(`/settings/1`, formData);
+        const response = await axios.post("/settings/1", formData);
         Swal.fire({
           position: "top-end",
           icon: "success",

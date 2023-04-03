@@ -19,6 +19,8 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 /* Pagination */
 
+import DateFormat from "@voidsolutions/vue-dateformat";
+
 /* import specific icons */
 import {
   faUserSecret,
@@ -154,6 +156,7 @@ createApp(App)
   .use(style)
   .use(store)
   .use(router)
+  .use(DateFormat)
   .component("NavbarFront", NavbarFront)
   .component("FooterFront", FooterFront)
   .component("GoToTopButton", GoToTopButton)

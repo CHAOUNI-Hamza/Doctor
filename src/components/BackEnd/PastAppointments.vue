@@ -113,6 +113,9 @@
               </td>
               <td>{{ appointment.amount }} DH</td>
             </tr>
+            <tr v-if="getAppointments.data?.length <= 0">
+              <p class="m-3 no-result">No results Found</p>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -255,5 +258,8 @@ select.form-control {
 .table .consultation-type {
   color: #2196f3;
   font-size: 17px;
+}
+.no-result {
+  color: #ff0000ba;
 }
 </style>

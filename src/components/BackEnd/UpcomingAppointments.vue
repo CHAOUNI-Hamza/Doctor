@@ -2,7 +2,7 @@
   <div class="col-12">
     <div class="card">
       <div class="card-header">
-        <h3 class="card-title">Past Appointments</h3>
+        <h3 class="card-title">Upcoming Appointments</h3>
         <div class="card-tools d-flex">
           <div class="input-group input-group-sm" style="width: 200px">
             <div class="input-group-append">
@@ -124,6 +124,9 @@
                   {{ appointment.status }}</span
                 >
               </td>
+            </tr>
+            <tr v-if="getAppointments.data?.length <= 0">
+              <p class="m-3 no-result">No results Found</p>
             </tr>
           </tbody>
         </table>
@@ -289,5 +292,8 @@ table .badge {
   padding: 7px 12px;
   text-align: center;
   background: #f5f6fa;
+}
+.no-result {
+  color: #ff0000ba;
 }
 </style>
