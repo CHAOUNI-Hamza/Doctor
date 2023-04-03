@@ -4,6 +4,56 @@ export default {
   namespaced: true,
   state: {
     setting: [],
+    data: {
+      php_mail_email: "",
+      php_mail_password: "",
+      php_mail_email_from_name: "",
+      smtp_email: "",
+      smtp_password: "",
+      smtp_email_host: "",
+      smtp_email_port: "",
+      email: "",
+      logo: "",
+      favicon: "",
+      address_one: "",
+      address_two: "",
+      city: "",
+      province: "",
+      postal_code: "",
+      country: "",
+      time_zone: "",
+      date_format: "",
+      time_format: "",
+      currency: "",
+      google_analytics: "",
+      google_adcence_code: "",
+      facebook_messanger: "",
+      display_facebook_pixel: "",
+      google_rechaptcha_key: "",
+      google_rechaptcha_secret: "",
+      cookies_agreement: "",
+      paypal_tokenization_key: "",
+      paypal_merchant_id: "",
+      paypal_public_key: "",
+      paypal_private_key: "",
+      paypal_app_id: "",
+      paypal_secret_key: "",
+      stripe_option: "",
+      stripe_name: "",
+      stripe_merchant_id: "",
+      stripe_rest_id: "",
+      seo_title: "",
+      seo_description: "",
+      facebook: "",
+      twitter: "",
+      linkedin: "",
+      google_client_id: "",
+      google_client_secret: "",
+      facebook_app_id: "",
+      facebook_app_secret: "",
+      twitter_client_id: "",
+      twitter_client_secret: "",
+    },
   },
   mutations: {
     /*set(state, setting) {
@@ -21,7 +71,7 @@ export default {
         console.log(params);
         const formData = new FormData();
         formData.append("email", params.email);
-        /*formData.append("logo", params.logo);
+        formData.append("logo", params.logo);
         formData.append("favicon", params.favicon);
         formData.append("address_one", params.address_one);
         formData.append("address_two", params.address_two);
@@ -45,9 +95,9 @@ export default {
         formData.append("stripe_option", params.stripe_option);
         formData.append("stripe_name", params.stripe_name);
         formData.append("stripe_merchant_id", params.stripe_merchant_id);
-        formData.append("stripe_rest_id", params.stripe_rest_id);*/
+        formData.append("stripe_rest_id", params.stripe_rest_id);
         formData.append("php_mail_email", params.php_mail_email);
-        /*formData.append("php_mail_password", params.php_mail_password);
+        formData.append("php_mail_password", params.php_mail_password);
         formData.append(
           "php_mail_email_from_name",
           params.php_mail_email_from_name
@@ -79,7 +129,7 @@ export default {
           "google_rechaptcha_secret",
           params.google_rechaptcha_secret
         );
-        formData.append("cookies_agreement", params.cookies_agreement);*/
+        formData.append("cookies_agreement", params.cookies_agreement);
 
         const response = await axios.post("/settings/1", formData);
         Swal.fire({

@@ -3,36 +3,24 @@
   <a v-if="LogoBigSmall" href="index3.html" class="brand-link">
     <img
       src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/The_Good_Doctor_logo_2.svg/2560px-The_Good_Doctor_logo_2.svg.png"
-      alt="AdminLTE Logo"
-      class="logo"
-      style="opacity: 0.8" />
+      alt="AdminLTE Logo" class="logo" style="opacity: 0.8" />
   </a>
   <a v-if="!LogoBigSmall" href="index3.html" class="brand-link">
-    <img
-      src="https://www.pgdesign.be/wp-content/uploads/2020/06/Logo-bleu-400.png"
-      alt="AdminLTE Logo"
-      class="logo"
+    <img src="https://www.pgdesign.be/wp-content/uploads/2020/06/Logo-bleu-400.png" alt="AdminLTE Logo" class="logo"
       style="opacity: 0.8" />
   </a>
   <!-- Sidebar -->
   <div class="sidebar">
     <!-- Sidebar Menu -->
     <nav class="mt-2">
-      <ul
-        class="nav nav-pills nav-sidebar flex-column"
-        data-widget="treeview"
-        role="menu"
-        data-accordion="false">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <!-- Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library -->
         <li class="nav-item menu-open">
           <ul class="nav nav-treeview">
             <li v-for="nav in listsNav" :key="nav.id" class="nav-item">
               <router-link :to="{ name: nav.link }" class="nav-link">
-                <font-awesome-icon
-                  style="color: #333"
-                  class="icone"
-                  :icon="nav.icone" />
+                <font-awesome-icon style="color: #333" class="icone" :icon="nav.icone" />
                 <p>{{ nav.title }}</p>
               </router-link>
             </li>
@@ -102,7 +90,7 @@ export default {
         {
           title: "Category Pharmacies",
           link: "categorypharmacies",
-          icone: "fa-solid fa-prescription-bottle-medical",
+          icone: "fa-solid fa-shield-halved",
         },
         {
           title: "Profile",
@@ -145,9 +133,11 @@ export default {
   font-weight: 700;
   background: #5c8ed32b;
 }
+
 .router-link-active.router-link-exact-active.icone {
   color: #0939e7 !important;
 }
+
 .icone {
   width: 20px;
 }

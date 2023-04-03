@@ -65,6 +65,7 @@ import {
   faChevronRight,
   faPrescriptionBottleMedical,
   faCircle,
+  faShieldHalved
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faMoon,
@@ -106,6 +107,7 @@ library.add(
   faBars,
   faRepeat,
   faFaceLaugh,
+  faShieldHalved,
   faClipboardCheck,
   faCircleCheck,
   faCirclePlus,

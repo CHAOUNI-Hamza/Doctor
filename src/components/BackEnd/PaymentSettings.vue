@@ -3,17 +3,15 @@
     <div class="col-md-6">
       <div class="card">
         <div class="card-body">
-          <div
-            class="card-header mb-3 d-flex justify-content-between align-items-center">
+          <div class="card-header mb-3 d-flex justify-content-between align-items-center">
             <h5 class="card-title">Paypal</h5>
-            <div
-              class="status-toggle d-flex justify-content-between align-items-center">
+            <div class="status-toggle d-flex justify-content-between align-items-center">
               <input id="s2" type="checkbox" class="switch" />
             </div>
           </div>
-          <form>
+          <form @submit.prevent="updateForm">
             <div class="settings-form">
-              <div class="mb-3">
+              <!--<div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label"
                   >Paypal Option</label
                 ><br />
@@ -33,71 +31,35 @@
                   value="2"
                   checked />
                 <label for="r2">Live</label>
+              </div>-->
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Braintree Tokenization key</label>
+                <input v-model="data.paypal_tokenization_key" type="text" class="form-control"
+                  id="exampleFormControlInput1" placeholder="Braintree Tokenization key..." />
               </div>
               <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label"
-                  >Braintree Tokenization key</label
-                >
-                <input
-                  v-model="data.paypal_tokenization_key"
-                  type="text"
-                  class="form-control"
-                  id="exampleFormControlInput1"
-                  placeholder="Braintree Tokenization key..." />
-              </div>
-              <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label"
-                  >Braintree Merchant ID</label
-                >
-                <input
-                  v-model="data.paypal_merchant_id"
-                  type="text"
-                  class="form-control"
-                  id="exampleFormControlInput1"
+                <label for="exampleFormControlInput1" class="form-label">Braintree Merchant ID</label>
+                <input v-model="data.paypal_merchant_id" type="text" class="form-control" id="exampleFormControlInput1"
                   placeholder="Braintree Merchant ID..." />
               </div>
               <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label"
-                  >Braintree Public key</label
-                >
-                <input
-                  v-model="data.paypal_public_key"
-                  type="text"
-                  class="form-control"
-                  id="exampleFormControlInput1"
+                <label for="exampleFormControlInput1" class="form-label">Braintree Public key</label>
+                <input v-model="data.paypal_public_key" type="text" class="form-control" id="exampleFormControlInput1"
                   placeholder="Braintree Public key..." />
               </div>
               <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label"
-                  >Braintree Private key</label
-                >
-                <input
-                  v-model="data.paypal_private_key"
-                  type="text"
-                  class="form-control"
-                  id="exampleFormControlInput1"
+                <label for="exampleFormControlInput1" class="form-label">Braintree Private key</label>
+                <input v-model="data.paypal_private_key" type="text" class="form-control" id="exampleFormControlInput1"
                   placeholder="Braintree Private key..." />
               </div>
               <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label"
-                  >Paypal APP ID</label
-                >
-                <input
-                  v-model="data.paypal_app_id"
-                  type="text"
-                  class="form-control"
-                  id="exampleFormControlInput1"
+                <label for="exampleFormControlInput1" class="form-label">Paypal APP ID</label>
+                <input v-model="data.paypal_app_id" type="text" class="form-control" id="exampleFormControlInput1"
                   placeholder="Paypal APP ID..." />
               </div>
               <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label"
-                  >Paypal Secret Key</label
-                >
-                <input
-                  v-model="data.paypal_secret_key"
-                  type="text"
-                  class="form-control"
-                  id="exampleFormControlInput1"
+                <label for="exampleFormControlInput1" class="form-label">Paypal Secret Key</label>
+                <input v-model="data.paypal_secret_key" type="text" class="form-control" id="exampleFormControlInput1"
                   placeholder="Paypal Secret Key..." />
               </div>
               <div class="mb-3">
@@ -118,68 +80,34 @@
     <div class="col-md-6">
       <div class="card">
         <div class="card-body">
-          <div
-            class="card-header mb-3 d-flex justify-content-between align-items-center">
+          <div class="card-header mb-3 d-flex justify-content-between align-items-center">
             <h5 class="card-title">Stripe</h5>
-            <div
-              class="status-toggle d-flex justify-content-between align-items-center">
+            <div class="status-toggle d-flex justify-content-between align-items-center">
               <input id="s2" type="checkbox" class="switch" />
             </div>
           </div>
           <form>
             <div class="settings-form">
               <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label"
-                  >Stripe Option</label
-                ><br />
-                <input
-                  v-model="data.stripe_option"
-                  id="r1"
-                  type="radio"
-                  name="radio"
-                  value="1" />
+                <label for="exampleFormControlInput1" class="form-label">Stripe Option</label><br />
+                <input v-model="data.stripe_option" id="r1" type="radio" name="radio" value="1" />
                 <label for="r1">Sandbox</label>
-                <input
-                  v-model="data.stripe_option"
-                  id="r2"
-                  class="ml-2"
-                  type="radio"
-                  name="radio"
-                  value="2"
-                  checked />
+                <input v-model="data.stripe_option" id="r2" class="ml-2" type="radio" name="radio" value="2" checked />
                 <label for="r2">Live</label>
               </div>
               <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label"
-                  >Gateway Name</label
-                >
-                <input
-                  v-model="data.stripe_name"
-                  type="text"
-                  class="form-control"
-                  id="exampleFormControlInput1"
+                <label for="exampleFormControlInput1" class="form-label">Gateway Name</label>
+                <input v-model="data.stripe_name" type="text" class="form-control" id="exampleFormControlInput1"
                   placeholder="Gateway Name..." />
               </div>
               <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label"
-                  >Braintree Merchant ID</label
-                >
-                <input
-                  v-model="data.stripe_merchant_id"
-                  type="text"
-                  class="form-control"
-                  id="exampleFormControlInput1"
+                <label for="exampleFormControlInput1" class="form-label">Braintree Merchant ID</label>
+                <input v-model="data.stripe_merchant_id" type="text" class="form-control" id="exampleFormControlInput1"
                   placeholder="Braintree Merchant ID..." />
               </div>
               <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label"
-                  >Rest Key</label
-                >
-                <input
-                  v-model="data.stripe_rest_id"
-                  type="text"
-                  class="form-control"
-                  id="exampleFormControlInput1"
+                <label for="exampleFormControlInput1" class="form-label">Rest Key</label>
+                <input v-model="data.stripe_rest_id" type="text" class="form-control" id="exampleFormControlInput1"
                   placeholder="Rest Key..." />
               </div>
               <div class="mb-3">
@@ -275,9 +203,11 @@ export default {
   font-weight: 600;
   font-size: 20px;
 }
+
 label {
   font-weight: 100 !important;
 }
+
 .upload-images {
   background: rgba(255, 255, 255, 0.8);
   border: 1px solid #e4e4e4;
@@ -290,35 +220,43 @@ label {
   align-items: center;
   position: relative;
 }
+
 .upload-size {
   width: 89px !important;
   height: 78px !important;
 }
+
 .upload-images img {
   max-height: 45px;
   width: auto;
 }
+
 .remove {
   position: absolute;
   top: 5px;
   right: 5px;
   color: red;
 }
+
 .btn {
   color: white;
   font-weight: bold;
 }
+
 .btn-update {
   background: #03a9f470;
   transition: 0.2s;
 }
+
 .btn-cancel {
   background: #ff5722a8;
   transition: 0.2s;
 }
+
 .btn-update:hover {
   background: #03a9f4;
 }
+
 .btn-cancel:hover {
   background: #ff5722;
 }

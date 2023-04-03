@@ -6,11 +6,7 @@
         <span class="ms-1">{{ getTotal }}</span>
       </div>
       <!-- Button trigger modal -->
-      <a
-        data-toggle="modal"
-        data-target="#exampleModal"
-        type="button"
-        class="btn btn-add">
+      <a data-toggle="modal" data-target="#exampleModal" type="button" class="btn btn-add" @click="resetForm">
         <font-awesome-icon icon="fa-solid fa-plus" />
         Add New
       </a>
@@ -31,11 +27,7 @@
                   <font-awesome-icon icon="fa-solid fa-magnifying-glass" />
                 </button>
               </div>
-              <input
-                type="text"
-                name="table_search"
-                v-model="params.name"
-                class="form-control float-right"
+              <input type="text" name="table_search" v-model="params.name" class="form-control float-right"
                 placeholder="Search" />
             </div>
           </div>
@@ -57,9 +49,7 @@
                 <td>
                   <div class="media">
                     <div class="d-flex media-body">
-                      <a
-                        class="avatar avatar-sm me-2 user-dt"
-                        href="/template/admin/profile">
+                      <a class="avatar avatar-sm me-2 user-dt" href="/template/admin/profile">
                         <img :src="categorie.photo" class="avatar avatar-img" />
                       </a>
                       <div class="text-secondary">
@@ -73,9 +63,7 @@
                 <td>
                   <div class="media">
                     <div class="d-flex media-body">
-                      <a
-                        class="avatar avatar-sm me-2 user-dt"
-                        href="/template/admin/profile">
+                      <a class="avatar avatar-sm me-2 user-dt" href="/template/admin/profile">
                         <img :src="categorie.icone" class="avatar avatar-img" />
                       </a>
                     </div>
@@ -83,19 +71,12 @@
                 </td>
                 <td>
                   <span class="btn-edit mr-2">
-                    <font-awesome-icon
-                      class="mr-1"
-                      icon="fa-solid fa-pen-to-square"
-                      data-toggle="modal"
-                      data-target="#exampleModal1"
-                      @click="fetchOne(categorie.id)" />
+                    <font-awesome-icon class="mr-1" icon="fa-solid fa-pen-to-square" data-toggle="modal"
+                      data-target="#exampleModal1" @click="fetchOne(categorie.id)" />
                     Edit
                   </span>
                   <span class="btn-delete text-danger">
-                    <font-awesome-icon
-                      class="mr-1"
-                      @click="destroy(categorie.id)"
-                      icon="fa-solid fa-trash-can" />Delete
+                    <font-awesome-icon class="mr-1" @click="destroy(categorie.id)" icon="fa-solid fa-trash-can" />Delete
                   </span>
                 </td>
               </tr>
@@ -107,9 +88,7 @@
     <nav aria-label="Page navigation example">
       <ul class="pagination">
         <li class="page-item">
-          <a class="page-link" @click="params.page = LastPage - 1" href="#"
-            >Previous</a
-          >
+          <a class="page-link" @click="params.page = LastPage - 1" href="#">Previous</a>
         </li>
         <li v-for="LastPage in getLastPage" :key="LastPage" class="page-item">
           <a @click="params.page = LastPage" class="page-link" href="#">{{
@@ -117,29 +96,18 @@
           }}</a>
         </li>
         <li class="page-item">
-          <a class="page-link" @click="params.page = LastPage + 1" href="#"
-            >Next</a
-          >
+          <a class="page-link" @click="params.page = LastPage + 1" href="#">Next</a>
         </li>
       </ul>
     </nav>
   </div>
   <!-- start modal Add -->
-  <div
-    class="modal fade"
-    id="exampleModal"
-    tabindex="-1"
-    aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Add Category</h5>
-          <button
-            type="button"
-            class="close"
-            data-dismiss="modal"
-            aria-label="Close">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -147,57 +115,34 @@
           <div class="modal-body">
             <div class="form-group">
               <label for="exampleInputEmail1">Category Name</label>
-              <input
-                @blur="v$.data.name.$touch"
-                :class="{
-                  'text-fields-error': v$.data.name.$error === true,
-                }"
-                v-model="data.name"
-                type="text"
-                class="form-control"
-                id="exampleInputEmail1"
-                aria-describedby="emailHelp"
-                placeholder="Category Name..." />
+              <input @blur="v$.data.name.$touch" :class="{
+                'text-fields-error': v$.data.name.$error === true,
+              }" v-model="data.name" type="text" class="form-control" id="exampleInputEmail1"
+                aria-describedby="emailHelp" placeholder="Category Name..." />
             </div>
-            <div
-              class="form-group card-upload"
-              :class="{
+            <div class="form-group card-upload" :class="{
+              'text-fields-error': v$.data.icone.$error === true,
+            }">
+              <input @blur="v$.data.icone.$touch" :class="{
                 'text-fields-error': v$.data.icone.$error === true,
-              }">
-              <input
-                @blur="v$.data.icone.$touch"
-                :class="{
-                  'text-fields-error': v$.data.icone.$error === true,
-                }"
-                @change="onFileSelectedIcone"
-                type="file"
-                class="form-control-file"
-                id="exampleFormControlFile1" />
+              }" @change="onFileSelectedIcone" type="file" class="form-control-file" id="exampleFormControlFile1" />
             </div>
-            <div
-              class="form-group card-upload"
-              :class="{
+            <div class="form-group show-image" v-if="icone">
+              <img :src="icone" alt="uploaded photo" />
+            </div>
+            <div class="form-group card-upload" :class="{
+              'text-fields-error': v$.data.photo.$error === true,
+            }">
+              <input @blur="v$.data.photo.$touch" :class="{
                 'text-fields-error': v$.data.photo.$error === true,
-              }">
-              <input
-                @blur="v$.data.photo.$touch"
-                :class="{
-                  'text-fields-error': v$.data.photo.$error === true,
-                }"
-                @change="onFileSelected"
-                type="file"
-                class="form-control-file"
-                id="exampleFormControlFile1" />
+              }" @change="onFileSelected" type="file" class="form-control-file" id="exampleFormControlFile1" />
             </div>
             <div class="form-group show-image" v-if="imageUrl">
               <img :src="imageUrl" alt="uploaded photo" />
             </div>
           </div>
           <div class="modal-footer text-center">
-            <button
-              v-if="v$.$invalid"
-              type="submit"
-              class="btn btn-save disable">
+            <button v-if="v$.$invalid" type="submit" class="btn btn-save disable">
               Send
             </button>
             <button v-if="!v$.$invalid" type="submit" class="btn btn-save">
@@ -210,48 +155,57 @@
   </div>
 
   <!-- start modal Update -->
-  <!--<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel1">Update Speciality</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form @submit.prevent="updateForm">
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Speciality Name</label>
-                            <input @blur="v$.data.name.$touch" :class="{
-                                'text-fields-error': v$.data.name.$error === true,
-                            }" v-model="data.name" type="text" class="form-control" id="exampleInputEmail1"
-                                aria-describedby="emailHelp" placeholder="Speciality Name..." />
-                        </div>
-                        <div class="form-group card-upload" :class="{
-                            'text-fields-error': v$.data.photo.$error === true,
-                        }">
-                            <input @blur="v$.data.photo.$touch" :class="{
-                                'text-fields-error': v$.data.photo.$error === true,
-                            }" @change="onFileSelected" type="file" class="form-control-file"
-                                id="exampleFormControlFile1" />
-                        </div>
-                        <div class="form-group show-image" v-if="imageUrl">
-                            <img :src="imageUrl" alt="uploaded photo" />
-                        </div>
-                    </div>
-                    <div class="modal-footer text-center">
-                        <button v-if="v$.$invalid" type="submit" class="btn btn-save disable">
-                            Send
-                        </button>
-                        <button v-if="!v$.$invalid" type="submit" class="btn btn-save">
-                            Send
-                        </button>
-                    </div>
-                </form>
-            </div>
+  <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add Category</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
-    </div>-->
+        <form @submit.prevent="updateForm">
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Category Name</label>
+              <input @blur="v$.data.name.$touch" :class="{
+                'text-fields-error': v$.data.name.$error === true,
+              }" v-model="data.name" type="text" class="form-control" id="exampleInputEmail1"
+                aria-describedby="emailHelp" placeholder="Category Name..." />
+            </div>
+            <div class="form-group card-upload" :class="{
+              'text-fields-error': v$.data.icone.$error === true,
+            }">
+              <input @blur="v$.data.icone.$touch" :class="{
+                'text-fields-error': v$.data.icone.$error === true,
+              }" @change="onFileSelectedIcone" type="file" class="form-control-file" id="exampleFormControlFile1" />
+            </div>
+            <div class="form-group show-image" v-if="icone">
+              <img :src="icone" alt="uploaded photo" />
+            </div>
+            <div class="form-group card-upload" :class="{
+              'text-fields-error': v$.data.photo.$error === true,
+            }">
+              <input @blur="v$.data.photo.$touch" :class="{
+                'text-fields-error': v$.data.photo.$error === true,
+              }" @change="onFileSelected" type="file" class="form-control-file" id="exampleFormControlFile1" />
+            </div>
+            <div class="form-group show-image" v-if="imageUrl">
+              <img :src="imageUrl" alt="uploaded photo" />
+            </div>
+          </div>
+          <div class="modal-footer text-center">
+            <button v-if="v$.$invalid" type="submit" class="btn btn-save disable">
+              Send
+            </button>
+            <button v-if="!v$.$invalid" type="submit" class="btn btn-save">
+              Send
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </template>
 <script>
 import { mapGetters, mapActions } from "vuex";
@@ -263,6 +217,7 @@ export default {
   data() {
     return {
       imageUrl: null,
+      icone: null,
       v$: useVuelidate(),
       params: {
         order_by: "id",
@@ -307,12 +262,20 @@ export default {
     },
     onFileSelectedIcone(event) {
       this.data.icone = event.target.files[0];
+      this.previewIcone();
     },
     previewImage() {
       const reader = new FileReader();
       reader.readAsDataURL(this.data.photo);
       reader.onload = (event) => {
         this.imageUrl = event.target.result;
+      };
+    },
+    previewIcone() {
+      const reader = new FileReader();
+      reader.readAsDataURL(this.data.icone);
+      reader.onload = (event) => {
+        this.icone = event.target.result;
       };
     },
     ...mapActions({
@@ -410,7 +373,7 @@ select.form-control {
   height: 2.5rem;
 }
 
-.table .avatar > img {
+.table .avatar>img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
@@ -481,6 +444,5 @@ select.form-control {
 }
 
 /* @media */
-@media (max-width: 390px) {
-}
+@media (max-width: 390px) {}
 </style>

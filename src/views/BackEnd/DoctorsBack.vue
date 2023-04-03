@@ -22,11 +22,7 @@
                   <font-awesome-icon icon="fa-solid fa-magnifying-glass" />
                 </button>
               </div>
-              <input
-                v-model="params.value"
-                type="text"
-                name="table_search"
-                class="form-control float-right"
+              <input v-model="params.value" type="text" name="table_search" class="form-control float-right"
                 placeholder="Search" />
             </div>
           </div>
@@ -51,17 +47,12 @@
                 <td>
                   <div class="media">
                     <div class="d-flex media-body">
-                      <a
-                        class="avatar avatar-sm me-2 user-dt"
-                        href="/template/admin/profile">
+                      <a class="avatar avatar-sm me-2 user-dt" href="/template/admin/profile">
                         <img :src="doctor.photo" class="avatar avatar-img" />
                       </a>
                       <div class="text-secondary">
-                        <span class="user-name">{{ doctor.username }}</span
-                        ><br />
-                        <span class="d-block text-muted"
-                          >{{ doctor.sex }}, 40 Years Old</span
-                        >
+                        <span class="user-name">{{ doctor.username }}</span><br />
+                        <span class="d-block text-muted">{{ doctor.sex }}, 40 Years Old</span>
                       </div>
                     </div>
                   </div>
@@ -69,8 +60,7 @@
                 <td>{{ doctor.specialty.name }}</td>
                 <td>
                   <span class="user-name">
-                    <date-format :date="doctor.created_at" /> </span
-                  ><br />
+                    <date-format :date="doctor.created_at" /> </span><br />
                   <span class="text-muted">{{ doctor.created_at }}</span>
                 </td>
                 <td>{{ doctor.appointments_count }}</td>
@@ -82,17 +72,11 @@
 
                   <div>
                     <label>
-                      <input
-                        type="radio"
-                        value="active"
-                        v-model="doctor.status" />
+                      <input type="radio" value="active" v-model="doctor.status" />
                       Active
                     </label>
                     <label>
-                      <input
-                        type="radio"
-                        value="inactive"
-                        v-model="doctor.status" />
+                      <input type="radio" value="inactive" v-model="doctor.status" />
                       Inactive
                     </label>
                     <button @click="updateStatus(doctor.id)">Update</button>
@@ -100,6 +84,9 @@
 
                   <toggle-button @click="handleChange" />
                 </td>
+              </tr>
+              <tr v-if="getDoctors.data?.length <= 0">
+                <p class="m-3 no-result">No results Found</p>
               </tr>
             </tbody>
           </table>
@@ -109,22 +96,15 @@
     <nav aria-label="Page navigation example">
       <ul class="pagination">
         <li class="page-item">
-          <a class="page-link" @click="params.page = LastPage - 1" href="#"
-            >Previous</a
-          >
+          <a class="page-link" @click="params.page = LastPage - 1" href="#">Previous</a>
         </li>
-        <li
-          v-for="LastPage in getDoctorsLastPage"
-          :key="LastPage"
-          class="page-item">
+        <li v-for="LastPage in getDoctorsLastPage" :key="LastPage" class="page-item">
           <a @click="params.page = LastPage" class="page-link" href="#">{{
             LastPage
           }}</a>
         </li>
         <li class="page-item">
-          <a class="page-link" @click="params.page = LastPage + 1" href="#"
-            >Next</a
-          >
+          <a class="page-link" @click="params.page = LastPage + 1" href="#">Next</a>
         </li>
       </ul>
     </nav>
@@ -227,7 +207,7 @@ select.form-control {
   height: 2.5rem;
 }
 
-.table .avatar > img {
+.table .avatar>img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
@@ -264,7 +244,10 @@ select.form-control {
   border-radius: 2px;
 }
 
-/* @media */
-@media (max-width: 390px) {
+.no-result {
+  color: #ff0000ba;
 }
+
+/* @media */
+@media (max-width: 390px) {}
 </style>

@@ -1,15 +1,11 @@
 <template>
-    <div class="demo">
-      <button
-         v-for="tab in tabs"
-         :key="tab"
-         :class="['tab-button ml-2', { active: currentTab === tab }]"
-         @click="currentTab = tab"
-       >
-        {{ tab }}
-      </button>
-      <component :is="currentTab" class="tab mt-5"></component>
-    </div>
+  <div class="demo">
+    <button v-for="tab in tabs" :key="tab" :class="['tab-button ml-2', { active: currentTab === tab }]"
+      @click="currentTab = tab">
+      {{ tab }}
+    </button>
+    <component :is="currentTab" class="tab mt-5"></component>
+  </div>
 </template>
 
 <script>
@@ -21,7 +17,7 @@ import Seo from '../../components/BackEnd/SeoSettings.vue'
 import SocialLinks from '../../components/BackEnd/SocialLinksSettings.vue'
 import SocialModialog from '../../components/BackEnd/SocialModialogSettings.vue'
 import Generale from '../../components/BackEnd/GeneraleSettings.vue'
-  
+
 export default {
   components: {
     Email,
@@ -52,14 +48,14 @@ export default {
   margin-right: -1px;
   background: #0000000a;
 }
+
 .tab-button:hover {
   background: #e0e0e0;
 }
+
 .tab-button.active {
   border: 1px solid #5c8ed3;
   color: #2196f3;
   background: white;
 }
-
-
 </style>

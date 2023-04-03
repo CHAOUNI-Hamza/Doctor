@@ -1289,6 +1289,13 @@
   dependencies:
     "@types/node" "*"
 
+"@voidsolutions/vue-dateformat@^0.5.0":
+  "integrity" "sha512-bktvgPs4+kugYVegJZxlBaSnW/dOy/1dgrxWACTPl5Lp9+fghTSrv9ka5dzPUX0eX4Z/QgysmpACLcAUHx20qw=="
+  "resolved" "https://registry.npmjs.org/@voidsolutions/vue-dateformat/-/vue-dateformat-0.5.0.tgz"
+  "version" "0.5.0"
+  dependencies:
+    "vue" "^3.2.41"
+
 "@vue/babel-helper-vue-jsx-merge-props@^1.4.0":
   "integrity" "sha512-JkqXfCkUDp4PIlFdDQ0TdXoIejMtTHP67/pvxlgeY+u5k3LEdKuWZ3LK6xkxo52uDoABIVyRwqVkfLQJhk7VBA=="
   "resolved" "https://registry.npmjs.org/@vue/babel-helper-vue-jsx-merge-props/-/babel-helper-vue-jsx-merge-props-1.4.0.tgz"
