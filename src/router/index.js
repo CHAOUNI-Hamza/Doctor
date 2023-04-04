@@ -17,6 +17,14 @@ const routes = [
       import(/* webpackChunkName: "dashboard" */ "../views/FrontEnd/HomeFront"),
   },
   {
+    path: "/doctor-search",
+    name: "doctorsearch",
+    component: () =>
+      import(
+        /* webpackChunkName: "doctorsearch" */ "../views/FrontEnd/DoctorSearch"
+      ),
+  },
+  {
     path: "/login",
     name: "loginfront",
     component: () =>

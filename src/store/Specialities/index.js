@@ -34,8 +34,8 @@ export default {
       try {
         const response = await axios.get("/specialties", { params });
         commit("setSpecialities", response.data);
-        commit("setTotalSpecialitie", response.data.meta.total);
-        commit("setspecialitiesLastPage", response.data.meta.last_page);
+        commit("setTotalSpecialitie", response.data.meta?.total);
+        commit("setspecialitiesLastPage", response.data.meta?.last_page);
       } catch (error) {
         console.log(error);
       }

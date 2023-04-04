@@ -65,7 +65,8 @@ import {
   faChevronRight,
   faPrescriptionBottleMedical,
   faCircle,
-  faShieldHalved
+  faShieldHalved,
+  faCircleInfo,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faMoon,
@@ -74,12 +75,14 @@ import {
   faCircleXmark,
   faChartBar,
   faMessage,
-  faCommentDots,
   faUser,
   faFaceLaugh,
   faCreditCard,
   faClock,
   faCircleUp,
+  faComment,
+  faCommentDots,
+  faHeart,
 } from "@fortawesome/free-regular-svg-icons";
 import {
   faFacebookF,
@@ -92,10 +95,13 @@ import {
 /* add icons to the library */
 library.add(
   faUserSecret,
+  faCommentDots,
+  faHeart,
   faCreditCard,
   faChevronRight,
   faCaretUp,
   faArrowRight,
+  faComment,
   faVideo,
   faMicrophone,
   faPaperPlane,
@@ -104,6 +110,7 @@ library.add(
   faArrowUpFromBracket,
   faCommentDots,
   faXmark,
+  faCircleInfo,
   faBars,
   faRepeat,
   faFaceLaugh,
