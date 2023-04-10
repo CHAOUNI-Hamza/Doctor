@@ -113,7 +113,7 @@ const routes = [
       ),
   },
   {
-    path: "/Patients",
+    path: "/patients",
     name: "patientsfront",
     component: () =>
       import(
