@@ -10,14 +10,12 @@
               <div class="widget-profile">
                 <div class="profile-info-widget text-center">
                   <a href="" class="doc-img">
-                    <img
-                      src="https://www.shutterstock.com/image-photo/profile-picture-smiling-young-caucasian-260nw-1954278664.jpg"
-                      alt="user-img" />
+                    <img :src="doctor.photo" alt="user-img" />
                   </a>
                   <div class="profile-info">
-                    <h3>Dr. Hamza CHAOUNI</h3>
+                    <h3>Dr. {{ doctor.username }}</h3>
                     <div class="patient-details">
-                      <h5>BDS, Orl & Maxillofacial Surgery</h5>
+                      <h5>{{ doctor.specialty?.name }}</h5>
                     </div>
                   </div>
                 </div>
@@ -25,9 +23,9 @@
               <div class="dashboard-widget">
                 <ul class="nav flex-column">
                   <li class="nav-item d-flex align-items-center" v-for="tab in tabs" :key="tab"
-                    :class="['tab-button ml-2', { active: currentTab === tab }]" @click="currentTab = tab">
-                    <font-awesome-icon icon="fa-solid fa-table-columns" />
-                    <a class="nav-link active" href="#">{{ tab }}</a>
+                    :class="['tab-button ml-2', { active: currentTab === tab.title }]" @click="currentTab = tab.title">
+                    <font-awesome-icon style="color: #333" class="icone" :icon="tab.icone" />
+                    <a class="nav-link active" href="#">{{ tab.title }}</a>
                   </li>
                 </ul>
               </div>
@@ -44,6 +42,7 @@
 </template>
 
 <script>
+import axios from "../../axios.config";
 import BreadCrumbFront from "./../../components/FrontEnd/DoctorDashboard/BreadCrumbFront.vue";
 import Dashboard from "./../../components/FrontEnd/DoctorDashboard/DashboardFront.vue";
 import Appointments from "./../../components/FrontEnd/DoctorDashboard/AppointmentsFront.vue";
@@ -75,27 +74,81 @@ export default {
   },
   data() {
     return {
-      currentTab: "Dashboard",
+      //currentTab: "Dashboard",
+      currentTab: "Appointments",
+      doctor: [],
       tabs: [
-        "Dashboard",
-        "Appointments",
-        "MyPatients",
-        "ScheduleTimings",
-        "AvailableTimings",
-        "Invoices",
-        "Accounts",
-        "Reviews",
-        "Message",
-        "ProfileSettings",
-        "SocialeMedia",
-        "ChangePassword",
-        "Logout",
-      ],
+        /*{
+          title: 'Dashboard',
+          icone: 'fa-solid fa-table-columns'
+        },*/
+        {
+          title: 'Appointments',
+          icone: 'fa-regular fa-calendar-check'
+        },
+        {
+          title: 'MyPatients',
+          icone: 'fa-solid fa-bed'
+        },
+        {
+          title: 'ScheduleTimings',
+          icone: 'fa-solid fa-business-time'
+        },
+        {
+          title: 'AvailableTimings',
+          icone: 'fa-solid fa-hourglass-start'
+        },
+        {
+          title: 'Invoices',
+          icone: 'fa-solid fa-file-invoice'
+        },
+        {
+          title: 'Accounts',
+          icone: 'fa-solid fa-user-doctor'
+        },
+        /*{
+          title: 'Reviews',
+          icone: ''
+        },*/
+        {
+          title: 'Message',
+          icone: 'fa-solid fa-comment-medical'
+        },
+        {
+          title: 'ProfileSettings',
+          icone: 'fa-solid fa-gear'
+        },
+        {
+          title: 'SocialeMedia',
+          icone: 'fa-solid fa-share-nodes'
+        },
+        {
+          title: 'ChangePassword',
+          icone: 'fa-solid fa-unlock'
+        },
+        {
+          title: 'Logout',
+          icone: 'fa-solid fa-right-from-bracket'
+        },
+      ]
     };
   },
+  methods: {
+    async fetch() {
+      const response = await axios.get(`/doctors/1`);
+      this.doctor = response.data.data;
+    },
+  },
+  mounted() {
+    this.fetch()
+  }
 };
 </script>
 <style scoped>
+.icone {
+  width: 20px;
+}
+
 .dashboard-widget .nav-item {
   border-bottom: 1px solid #f0f0f0;
   padding: 9px 20px;
@@ -144,4 +197,5 @@ export default {
 .patient-details h5 {
   color: #757575;
   font-size: 17px;
-}</style>
+}
+</style>

@@ -1,122 +1,115 @@
 <template>
-  <div class="row align-items-center">
-    <div class="col-md-12 d-flex justify-content-end mb-3 align-items-center">
-      <div class="doc-badge me-3 mr-4">
-        Total Patients
-        <span class="ms-1">{{ getPatientsTotal }}</span>
-      </div>
-    </div>
-    <div class="col-12">
-      <div class="card">
-        <div class="card-header">
-          <h3 class="card-title">Patients</h3>
-          <div class="card-tools">
-            <div class="input-group input-group-sm" style="width: 300px">
-              <select v-model="params.search_by" class="form-control">
-                <option>{{ params.search_by }}</option>
-                <option value="name">Name</option>
-                <option value="sex">Sex</option>
-                <option value="blood_group">Blood Group</option>
-              </select>
-              <div class="input-group-append">
-                <button type="submit" class="btn btn-default">
-                  <font-awesome-icon icon="fa-solid fa-magnifying-glass" />
-                </button>
+  <div class="wrapper">
+    <NavbarBack />
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+      <MainSidebar />
+    </aside>
+    <div class="content-wrapper" style="margin-top: 30px">
+      <div class="content" style="background-color: white">
+        <div class="container-fluid">
+          <div class="row align-items-center">
+            <div class="col-md-12 d-flex justify-content-end mb-3 align-items-center">
+              <div class="doc-badge me-3 mr-4">
+                Total Patients
+                <span class="ms-1">{{ getPatientsTotal }}</span>
               </div>
-              <input
-                v-model="params.value"
-                type="text"
-                name="table_search"
-                class="form-control float-right"
-                placeholder="Search" />
             </div>
-          </div>
-        </div>
-
-        <div class="card-body table-responsive p-0" style="height: 100vh">
-          <table class="table table-head-fixed text-nowrap">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Patient</th>
-                <th>Last Visit</th>
-                <th>Blood group</th>
-                <th>TotalIncome</th>
-                <th>Account status</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr
-                v-for="(patient, index) in getPatients.data"
-                :key="patient.id">
-                <td>{{ index + 1 }}</td>
-                <td>
-                  <div class="media">
-                    <div class="d-flex media-body">
-                      <a
-                        class="avatar avatar-sm me-2 user-dt"
-                        href="/template/admin/profile">
-                        <img :src="patient.photo" class="avatar avatar-img" />
-                      </a>
-                      <div class="text-secondary">
-                        <span class="user-name">{{ patient.name }}</span
-                        ><br />
-                        <span class="d-block text-muted"
-                          >{{ patient.sex }}, 40 Years Old</span
-                        >
+            <div class="col-12">
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">Patients</h3>
+                  <div class="card-tools">
+                    <div class="input-group input-group-sm" style="width: 300px">
+                      <select v-model="params.search_by" class="form-control">
+                        <option>{{ params.search_by }}</option>
+                        <option value="name">Name</option>
+                        <option value="sex">Sex</option>
+                        <option value="blood_group">Blood Group</option>
+                      </select>
+                      <div class="input-group-append">
+                        <button type="submit" class="btn btn-default">
+                          <font-awesome-icon icon="fa-solid fa-magnifying-glass" />
+                        </button>
                       </div>
+                      <input v-model="params.value" type="text" name="table_search" class="form-control float-right"
+                        placeholder="Search" />
                     </div>
                   </div>
-                </td>
-                <td>
-                  <span
-                    v-for="last in patient.appointments"
-                    :key="last"
-                    class="user-name"
-                    ><date-format :date="last.created_at" /></span
-                  ><br />
-                  <span
-                    v-for="last in patient.appointments"
-                    :key="last"
-                    class="text-muted"
-                    >{{ last.created_at }}</span
-                  >
-                </td>
-                <td>
-                  {{ patient.blood_group }}
-                </td>
-                <td>300.00 DH</td>
-                <td class="text-left">
-                  <input id="s1" type="checkbox" class="switch" />
-                </td>
-              </tr>
-            </tbody>
-          </table>
+                </div>
+
+                <div class="card-body table-responsive p-0" style="height: 100vh">
+                  <table class="table table-head-fixed text-nowrap">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Patient</th>
+                        <th>Last Visit</th>
+                        <th>Blood group</th>
+                        <th>TotalIncome</th>
+                        <th>Account status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="(patient, index) in getPatients.data" :key="patient.id">
+                        <td>{{ index + 1 }}</td>
+                        <td>
+                          <div class="media">
+                            <div class="d-flex media-body">
+                              <a class="avatar avatar-sm me-2 user-dt" href="#">
+                                <img :src="patient.photo" class="avatar avatar-img" />
+                              </a>
+                              <div class="text-secondary">
+                                <span class="user-name">{{ patient.name }}</span><br />
+                                <span class="d-block text-muted">{{ patient.sex }}, 40 Years Old</span>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <span v-for="last in patient.appointments" :key="last" class="user-name"><date-format
+                              :date="last.created_at" /></span><br />
+                          <span v-for="last in patient.appointments" :key="last" class="text-muted">{{ last.created_at
+                          }}</span>
+                        </td>
+                        <td>
+                          {{ patient.blood_group }}
+                        </td>
+                        <td>300.00 DH</td>
+                        <td class="text-left">
+                          <input id="s1" type="checkbox" class="switch" />
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <nav aria-label="Page navigation example">
+              <ul class="pagination">
+                <li class="page-item">
+                  <a class="page-link" @click="params.page = LastPage - 1" href="#">Previous</a>
+                </li>
+                <li v-for="LastPage in getPatientsLastPage" :key="LastPage" class="page-item">
+                  <a @click="params.page = LastPage" class="page-link" href="#">{{
+                    LastPage
+                  }}</a>
+                </li>
+                <li class="page-item">
+                  <a class="page-link" @click="params.page = LastPage + 1" href="#">Next</a>
+                </li>
+              </ul>
+            </nav>
+          </div>
         </div>
       </div>
     </div>
-    <nav aria-label="Page navigation example">
-      <ul class="pagination">
-        <li class="page-item">
-          <a class="page-link" @click="params.page = LastPage - 1" href="#"
-            >Previous</a
-          >
-        </li>
-        <li
-          v-for="LastPage in getPatientsLastPage"
-          :key="LastPage"
-          class="page-item">
-          <a @click="params.page = LastPage" class="page-link" href="#">{{
-            LastPage
-          }}</a>
-        </li>
-        <li class="page-item">
-          <a class="page-link" @click="params.page = LastPage + 1" href="#"
-            >Next</a
-          >
-        </li>
-      </ul>
-    </nav>
+    <aside class="control-sidebar control-sidebar-dark">
+      <div class="p-3">
+        <h5>Title</h5>
+        <p>Sidebar content</p>
+      </div>
+    </aside>
+    <MainFooterBack />
   </div>
 </template>
 <script>
@@ -208,7 +201,7 @@ select.form-control {
   height: 2.5rem;
 }
 
-.table .avatar > img {
+.table .avatar>img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
@@ -246,10 +239,10 @@ select.form-control {
 }
 
 /* @media */
-@media (max-width: 390px) {
-}
+@media (max-width: 390px) {}
 
 @supports (-webkit-appearance: none) or (-moz-appearance: none) {
+
   input[type="checkbox"],
   input[type="radio"] {
     --active: #275efe;
@@ -307,8 +300,8 @@ select.form-control {
     --bc: var(--border);
   }
 
-  input[type="checkbox"]:disabled + label,
-  input[type="radio"]:disabled + label {
+  input[type="checkbox"]:disabled+label,
+  input[type="radio"]:disabled+label {
     cursor: not-allowed;
   }
 
@@ -337,8 +330,8 @@ select.form-control {
     --o: 1;
   }
 
-  input[type="checkbox"] + label,
-  input[type="radio"] + label {
+  input[type="checkbox"]+label,
+  input[type="radio"]+label {
     font-size: 14px;
     line-height: 21px;
     display: inline-block;

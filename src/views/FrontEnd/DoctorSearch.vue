@@ -54,13 +54,13 @@
               <div class="doctor-widget">
                 <div class="doc-info-left">
                   <div class="doctor-img">
-                    <a href="doctor-profile.html">
+                    <a href="#">
                       <img :src="doctor.photo" class="img-fluid .img-fluid-pro" alt="User Image" />
                     </a>
                   </div>
                   <div class="doc-info-cont">
                     <h4 class="doc-name">
-                      <a href="doctor-profile.html">{{ doctor.username }}</a>
+                      <a href="#">{{ doctor.username }}</a>
                     </h4>
                     <h5 class="doc-department">
                       <img :src="doctor.specialty?.photo" class="img-fluid" alt="Speciality" />{{ doctor.specialty?.name
@@ -100,8 +100,8 @@
                     </ul>
                   </div>
                   <div class="clinic-booking">
-                    <a class="view-pro-btn mb-2" href="doctor-profile.html">View Profile</a>
-                    <a class="apt-btn" href="booking.html">Book Appointment</a>
+                    <a class="view-pro-btn mb-2" href="#">View Profile</a>
+                    <a class="apt-btn" href="#">Book Appointment</a>
                   </div>
                 </div>
               </div>
@@ -321,5 +321,46 @@ export default {
   height: 14px;
   display: inline-block;
   margin-right: 5px;
+}
+
+
+/* Create a custom checkbox */
+.checkmark {
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 1.3em;
+  width: 1.3em;
+  background: #606062;
+  border-radius: 5px;
+  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.30), 0px 1px 1px rgba(0, 5);
+}
+
+/* When the checkbox is checked, add a blue background */
+.container input:checked~.checkmark {
+  background-image: linear-gradient(#b9e9b3, #a8e4a0)
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked~.checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+  left: 0.45em;
+  top: 0.25em;
+  width: 0.25em;
+  height: 0.5em;
+  border: solid white;
+  border-width: 0 0.15em 0.15em 0;
+  transform: rotate(45deg);
 }
 </style>

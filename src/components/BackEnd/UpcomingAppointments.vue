@@ -10,11 +10,7 @@
                 <font-awesome-icon icon="fa-solid fa-magnifying-glass" />
               </button>
             </div>
-            <input
-              type="text"
-              name="table_search"
-              class="form-control float-right"
-              v-model="params.name_doctor"
+            <input type="text" name="table_search" class="form-control float-right" v-model="params.name_doctor"
               placeholder="Search By Doctor" />
           </div>
           <div class="input-group input-group-sm" style="width: 200px">
@@ -23,11 +19,7 @@
                 <font-awesome-icon icon="fa-solid fa-magnifying-glass" />
               </button>
             </div>
-            <input
-              type="text"
-              name="table_search"
-              class="form-control float-right"
-              v-model="params.name_patient"
+            <input type="text" name="table_search" class="form-control float-right" v-model="params.name_patient"
               placeholder="Search By Patient" />
           </div>
         </div>
@@ -48,29 +40,20 @@
             </tr>
           </thead>
           <tbody>
-            <tr
-              v-for="(appointment, index) in getAppointments.data"
-              :key="appointment.id">
+            <tr v-for="(appointment, index) in getAppointments.data" :key="appointment.id">
               <td>{{ index + 1 }}</td>
               <td>
                 <div class="media">
                   <div class="d-flex media-body">
-                    <a
-                      class="avatar avatar-sm me-2 user-dt"
-                      href="/template/admin/profile">
-                      <img
-                        :src="appointment.patient.photo"
-                        class="avatar avatar-img" />
+                    <a class="avatar avatar-sm me-2 user-dt" href="#">
+                      <img :src="appointment.patient.photo" class="avatar avatar-img" />
                     </a>
                     <div class="text-secondary">
                       <span class="user-name">{{
                         appointment.patient.name
-                      }}</span
-                      ><br />
-                      <span class="d-block text-muted"
-                        >{{ appointment.patient.sex }},
-                        {{ appointment.patient.age }} Years Old</span
-                      >
+                      }}</span><br />
+                      <span class="d-block text-muted">{{ appointment.patient.sex }},
+                        {{ appointment.patient.age }} Years Old</span>
                     </div>
                   </div>
                 </div>
@@ -78,22 +61,15 @@
               <td>
                 <div class="media">
                   <div class="d-flex media-body">
-                    <a
-                      class="avatar avatar-sm me-2 user-dt"
-                      href="/template/admin/profile">
-                      <img
-                        :src="appointment.doctor.photo"
-                        class="avatar avatar-img" />
+                    <a class="avatar avatar-sm me-2 user-dt" href="#">
+                      <img :src="appointment.doctor.photo" class="avatar avatar-img" />
                     </a>
                     <div class="text-secondary">
-                      <span class="d-block text-muted"
-                        >{{ appointment.doctor.sex }},
-                        {{ appointment.doctor.age }} Years Old</span
-                      >
+                      <span class="d-block text-muted">{{ appointment.doctor.sex }},
+                        {{ appointment.doctor.age }} Years Old</span>
                       <span class="user-name">{{
                         appointment.doctor.username
-                      }}</span
-                      ><br />
+                      }}</span><br />
                     </div>
                   </div>
                 </div>
@@ -108,21 +84,16 @@
                 </span>
               </td>
               <td>
-                <span class="user-name">{{ appointment.date_time }}</span
-                ><br />
+                <span class="user-name">{{ appointment.date_time }}</span><br />
                 <span class="text-muted">{{ appointment.date_time }}</span>
               </td>
               <td>{{ appointment.amount }} DH</td>
               <td>
-                <span
-                  class="badge bg-badge-grey"
-                  :class="[
-                    { 'text-danger': appointment.status == 'cancelled' },
-                    'text-success',
-                  ]"
-                  ><font-awesome-icon icon="fa-solid fa-circle" class="mr-1" />
-                  {{ appointment.status }}</span
-                >
+                <span class="badge bg-badge-grey" :class="[
+                  { 'text-danger': appointment.status == 'cancelled' },
+                  'text-success',
+                ]"><font-awesome-icon icon="fa-solid fa-circle" class="mr-1" />
+                  {{ appointment.status }}</span>
               </td>
             </tr>
             <tr v-if="getAppointments.data?.length <= 0">
@@ -135,22 +106,15 @@
     <nav aria-label="Page navigation example">
       <ul class="pagination">
         <li class="page-item">
-          <a class="page-link" @click="params.page = LastPage - 1" href="#"
-            >Previous</a
-          >
+          <a class="page-link" @click="params.page = LastPage - 1" href="#">Previous</a>
         </li>
-        <li
-          v-for="LastPage in getAppointmentsLastPage"
-          :key="LastPage"
-          class="page-item">
+        <li v-for="LastPage in getAppointmentsLastPage" :key="LastPage" class="page-item">
           <a @click="params.page = LastPage" class="page-link" href="#">{{
             LastPage
           }}</a>
         </li>
         <li class="page-item">
-          <a class="page-link" @click="params.page = LastPage + 1" href="#"
-            >Next</a
-          >
+          <a class="page-link" @click="params.page = LastPage + 1" href="#">Next</a>
         </li>
       </ul>
     </nav>
@@ -253,7 +217,7 @@ select.form-control {
   height: 2.5rem;
 }
 
-.table .avatar > img {
+.table .avatar>img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
@@ -293,6 +257,7 @@ table .badge {
   text-align: center;
   background: #f5f6fa;
 }
+
 .no-result {
   color: #ff0000ba;
 }

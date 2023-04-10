@@ -34,8 +34,8 @@ export default {
       try {
         const response = await axios.get("/pharmacies", { params });
         commit("set", response.data);
-        commit("setTotal", response.data.meta.total);
-        commit("setLastPage", response.data.meta.last_page);
+        commit("setTotal", response.data.meta?.total);
+        commit("setLastPage", response.data.meta?.last_page);
       } catch (error) {
         console.log(error);
       }

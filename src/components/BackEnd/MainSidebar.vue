@@ -1,11 +1,11 @@
 <template>
   <!-- Brand Logo -->
-  <a v-if="LogoBigSmall" href="index3.html" class="brand-link">
+  <a v-if="LogoBigSmall" href="#" class="brand-link">
     <img
       src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/The_Good_Doctor_logo_2.svg/2560px-The_Good_Doctor_logo_2.svg.png"
       alt="AdminLTE Logo" class="logo" style="opacity: 0.8" />
   </a>
-  <a v-if="!LogoBigSmall" href="index3.html" class="brand-link">
+  <a v-if="!LogoBigSmall" href="#" class="brand-link">
     <img src="https://www.pgdesign.be/wp-content/uploads/2020/06/Logo-bleu-400.png" alt="AdminLTE Logo" class="logo"
       style="opacity: 0.8" />
   </a>
@@ -42,11 +42,11 @@ export default {
   data() {
     return {
       listsNav: [
-        {
+        /*{
           title: "Dashboard",
           link: "dashboard",
           icone: "fa-solid fa-gauge",
-        },
+        },*/
         {
           title: "Appointments",
           link: "appointments",

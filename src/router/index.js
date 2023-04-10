@@ -25,6 +25,54 @@ const routes = [
       ),
   },
   {
+    path: "/doctor-profile",
+    name: "doctorprofile",
+    component: () =>
+      import(
+        /* webpackChunkName: "doctorsearch" */ "../views/FrontEnd/ProfileDoctor"
+      ),
+  },
+  {
+    path: "/doctor-booking",
+    name: "doctorbooking",
+    component: () =>
+      import(
+        /* webpackChunkName: "doctorsearch" */ "../views/FrontEnd/BookingDoctor"
+      ),
+  },
+  {
+    path: "/checkout",
+    name: "checkout",
+    component: () =>
+      import(
+        /* webpackChunkName: "doctorsearch" */ "../views/FrontEnd/Checkout"
+      ),
+  },
+  {
+    path: "/boking-success",
+    name: "boking-success",
+    component: () =>
+      import(
+        /* webpackChunkName: "doctorsearch" */ "../views/FrontEnd/BookingSuccess"
+      ),
+  },
+  {
+    path: "/invoice-view",
+    name: "invoice-view",
+    component: () =>
+      import(
+        /* webpackChunkName: "doctorsearch" */ "../views/FrontEnd/InvoiceView"
+      ),
+  },
+  {
+    path: "/pharmacy-search",
+    name: "pharmacysearch",
+    component: () =>
+      import(
+        /* webpackChunkName: "doctorsearch" */ "../views/FrontEnd/PharmacySearch"
+      ),
+  },
+  {
     path: "/login",
     name: "loginfront",
     component: () =>
@@ -49,7 +97,7 @@ const routes = [
       ),
   },
   {
-    path: "/Doctors",
+    path: "/doctors",
     name: "doctorsfront",
     component: () =>
       import(

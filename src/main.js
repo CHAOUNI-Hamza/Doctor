@@ -8,6 +8,10 @@ import NavbarFront from "./components/FrontEnd/NavbarFront.vue";
 import FooterFront from "./components/FrontEnd/FooterFront.vue";
 import GoToTopButton from "./components/FrontEnd/GoToTopButton.vue";
 
+import MainSidebar from "./components/BackEnd/MainSidebar.vue";
+import NavbarBack from "./components/BackEnd/NavbarBack.vue";
+import MainFooterBack from "./components/BackEnd/MainFooterBack.vue";
+
 // file style css
 import style from "../public/style.css";
 
@@ -67,6 +71,18 @@ import {
   faCircle,
   faShieldHalved,
   faCircleInfo,
+  faTag,
+  faArrowRightLong,
+  faArrowLeftLong,
+  faBed,
+  faBusinessTime,
+  faHourglassStart,
+  faFileInvoice,
+  faUserDoctor,
+  faCommentMedical,
+  faGear,
+  faShareNodes,
+  faUnlock,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faMoon,
@@ -83,6 +99,7 @@ import {
   faComment,
   faCommentDots,
   faHeart,
+  faCalendarCheck
 } from "@fortawesome/free-regular-svg-icons";
 import {
   faFacebookF,
@@ -94,8 +111,21 @@ import {
 
 /* add icons to the library */
 library.add(
+  faCalendarCheck,
+  faBed,
+  faBusinessTime,
+  faRightFromBracket,
+  faHourglassStart,
+  faFileInvoice,
+  faUserDoctor,
+  faCommentMedical,
+  faGear,
+  faShareNodes,
+  faUnlock,
   faUserSecret,
   faCommentDots,
+  faArrowRightLong,
+  faArrowLeftLong,
   faHeart,
   faCreditCard,
   faChevronRight,
@@ -131,6 +161,7 @@ library.add(
   faClock,
   faSackDollar,
   faAngleDown,
+  faTag,
   faMoon,
   faFacebookF,
   faTwitter,
@@ -169,4 +200,10 @@ createApp(App)
   .component("NavbarFront", NavbarFront)
   .component("FooterFront", FooterFront)
   .component("GoToTopButton", GoToTopButton)
+  .component("MainSidebar", MainSidebar)
+  .component("NavbarBack", NavbarBack)
+  .component("MainFooterBack", MainFooterBack)
   .mount("#app");
+
+
+

@@ -114,6 +114,16 @@ export default {
 };
 </script>
 <style scoped>
+.btn-primary {
+  background-color: #09e5ab;
+  border: 1px solid #09e5ab;
+}
+
+.info-list .title {
+  color: #272b41;
+  font-weight: bold;
+}
+
 .account-card {
   border-radius: 10px;
   margin-bottom: 30px;

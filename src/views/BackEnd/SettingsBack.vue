@@ -1,10 +1,29 @@
 <template>
-  <div class="demo">
-    <button v-for="tab in tabs" :key="tab" :class="['tab-button ml-2', { active: currentTab === tab }]"
-      @click="currentTab = tab">
-      {{ tab }}
-    </button>
-    <component :is="currentTab" class="tab mt-5"></component>
+  <div class="wrapper">
+    <NavbarBack />
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+      <MainSidebar />
+    </aside>
+    <div class="content-wrapper" style="margin-top: 30px">
+      <div class="content" style="background-color: white">
+        <div class="container-fluid">
+          <div class="demo">
+            <button v-for="tab in tabs" :key="tab" :class="['tab-button ml-2', { active: currentTab === tab }]"
+              @click="currentTab = tab">
+              {{ tab }}
+            </button>
+            <component :is="currentTab" class="tab mt-5"></component>
+          </div>
+        </div>
+      </div>
+    </div>
+    <aside class="control-sidebar control-sidebar-dark">
+      <div class="p-3">
+        <h5>Title</h5>
+        <p>Sidebar content</p>
+      </div>
+    </aside>
+    <MainFooterBack />
   </div>
 </template>
 

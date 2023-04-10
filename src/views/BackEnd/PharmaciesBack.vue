@@ -1,303 +1,323 @@
 <template>
-  <div class="row align-items-center">
-    <div class="col-md-12 d-flex justify-content-end mb-3 align-items-center">
-      <div class="doc-badge me-3 mr-4">
-        Pharmacies
-        <span class="ms-1">{{ getTotal }}</span>
-      </div>
-      <!-- Button trigger modal -->
-      <a data-toggle="modal" data-target="#exampleModal" type="button" class="btn btn-add" @click="resetForm">
-        <font-awesome-icon icon="fa-solid fa-plus" />
-        Add New
-      </a>
-    </div>
-    <div class="col-12">
-      <div class="card">
-        <div class="card-header">
-          <h3 class="card-title">Pharmacies</h3>
-          <div class="card-tools">
-            <div class="input-group input-group-sm" style="width: 300px">
-              <select v-model="params.order_by" class="form-control">
-                <option>Order by...</option>
-                <option value="id">id</option>
-                <option value="name">name</option>
-              </select>
-              <div class="input-group-append">
-                <button type="submit" class="btn btn-default">
-                  <font-awesome-icon icon="fa-solid fa-magnifying-glass" />
-                </button>
+  <div class="wrapper">
+    <NavbarBack />
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+      <MainSidebar />
+    </aside>
+    <div class="content-wrapper" style="margin-top: 30px">
+      <div class="content" style="background-color: white">
+        <div class="container-fluid">
+          <div class="row align-items-center">
+            <div class="col-md-12 d-flex justify-content-end mb-3 align-items-center">
+              <div class="doc-badge me-3 mr-4">
+                Pharmacies
+                <span class="ms-1">{{ getTotal }}</span>
               </div>
-              <input type="text" name="table_search" v-model="params.name" class="form-control float-right"
-                placeholder="Search" />
+              <!-- Button trigger modal -->
+              <a data-toggle="modal" data-target="#exampleModal" type="button" class="btn btn-add" @click="resetForm">
+                <font-awesome-icon icon="fa-solid fa-plus" />
+                Add New
+              </a>
             </div>
-          </div>
-        </div>
-
-        <div class="card-body table-responsive p-0" style="height: 100vh">
-          <table class="table table-head-fixed text-nowrap">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Pharmacy Name</th>
-                <th>Categories</th>
-                <th>Pharmacy Address</th>
-                <th>Administrator Name</th>
-                <th>Phone number</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="(pharmacie, index) in get.data" :key="pharmacie.id">
-                <td>{{ index + 1 }}</td>
-                <td>
-                  <div class="media">
-                    <div class="d-flex media-body">
-                      <a class="avatar avatar-sm me-2 user-dt" href="/template/admin/profile">
-                        <img :src="pharmacie.photo" class="avatar avatar-img" />
-                      </a>
-                      <div class="text-secondary">
-                        <span class="d-block text-muted">{{
-                          pharmacie.name
-                        }}</span>
+            <div class="col-12">
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">Pharmacies</h3>
+                  <div class="card-tools">
+                    <div class="input-group input-group-sm" style="width: 300px">
+                      <select v-model="params.order_by" class="form-control">
+                        <option>Order by...</option>
+                        <option value="id">id</option>
+                        <option value="name">name</option>
+                      </select>
+                      <div class="input-group-append">
+                        <button type="submit" class="btn btn-default">
+                          <font-awesome-icon icon="fa-solid fa-magnifying-glass" />
+                        </button>
                       </div>
+                      <input type="text" name="table_search" v-model="params.name" class="form-control float-right"
+                        placeholder="Search" />
                     </div>
                   </div>
-                </td>
-                <td>
-                  {{ pharmacie.category?.name }}
-                </td>
-                <td>
-                  {{ pharmacie.address }}
-                </td>
-                <td>
-                  {{ pharmacie.administrator }}
-                </td>
-                <td>
-                  {{ pharmacie.phone }}
-                </td>
-                <td>
-                  <span class="btn-edit mr-2">
-                    <font-awesome-icon class="mr-1" icon="fa-solid fa-pen-to-square" data-toggle="modal"
-                      data-target="#exampleModal2" @click="fetchOne(pharmacie.id)" />
-                    Edit
-                  </span>
-                  <span class="btn-delete text-danger">
-                    <font-awesome-icon class="mr-1" @click="destroy(pharmacie.id)" icon="fa-solid fa-trash-can" />Delete
-                  </span>
-                </td>
-              </tr>
-              <tr v-if="get.data?.length <= 0">
-                <p class="m-3 no-result">No results Found</p>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-    <nav aria-label="Page navigation example">
-      <ul class="pagination">
-        <li class="page-item">
-          <a class="page-link" @click="params.page = LastPage - 1" href="#">Previous</a>
-        </li>
-        <li v-for="LastPage in getLastPage" :key="LastPage" class="page-item">
-          <a @click="params.page = LastPage" class="page-link" href="#">{{
-            LastPage
-          }}</a>
-        </li>
-        <li class="page-item">
-          <a class="page-link" @click="params.page = LastPage + 1" href="#">Next</a>
-        </li>
-      </ul>
-    </nav>
-  </div>
-  <!-- start modal Add -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Add Speciality</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <form @submit.prevent="submitForm">
-          <div class="modal-body">
-            <div class="form-group">
-              <label for="exampleInputEmail1">Speciality Name</label>
-              <input @blur="v$.data.name.$touch" :class="{
-                'text-fields-error': v$.data.name.$error === true,
-              }" v-model="data.name" type="text" class="form-control" id="exampleInputEmail1"
-                aria-describedby="emailHelp" placeholder="Speciality Name..." />
-            </div>
-            <div class="form-group">
-              <label for="exampleInputEmail1">Category</label>
+                </div>
 
-              <!--<input @blur="v$.data.category_id.$touch" :class="{
+                <div class="card-body table-responsive p-0" style="height: 100vh">
+                  <table class="table table-head-fixed text-nowrap">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Pharmacy Name</th>
+                        <th>Categories</th>
+                        <th>Pharmacy Address</th>
+                        <th>Administrator Name</th>
+                        <th>Phone number</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="(pharmacie, index) in get.data" :key="pharmacie.id">
+                        <td>{{ index + 1 }}</td>
+                        <td>
+                          <div class="media">
+                            <div class="d-flex media-body">
+                              <a class="avatar avatar-sm me-2 user-dt" href="#">
+                                <img :src="pharmacie.photo" class="avatar avatar-img" />
+                              </a>
+                              <div class="text-secondary">
+                                <span class="d-block text-muted">{{
+                                  pharmacie.name
+                                }}</span>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          {{ pharmacie.category?.name }}
+                        </td>
+                        <td>
+                          {{ pharmacie.address }}
+                        </td>
+                        <td>
+                          {{ pharmacie.administrator }}
+                        </td>
+                        <td>
+                          {{ pharmacie.phone }}
+                        </td>
+                        <td>
+                          <span class="btn-edit mr-2">
+                            <font-awesome-icon class="mr-1" icon="fa-solid fa-pen-to-square" data-toggle="modal"
+                              data-target="#exampleModal2" @click="fetchOne(pharmacie.id)" />
+                            Edit
+                          </span>
+                          <span class="btn-delete text-danger">
+                            <font-awesome-icon class="mr-1" @click="destroy(pharmacie.id)"
+                              icon="fa-solid fa-trash-can" />Delete
+                          </span>
+                        </td>
+                      </tr>
+                      <tr v-if="get.data?.length <= 0">
+                        <p class="m-3 no-result">No results Found</p>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <nav aria-label="Page navigation example">
+              <ul class="pagination">
+                <li class="page-item">
+                  <a class="page-link" @click="params.page = LastPage - 1" href="#">Previous</a>
+                </li>
+                <li v-for="LastPage in getLastPage" :key="LastPage" class="page-item">
+                  <a @click="params.page = LastPage" class="page-link" href="#">{{
+                    LastPage
+                  }}</a>
+                </li>
+                <li class="page-item">
+                  <a class="page-link" @click="params.page = LastPage + 1" href="#">Next</a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+          <!-- start modal Add -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Add Speciality</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <form @submit.prevent="submitForm">
+                  <div class="modal-body">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Speciality Name</label>
+                      <input @blur="v$.data.name.$touch" :class="{
+                        'text-fields-error': v$.data.name.$error === true,
+                      }" v-model="data.name" type="text" class="form-control" id="exampleInputEmail1"
+                        aria-describedby="emailHelp" placeholder="Speciality Name..." />
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Category</label>
+
+                      <!--<input @blur="v$.data.category_id.$touch" :class="{
                 'text-fields-error': v$.data.category_id.$error === true,
               }" v-model="data.category_id" type="text" class="form-control" id="exampleInputEmail1"
                 aria-describedby="emailHelp" placeholder="Category..." />-->
 
-              <select @blur="v$.data.category_id.$touch" v-model="data.category_id" :class="{
-                'text-fields-error': v$.data.category_id.$error === true,
-              }" class="form-control">
-                <option v-for="(categorie, index) in getCat.data" :key="categorie.id" :value="categorie.id">{{
-                  categorie.name }}</option>
-              </select>
+                      <select @blur="v$.data.category_id.$touch" v-model="data.category_id" :class="{
+                        'text-fields-error': v$.data.category_id.$error === true,
+                      }" class="form-control">
+                        <option v-for="(categorie, index) in getCat.data" :key="categorie.id" :value="categorie.id">{{
+                          categorie.name }}</option>
+                      </select>
 
 
-            </div>
-            <div class="form-group">
-              <label for="exampleInputEmail1">Address</label>
-              <input @blur="v$.data.address.$touch" :class="{
-                'text-fields-error': v$.data.address.$error === true,
-              }" v-model="data.address" type="text" class="form-control" id="exampleInputEmail1"
-                aria-describedby="emailHelp" placeholder="Category..." />
-            </div>
-            <div class="form-group">
-              <label for="exampleInputEmail1">Administrator Name</label>
-              <input @blur="v$.data.administrator.$touch" :class="{
-                'text-fields-error': v$.data.administrator.$error === true,
-              }" v-model="data.administrator" type="text" class="form-control" id="exampleInputEmail1"
-                aria-describedby="emailHelp" placeholder="Category..." />
-            </div>
-            <div class="form-group">
-              <label for="exampleInputEmail1">Phone</label>
-              <input @blur="v$.data.phone.$touch" :class="{
-                'text-fields-error': v$.data.phone.$error === true,
-              }" v-model="data.phone" type="text" class="form-control" id="exampleInputEmail1"
-                aria-describedby="emailHelp" placeholder="Category..." />
-            </div>
-            <div class="form-group">
-              <label for="exampleInputEmail1">About</label>
-              <input @blur="v$.data.about.$touch" :class="{
-                'text-fields-error': v$.data.about.$error === true,
-              }" v-model="data.about" type="text" class="form-control" id="exampleInputEmail1"
-                aria-describedby="emailHelp" placeholder="Category..." />
-            </div>
-            <div class="form-group">
-              <label for="exampleInputEmail1">Location</label>
-              <input @blur="v$.data.location.$touch" :class="{
-                'text-fields-error': v$.data.location.$error === true,
-              }" v-model="data.location" type="text" class="form-control" id="exampleInputEmail1"
-                aria-describedby="emailHelp" placeholder="Category..." />
-            </div>
-            <div class="form-group card-upload" :class="{
-              'text-fields-error': v$.data.photo.$error === true,
-            }">
-              <input @blur="v$.data.photo.$touch" :class="{
-                'text-fields-error': v$.data.photo.$error === true,
-              }" @change="onFileSelected" type="file" class="form-control-file" id="exampleFormControlFile1" />
-            </div>
-            <div class="form-group show-image" v-if="imageUrl">
-              <img :src="imageUrl" alt="uploaded photo" />
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Address</label>
+                      <input @blur="v$.data.address.$touch" :class="{
+                        'text-fields-error': v$.data.address.$error === true,
+                      }" v-model="data.address" type="text" class="form-control" id="exampleInputEmail1"
+                        aria-describedby="emailHelp" placeholder="Category..." />
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Administrator Name</label>
+                      <input @blur="v$.data.administrator.$touch" :class="{
+                        'text-fields-error': v$.data.administrator.$error === true,
+                      }" v-model="data.administrator" type="text" class="form-control" id="exampleInputEmail1"
+                        aria-describedby="emailHelp" placeholder="Category..." />
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Phone</label>
+                      <input @blur="v$.data.phone.$touch" :class="{
+                        'text-fields-error': v$.data.phone.$error === true,
+                      }" v-model="data.phone" type="text" class="form-control" id="exampleInputEmail1"
+                        aria-describedby="emailHelp" placeholder="Category..." />
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">About</label>
+                      <input @blur="v$.data.about.$touch" :class="{
+                        'text-fields-error': v$.data.about.$error === true,
+                      }" v-model="data.about" type="text" class="form-control" id="exampleInputEmail1"
+                        aria-describedby="emailHelp" placeholder="Category..." />
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Location</label>
+                      <input @blur="v$.data.location.$touch" :class="{
+                        'text-fields-error': v$.data.location.$error === true,
+                      }" v-model="data.location" type="text" class="form-control" id="exampleInputEmail1"
+                        aria-describedby="emailHelp" placeholder="Category..." />
+                    </div>
+                    <div class="form-group card-upload" :class="{
+                      'text-fields-error': v$.data.photo.$error === true,
+                    }">
+                      <input @blur="v$.data.photo.$touch" :class="{
+                        'text-fields-error': v$.data.photo.$error === true,
+                      }" @change="onFileSelected" type="file" class="form-control-file" id="exampleFormControlFile1" />
+                    </div>
+                    <div class="form-group show-image" v-if="imageUrl">
+                      <img :src="imageUrl" alt="uploaded photo" />
+                    </div>
+                  </div>
+                  <div class="modal-footer text-center">
+                    <button v-if="v$.$invalid" type="submit" class="btn btn-save disable">
+                      Send
+                    </button>
+                    <button v-if="!v$.$invalid" type="submit" class="btn btn-save">
+                      Send
+                    </button>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
-          <div class="modal-footer text-center">
-            <button v-if="v$.$invalid" type="submit" class="btn btn-save disable">
-              Send
-            </button>
-            <button v-if="!v$.$invalid" type="submit" class="btn btn-save">
-              Send
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
 
-  <!-- start modal Update -->
-  <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Update Speciality</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <form @submit.prevent="updateForm">
-          <div class="modal-body">
-            <div class="form-group">
-              <label for="exampleInputEmail1">Speciality Name</label>
-              <input @blur="v$.data.name.$touch" :class="{
-                'text-fields-error': v$.data.name.$error === true,
-              }" v-model="data.name" type="text" class="form-control" id="exampleInputEmail1"
-                aria-describedby="emailHelp" placeholder="Speciality Name..." />
-            </div>
-            <div class="form-group">
-              <label for="exampleInputEmail1">Category</label>
+          <!-- start modal Update -->
+          <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Update Speciality</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <form @submit.prevent="updateForm">
+                  <div class="modal-body">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Speciality Name</label>
+                      <input @blur="v$.data.name.$touch" :class="{
+                        'text-fields-error': v$.data.name.$error === true,
+                      }" v-model="data.name" type="text" class="form-control" id="exampleInputEmail1"
+                        aria-describedby="emailHelp" placeholder="Speciality Name..." />
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Category</label>
 
-              <!--<input @blur="v$.data.category_id.$touch" :class="{
+                      <!--<input @blur="v$.data.category_id.$touch" :class="{
                 'text-fields-error': v$.data.category_id.$error === true,
               }" v-model="data.category_id" type="text" class="form-control" id="exampleInputEmail1"
                 aria-describedby="emailHelp" placeholder="Category..." />-->
 
-              <select @blur="v$.data.category_id.$touch" v-model="data.category_id" :class="{
-                'text-fields-error': v$.data.category_id.$error === true,
-              }" class="form-control">
-                <option v-for="(categorie, index) in getCat.data" :key="categorie.id" :value="categorie.id">{{
-                  categorie.name }}</option>
-              </select>
+                      <select @blur="v$.data.category_id.$touch" v-model="data.category_id" :class="{
+                        'text-fields-error': v$.data.category_id.$error === true,
+                      }" class="form-control">
+                        <option v-for="(categorie, index) in getCat.data" :key="categorie.id" :value="categorie.id">{{
+                          categorie.name }}</option>
+                      </select>
 
 
-            </div>
-            <div class="form-group">
-              <label for="exampleInputEmail1">Address</label>
-              <input @blur="v$.data.address.$touch" :class="{
-                'text-fields-error': v$.data.address.$error === true,
-              }" v-model="data.address" type="text" class="form-control" id="exampleInputEmail1"
-                aria-describedby="emailHelp" placeholder="Category..." />
-            </div>
-            <div class="form-group">
-              <label for="exampleInputEmail1">Administrator Name</label>
-              <input @blur="v$.data.administrator.$touch" :class="{
-                'text-fields-error': v$.data.administrator.$error === true,
-              }" v-model="data.administrator" type="text" class="form-control" id="exampleInputEmail1"
-                aria-describedby="emailHelp" placeholder="Category..." />
-            </div>
-            <div class="form-group">
-              <label for="exampleInputEmail1">Phone</label>
-              <input @blur="v$.data.phone.$touch" :class="{
-                'text-fields-error': v$.data.phone.$error === true,
-              }" v-model="data.phone" type="text" class="form-control" id="exampleInputEmail1"
-                aria-describedby="emailHelp" placeholder="Category..." />
-            </div>
-            <div class="form-group">
-              <label for="exampleInputEmail1">About</label>
-              <input @blur="v$.data.about.$touch" :class="{
-                'text-fields-error': v$.data.about.$error === true,
-              }" v-model="data.about" type="text" class="form-control" id="exampleInputEmail1"
-                aria-describedby="emailHelp" placeholder="Category..." />
-            </div>
-            <div class="form-group">
-              <label for="exampleInputEmail1">Location</label>
-              <input @blur="v$.data.location.$touch" :class="{
-                'text-fields-error': v$.data.location.$error === true,
-              }" v-model="data.location" type="text" class="form-control" id="exampleInputEmail1"
-                aria-describedby="emailHelp" placeholder="Category..." />
-            </div>
-            <div class="form-group card-upload" :class="{
-              'text-fields-error': v$.data.photo.$error === true,
-            }">
-              <input @blur="v$.data.photo.$touch" :class="{
-                'text-fields-error': v$.data.photo.$error === true,
-              }" @change="onFileSelected" type="file" class="form-control-file" id="exampleFormControlFile1" />
-            </div>
-            <div class="form-group show-image" v-if="imageUrl">
-              <img :src="imageUrl" alt="uploaded photo" />
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Address</label>
+                      <input @blur="v$.data.address.$touch" :class="{
+                        'text-fields-error': v$.data.address.$error === true,
+                      }" v-model="data.address" type="text" class="form-control" id="exampleInputEmail1"
+                        aria-describedby="emailHelp" placeholder="Category..." />
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Administrator Name</label>
+                      <input @blur="v$.data.administrator.$touch" :class="{
+                        'text-fields-error': v$.data.administrator.$error === true,
+                      }" v-model="data.administrator" type="text" class="form-control" id="exampleInputEmail1"
+                        aria-describedby="emailHelp" placeholder="Category..." />
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Phone</label>
+                      <input @blur="v$.data.phone.$touch" :class="{
+                        'text-fields-error': v$.data.phone.$error === true,
+                      }" v-model="data.phone" type="text" class="form-control" id="exampleInputEmail1"
+                        aria-describedby="emailHelp" placeholder="Category..." />
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">About</label>
+                      <input @blur="v$.data.about.$touch" :class="{
+                        'text-fields-error': v$.data.about.$error === true,
+                      }" v-model="data.about" type="text" class="form-control" id="exampleInputEmail1"
+                        aria-describedby="emailHelp" placeholder="Category..." />
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Location</label>
+                      <input @blur="v$.data.location.$touch" :class="{
+                        'text-fields-error': v$.data.location.$error === true,
+                      }" v-model="data.location" type="text" class="form-control" id="exampleInputEmail1"
+                        aria-describedby="emailHelp" placeholder="Category..." />
+                    </div>
+                    <div class="form-group card-upload" :class="{
+                      'text-fields-error': v$.data.photo.$error === true,
+                    }">
+                      <input @blur="v$.data.photo.$touch" :class="{
+                        'text-fields-error': v$.data.photo.$error === true,
+                      }" @change="onFileSelected" type="file" class="form-control-file" id="exampleFormControlFile1" />
+                    </div>
+                    <div class="form-group show-image" v-if="imageUrl">
+                      <img :src="imageUrl" alt="uploaded photo" />
+                    </div>
+                  </div>
+                  <div class="modal-footer text-center">
+                    <button v-if="v$.$invalid" type="submit" class="btn btn-save disable">
+                      Send
+                    </button>
+                    <button v-if="!v$.$invalid" type="submit" class="btn btn-save">
+                      Send
+                    </button>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
-          <div class="modal-footer text-center">
-            <button v-if="v$.$invalid" type="submit" class="btn btn-save disable">
-              Send
-            </button>
-            <button v-if="!v$.$invalid" type="submit" class="btn btn-save">
-              Send
-            </button>
-          </div>
-        </form>
+        </div>
       </div>
     </div>
+    <aside class="control-sidebar control-sidebar-dark">
+      <div class="p-3">
+        <h5>Title</h5>
+        <p>Sidebar content</p>
+      </div>
+    </aside>
+    <MainFooterBack />
   </div>
 </template>
 <script>
