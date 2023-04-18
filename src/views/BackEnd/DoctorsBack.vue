@@ -65,7 +65,7 @@
                             </div>
                           </div>
                         </td>
-                        <td>{{ doctor.specialty.name }}</td>
+                        <td>{{ doctor.specialty?.name }}</td>
                         <td>
                           <span class="user-name">
                             <date-format :date="doctor.created_at" /> </span><br />

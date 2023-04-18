@@ -266,7 +266,7 @@ export default {
       if (!this.v$.$invalid) {
         this.createSpecialitie(this.data);
         this.resetForm();
-        this.hideModal("exampleModal");
+        $("#exampleModal").modal('hide');
       }
     },
     updateForm() {
@@ -274,7 +274,7 @@ export default {
       if (!this.v$.$invalid) {
         this.updateSpecialitie(this.data);
         this.resetForm();
-        this.hideModal("exampleModal1");
+        $("#exampleModal1").modal('hide');
       }
     },
     resetForm() {
@@ -284,12 +284,8 @@ export default {
       };
       this.imageUrl = null;
     },
-    hideModal(id) {
-      var div = document.getElementById(id);
-      div.classList.remove("show");
-    },
     async fetchSpecialitie(id) {
-      const response = await axios.get(`/specialties/${id}`);
+      const response = await axios.get(`/specialties/${id}/edit`);
       const specialitie = response.data.data;
       this.data = {
         name: specialitie.name,

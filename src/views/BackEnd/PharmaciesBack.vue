@@ -402,7 +402,7 @@ export default {
       if (!this.v$.$invalid) {
         this.create(this.data);
         this.resetForm();
-        this.hideModal("exampleModal");
+        $("#exampleModal").modal('hide');
       }
     },
     updateForm() {
@@ -410,7 +410,7 @@ export default {
       if (!this.v$.$invalid) {
         this.update(this.data);
         this.resetForm();
-        this.hideModal("exampleModal2");
+        $("#exampleModal2").modal('hide');
       }
     },
     resetForm() {
@@ -431,7 +431,7 @@ export default {
       div.classList.remove("show");
     },
     async fetchOne(id) {
-      const response = await axios.get(`/pharmacies/${id}`);
+      const response = await axios.get(`/pharmacies/${id}/edit`);
       const pharmacie = response.data.data;
       this.data = {
         name: pharmacie.name,

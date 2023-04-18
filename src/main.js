@@ -3,6 +3,8 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 
+require("@/store/subscriber");
+
 // Globale Component
 import NavbarFront from "./components/FrontEnd/NavbarFront.vue";
 import FooterFront from "./components/FrontEnd/FooterFront.vue";
@@ -191,19 +193,24 @@ library.add(
   faCircleUp
 );
 
-createApp(App)
-  .component("font-awesome-icon", FontAwesomeIcon)
-  .use(style)
-  .use(store)
-  .use(router)
-  .use(DateFormat)
-  .component("NavbarFront", NavbarFront)
-  .component("FooterFront", FooterFront)
-  .component("GoToTopButton", GoToTopButton)
-  .component("MainSidebar", MainSidebar)
-  .component("NavbarBack", NavbarBack)
-  .component("MainFooterBack", MainFooterBack)
-  .mount("#app");
+
+
+
+store.dispatch("Doctors/attempt", localStorage.getItem("token")).then(() => {
+  createApp(App)
+    .component("font-awesome-icon", FontAwesomeIcon)
+    .use(style)
+    .use(store)
+    .use(router)
+    .use(DateFormat)
+    .component("NavbarFront", NavbarFront)
+    .component("FooterFront", FooterFront)
+    .component("GoToTopButton", GoToTopButton)
+    .component("MainSidebar", MainSidebar)
+    .component("NavbarBack", NavbarBack)
+    .component("MainFooterBack", MainFooterBack)
+    .mount("#app");
+});
 
 
 

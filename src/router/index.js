@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
+import store from "@/store";
 
 const routes = [
   {
@@ -79,6 +80,13 @@ const routes = [
       import(
         /* webpackChunkName: "loginfront" */ "../views/FrontEnd/LoginFront"
       ),
+    beforeEnter: (to, from, next) => {
+      if (store.getters["Doctors/authenticated"]) {
+        return next({ name: "doctorsfront" });
+      }
+
+      next();
+    }
   },
   {
     path: "/forgot-password",
@@ -95,6 +103,13 @@ const routes = [
       import(
         /* webpackChunkName: "registerfront" */ "../views/FrontEnd/RegisterFront"
       ),
+    beforeEnter: (to, from, next) => {
+      if (store.getters["Doctors/authenticated"]) {
+        return next({ name: "doctorsfront" });
+      }
+
+      next();
+    }
   },
   {
     path: "/doctors",
@@ -103,6 +118,13 @@ const routes = [
       import(
         /* webpackChunkName: "dashboard" */ "../views/FrontEnd/DoctorsFront"
       ),
+    beforeEnter: (to, from, next) => {
+      if (!store.getters["Doctors/authenticated"]) {
+        return next({ name: "loginfront" });
+      }
+
+      next();
+    }
   },
   {
     path: "/Doctors/:id",

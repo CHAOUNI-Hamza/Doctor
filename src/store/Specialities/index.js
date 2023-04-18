@@ -40,7 +40,7 @@ export default {
         console.log(error);
       }
     },
-    async createSpecialitie({ _ }, params) {
+    async createSpecialitie({ dispatch }, params) {
       try {
         const formData = new FormData();
         formData.append("photo", params.photo);
@@ -53,11 +53,17 @@ export default {
           showConfirmButton: false,
           timer: 1500,
         });
+        return dispatch("fetchSpecialities", params = {
+          order_by: "id",
+          name: "",
+          page: 1,
+          pagination: 10,
+        },);
       } catch (error) {
         console.log(error);
       }
     },
-    async updateSpecialitie({ commit }, params) {
+    async updateSpecialitie({ _ }, params) {
       try {
         const formData = new FormData();
         formData.append("photo", params.photo);

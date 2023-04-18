@@ -46,13 +46,13 @@
                 <div class="media">
                   <div class="d-flex media-body">
                     <a class="avatar avatar-sm me-2 user-dt" href="#">
-                      <img :src="appointment.patient.photo" class="avatar avatar-img" />
+                      <img :src="appointment.patient?.photo" class="avatar avatar-img" />
                     </a>
                     <div class="text-secondary">
                       <span class="user-name">{{
                         appointment.patient.name
                       }}</span><br />
-                      <span class="d-block text-muted">{{ appointment.patient.sex }},
+                      <span class="d-block text-muted">{{ appointment.patient?.sex }},
                         {{ appointment.patient.age }} Years Old</span>
                     </div>
                   </div>
@@ -62,13 +62,13 @@
                 <div class="media">
                   <div class="d-flex media-body">
                     <a class="avatar avatar-sm me-2 user-dt" href="#">
-                      <img :src="appointment.doctor.photo" class="avatar avatar-img" />
+                      <img :src="appointment.doctor?.photo" class="avatar avatar-img" />
                     </a>
                     <div class="text-secondary">
-                      <span class="d-block text-muted">{{ appointment.doctor.sex }},
-                        {{ appointment.doctor.age }} Years Old</span>
+                      <span class="d-block text-muted">{{ appointment.doctor?.sex }},
+                        {{ appointment.doctor?.age }} Years Old</span>
                       <span class="user-name">{{
-                        appointment.doctor.username
+                        appointment.doctor?.username
                       }}</span><br />
                     </div>
                   </div>

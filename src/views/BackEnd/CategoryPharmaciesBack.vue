@@ -309,19 +309,21 @@ export default {
     submitForm() {
       this.v$.$touch();
       if (!this.v$.$invalid) {
+        this.fetch(this.params);
         this.create(this.data);
         this.resetForm();
-        this.hideModal("exampleModal");
-        this.fetch();
+        $("#exampleModal").modal('hide');
+
+
       }
     },
     updateForm() {
       this.v$.$touch();
       if (!this.v$.$invalid) {
+        this.fetch(this.params);
         this.update(this.data);
         this.resetForm();
-        this.hideModal("exampleModal1");
-        this.fetch();
+        $("#exampleModal1").modal('hide');
       }
     },
     resetForm() {
@@ -337,7 +339,7 @@ export default {
       div.classList.remove("show");
     },
     async fetchOne(id) {
-      const response = await axios.get(`/pharmacies/${id}`);
+      const response = await axios.get(`/categories/${id}/edit`);
       const categorie = response.data.data;
       this.data = {
         name: categorie.name,

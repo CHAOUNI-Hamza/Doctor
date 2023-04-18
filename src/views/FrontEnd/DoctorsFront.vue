@@ -27,6 +27,11 @@
                     <font-awesome-icon style="color: #333" class="icone" :icon="tab.icone" />
                     <a class="nav-link active" href="#">{{ tab.title }}</a>
                   </li>
+
+                  <li class="nav-item d-flex align-items-center tab-button ml-2" @click="signOut">
+                    <font-awesome-icon style="color: #333" class="icone" icon="fa-solid fa-right-from-bracket" />
+                    <a class="nav-link" href="#">Logout</a>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -42,6 +47,7 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
 import axios from "../../axios.config";
 import BreadCrumbFront from "./../../components/FrontEnd/DoctorDashboard/BreadCrumbFront.vue";
 import Dashboard from "./../../components/FrontEnd/DoctorDashboard/DashboardFront.vue";
@@ -126,10 +132,6 @@ export default {
           title: 'ChangePassword',
           icone: 'fa-solid fa-unlock'
         },
-        {
-          title: 'Logout',
-          icone: 'fa-solid fa-right-from-bracket'
-        },
       ]
     };
   },
@@ -138,6 +140,9 @@ export default {
       const response = await axios.get(`/doctors/1`);
       this.doctor = response.data.data;
     },
+    ...mapActions({
+      signOut: "Doctors/signOut",
+    })
   },
   mounted() {
     this.fetch()

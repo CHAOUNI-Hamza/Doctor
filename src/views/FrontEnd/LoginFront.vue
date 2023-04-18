@@ -14,15 +14,20 @@
                                 <div class="login-header">
                                     <h3>Login <span>Good Doctor</span></h3>
                                 </div>
-                                <form>
+                                <form @submit.prevent="submit()">
                                     <div class="form-group form-focus">
-                                        <input type="email" class="form-control floating">
+                                        <input @blur="v$.user.email.$touch"
+                                            :class="{ 'text-fields-error': v$.user.email.$error === true }"
+                                            v-model="user.email" type="email" class="form-control floating">
                                         <label class="focus-label">Email</label>
                                     </div>
                                     <div class="form-group form-focus">
-                                        <input type="password" class="form-control floating">
+                                        <input @blur="v$.user.password.$touch"
+                                            :class="{ 'text-fields-error': v$.user.password.$error === true }"
+                                            v-model="user.password" type="password" class="form-control floating">
                                         <label class="focus-label">Password</label>
                                     </div>
+                                    <div class="error-message" v-if="getErrorMessage">{{ getErrorMessage }}</div>
                                     <div class="text-end">
                                         <router-link :to="{ name: 'forgotpassword' }" class="forgot-link">Forgot Password
                                             ?</router-link>
@@ -40,7 +45,7 @@
                                             </a>
                                         </div>
                                         <div class="col-6">
-                                            <a href="#0" class="btn btn-google w-100">
+                                            <a type="submit" class="btn btn-google w-100">
                                                 <font-awesome-icon class="mr-1" icon="fa-brands fa-google" />
                                                 Login
                                             </a>
@@ -59,19 +64,68 @@
         </div>
     </div>
     <FooterFront />
+    <div class="overlay" v-if="getOverLay">
+        <div class="overlay__inner">
+            <div class="overlay__content"><span class="spinner"></span></div>
+        </div>
+    </div>
 </template>
   
 <script>
-
+import { useVuelidate } from "@vuelidate/core";
+import { required, email, minLength, maxLength } from "@vuelidate/validators";
+import { mapActions, mapGetters } from "vuex";
 export default {
     components: {
 
     },
     data() {
         return {
-
+            v$: useVuelidate(),
+            user: {
+                email: "",
+                password: "",
+            },
+            forgotpassword: {
+                email: "",
+            },
+            errorMessage: null,
         }
-    }
+    },
+    validations() {
+        return {
+            user: {
+                password: {
+                    required,
+                    minLength: minLength(5),
+                    maxLength: maxLength(30),
+                    $autoDirty: true,
+                },
+                email: {
+                    required,
+                    email,
+                    minLength: minLength(10),
+                    maxLength: maxLength(40),
+                    $autoDirty: true,
+                },
+            }
+        };
+    },
+    methods: {
+        ...mapActions({
+            signIn: "Doctors/signIn",
+        }),
+        submit() {
+            this.signIn(this.user);
+        },
+    },
+    computed: {
+        ...mapGetters({
+            authenticated: "Doctors/authenticated",
+            getErrorMessage: "Doctors/getErrorMessage",
+            getOverLay: "Doctors/getOverLay"
+        }),
+    },
 }
 </script>
 <style scoped>
@@ -181,6 +235,72 @@ export default {
 @media only screen and (max-width: 991.98px) {
     .login-left {
         display: none;
+    }
+}
+
+
+form .text-fields-error {
+    border: 1px solid #ff00008f !important;
+}
+
+form .text-fields-error::placeholder {
+    color: #ff00008f !important;
+}
+
+form .error-msg {
+    color: #ff00008f;
+    font-size: 13px;
+    margin-top: 5px;
+    text-align: left;
+}
+
+
+form .error-message {
+    color: #dd4b39;
+    font-size: 16px;
+}
+
+
+
+.overlay {
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background: #1377818a;
+}
+
+.overlay__inner {
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.overlay__content {
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.spinner {
+    width: 75px;
+    height: 75px;
+    display: inline-block;
+    border-width: 2px;
+    border-color: rgba(255, 255, 255, 0.05);
+    border-top-color: #fff;
+    animation: spin 1s infinite linear;
+    border-radius: 100%;
+    border-style: solid;
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
     }
 }
 </style>
