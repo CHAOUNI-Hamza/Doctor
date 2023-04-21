@@ -37,7 +37,7 @@
                       <font-awesome-icon class="check" icon="fa-solid fa-circle-check" />
                     </h3>
                     <p class="speciality">
-                      {{ item.specialty.name }}
+                      {{ item.specialty?.name }}
                     </p>
                     <div class="rating">
                       <font-awesome-icon class="text-warning" icon="fa-solid fa-star" />

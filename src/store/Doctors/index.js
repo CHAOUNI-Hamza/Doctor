@@ -8,7 +8,7 @@ export default {
     doctorsTotal: null,
     doctorsLastPage: null,
     token: null,
-    user: null,
+    user: {},
     errorMessage: null,
     overLay: false
   },
@@ -48,7 +48,7 @@ export default {
     authenticated(state) {
       return state.token && state.user;
     },
-    user(state) {
+    getUser(state) {
       return state.user;
     },
     getErrorMessage(state) {
@@ -80,6 +80,7 @@ export default {
         setTimeout(() => {
           commit("setOverLay", false);
         }, 3000);
+        console.log(response);
         return dispatch("attempt", response.data.access_token);
       } catch (error) {
         // Si la connexion échoue, afficher le message d'erreur
@@ -115,14 +116,38 @@ export default {
           return;
         }
 
-        const response = await axios.post("doctors/me");
+        const response = await axios.post(`doctors/me?token=${token}`);
 
-        commit("setUser", response.data);
+        commit("setUser", response.data.data);
 
         console.log("success");
       } catch (error) {
         commit("setUser", null);
         commit("setToken", null);
+      }
+    },
+    async signUp({ commit }, credentials) {
+      try {
+        const response = await axios
+          .post("doctors", credentials)
+          .then(() => {
+            router.replace({ name: "loginfront" });
+            commit("setErrorMessage", null);
+            commit("setOverLay", true);
+            setTimeout(() => {
+              commit("setOverLay", false);
+            }, 3000);
+          })
+      } catch (error) {
+        commit("setErrorMessage", "Cet email est déjà utilisé.");
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          title: "Une erreur s'est produite. Veuillez réessayer.",
+          showConfirmButton: false,
+          timer: 3000
+        })
+
       }
     },
     async signOut({ commit, state }) {

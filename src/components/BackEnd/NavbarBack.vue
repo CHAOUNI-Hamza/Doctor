@@ -70,18 +70,17 @@
       <li class="nav-item position-relative" @mouseleave="show = false" @click="show = !show">
         <a class="nav-link" role="button">
           <span class="user-img">
-            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="user" width="36" height="36">
+            <img :src="getAdmin.photo" style="border-radius: 50%;" alt="user" width="36" height="36">
           </span>
         </a>
         <transition>
           <div v-if="show" class="dropdown-menu dropdown-user show p-0 position-absolute">
             <div class="user-header">
               <div class="avatar avatar-sm">
-                <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="User Image"
-                  class="avatar-img rounded-circle" width="36" height="36">
+                <img :src="getAdmin.photo" alt="User Image" class="avatar-img rounded-circle" width="36" height="36">
               </div>
               <div class="user-text ml-2">
-                <h6 class="m-0 font-weight-bold">Robert Haddin</h6>
+                <h6 class="m-0 font-weight-bold">{{ getAdmin.name }}</h6>
                 <p class="text-muted mb-0">Administrator</p>
               </div>
             </div>
@@ -95,7 +94,7 @@
               <font-awesome-icon class="mr-2" style="color:#333" icon="fa-solid fa-magnifying-glass" />Account Settings
             </a>
             <hr class="my-0 ms-2 me-2">
-            <a class="dropdown-item text-muted mb-2" href="#">
+            <a class="dropdown-item text-muted mb-2" @click="signOut" style="cursor: pointer;">
               <font-awesome-icon class="mr-2" icon="fa-solid fa-right-from-bracket" />Logout
             </a>
           </div>
@@ -105,12 +104,24 @@
   </nav>
 </template>
 <script>
+import { mapGetters, mapActions } from "vuex";
 export default {
   name: 'NavbarBack',
   data() {
     return {
       show: false
     }
+  },
+  methods: {
+    ...mapActions({
+      signOut: "Auth/signOut",
+    })
+  },
+  computed: {
+    ...mapGetters({
+      authenticated: "Auth/authenticated",
+      getAdmin: "Auth/getAdmin"
+    }),
   }
 }
 </script>
@@ -231,4 +242,5 @@ export default {
 .v-enter-from,
 .v-leave-to {
   opacity: 0;
-}</style>
+}
+</style>

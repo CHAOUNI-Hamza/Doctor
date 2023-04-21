@@ -10,12 +10,12 @@
               <div class="widget-profile">
                 <div class="profile-info-widget text-center">
                   <a href="" class="doc-img">
-                    <img :src="doctor.photo" alt="user-img" />
+                    <img :src="getUser?.photo" alt="user-img" />
                   </a>
                   <div class="profile-info">
-                    <h3>Dr. {{ doctor.username }}</h3>
+                    <h3>Dr. {{ getUser.username }}</h3>
                     <div class="patient-details">
-                      <h5>{{ doctor.specialty?.name }}</h5>
+                      <h5>{{ getUser.specialty?.name }}</h5>
                     </div>
                   </div>
                 </div>
@@ -48,7 +48,7 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
-import axios from "../../axios.config";
+//import axios from "../../axios.config";
 import BreadCrumbFront from "./../../components/FrontEnd/DoctorDashboard/BreadCrumbFront.vue";
 import Dashboard from "./../../components/FrontEnd/DoctorDashboard/DashboardFront.vue";
 import Appointments from "./../../components/FrontEnd/DoctorDashboard/AppointmentsFront.vue";
@@ -136,16 +136,16 @@ export default {
     };
   },
   methods: {
-    async fetch() {
-      const response = await axios.get(`/doctors/1`);
-      this.doctor = response.data.data;
-    },
     ...mapActions({
       signOut: "Doctors/signOut",
     })
   },
+  computed: {
+    ...mapGetters({
+      getUser: "Doctors/getUser"
+    }),
+  },
   mounted() {
-    this.fetch()
   }
 };
 </script>

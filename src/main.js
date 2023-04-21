@@ -196,21 +196,21 @@ library.add(
 
 
 
-store.dispatch("Doctors/attempt", localStorage.getItem("token")).then(() => {
-  createApp(App)
-    .component("font-awesome-icon", FontAwesomeIcon)
-    .use(style)
-    .use(store)
-    .use(router)
-    .use(DateFormat)
-    .component("NavbarFront", NavbarFront)
-    .component("FooterFront", FooterFront)
-    .component("GoToTopButton", GoToTopButton)
-    .component("MainSidebar", MainSidebar)
-    .component("NavbarBack", NavbarBack)
-    .component("MainFooterBack", MainFooterBack)
-    .mount("#app");
-});
+//store.dispatch("Doctors/attempt", localStorage.getItem("token")).then(() => {
+createApp(App)
+  .component("font-awesome-icon", FontAwesomeIcon)
+  .use(style)
+  .use(store)
+  .use(router)
+  .use(DateFormat)
+  .component("NavbarFront", NavbarFront)
+  .component("FooterFront", FooterFront)
+  .component("GoToTopButton", GoToTopButton)
+  .component("MainSidebar", MainSidebar)
+  .component("NavbarBack", NavbarBack)
+  .component("MainFooterBack", MainFooterBack)
+  .mount("#app");
+//});
 
 
 

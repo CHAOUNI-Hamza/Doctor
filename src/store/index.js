@@ -6,6 +6,7 @@ import PatientsModule from "./Patients";
 import PharmaciesModule from "./Pharmacies";
 import CategoriesModule from "./Categories";
 import SettingsModule from "./Settings";
+import AuthModule from "./Auth";
 
 export default createStore({
   state: {
@@ -27,5 +28,6 @@ export default createStore({
     Pharmacies: PharmaciesModule,
     Categories: CategoriesModule,
     Settings: SettingsModule,
+    Auth: AuthModule,
   },
 });

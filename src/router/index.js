@@ -89,6 +89,21 @@ const routes = [
     }
   },
   {
+    path: "/admin/login",
+    name: "loginadmin",
+    component: () =>
+      import(
+        /* webpackChunkName: "loginadmin" */ "../views/FrontEnd/LoginAdmin"
+      ),
+    /*beforeEnter: (to, from, next) => {
+      if (store.getters["Auth/authenticated"]) {
+        return next({ name: "appointments" });
+      }
+
+      next();
+    }*/
+  },
+  {
     path: "/forgot-password",
     name: "forgotpassword",
     component: () =>
@@ -171,6 +186,13 @@ const routes = [
       import(
         /* webpackChunkName: "appointments" */ "../views/BackEnd/AppointmentsBack"
       ),
+    /*beforeEnter: (to, from, next) => {
+      if (store.getters["Auth/authenticated"]) {
+        return next({ name: "loginadmin" });
+      }
+
+      next();
+    }*/
   },
   {
     path: "/admin/specialities",

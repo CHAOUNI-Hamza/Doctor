@@ -12,7 +12,7 @@
                             </div>
                             <div class="col-md-12 col-lg-6 login-right">
                                 <div class="login-header">
-                                    <h3>Login <span>Good Doctor</span></h3>
+                                    <h3>Login <span>Doctor</span></h3>
                                 </div>
                                 <form @submit.prevent="submit()">
                                     <div class="form-group form-focus">
@@ -32,7 +32,14 @@
                                         <router-link :to="{ name: 'forgotpassword' }" class="forgot-link">Forgot Password
                                             ?</router-link>
                                     </div>
-                                    <button class="btn btn-primary w-100 btn-lg login-btn" type="submit">Login</button>
+                                    <button v-if="v$.$invalid" type="submit"
+                                        class="btn-primary w-100 btn-lg login-btn btn btn-save disable">
+                                        Login
+                                    </button>
+                                    <button v-if="!v$.$invalid" type="submit"
+                                        class="tn-primary w-100 btn-lg login-btn btn btn-save">
+                                        Login
+                                    </button>
                                     <div class="login-or">
                                         <span class="or-line"></span>
                                         <span class="span-or">or</span>
@@ -121,7 +128,6 @@ export default {
     },
     computed: {
         ...mapGetters({
-            authenticated: "Doctors/authenticated",
             getErrorMessage: "Doctors/getErrorMessage",
             getOverLay: "Doctors/getOverLay"
         }),
@@ -296,6 +302,11 @@ form .error-message {
     animation: spin 1s infinite linear;
     border-radius: 100%;
     border-style: solid;
+}
+
+.disable {
+    cursor: not-allowed;
+    pointer-events: none;
 }
 
 @keyframes spin {
