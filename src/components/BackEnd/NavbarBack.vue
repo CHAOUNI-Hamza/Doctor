@@ -70,14 +70,14 @@
       <li class="nav-item position-relative" @mouseleave="show = false" @click="show = !show">
         <a class="nav-link" role="button">
           <span class="user-img">
-            <img :src="getAdmin.photo" style="border-radius: 50%;" alt="user" width="36" height="36">
+            <img :src="getAdmin?.photo" style="border-radius: 50%;" alt="user" width="36" height="36">
           </span>
         </a>
         <transition>
           <div v-if="show" class="dropdown-menu dropdown-user show p-0 position-absolute">
             <div class="user-header">
               <div class="avatar avatar-sm">
-                <img :src="getAdmin.photo" alt="User Image" class="avatar-img rounded-circle" width="36" height="36">
+                <img :src="getAdmin?.photo" alt="User Image" class="avatar-img rounded-circle" width="36" height="36">
               </div>
               <div class="user-text ml-2">
                 <h6 class="m-0 font-weight-bold">{{ getAdmin.name }}</h6>

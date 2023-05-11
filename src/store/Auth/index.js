@@ -1,4 +1,5 @@
-import axios from "../../axios.config";
+//import axios from "../../axios.config";
+import axios from 'axios';
 import router from "@/router";
 
 export default {
@@ -61,7 +62,7 @@ export default {
     actions: {
         async fetchAdmins({ commit }, params) {
             try {
-                const response = await axios.get("/admins", {
+                const response = await axios.get("admins", {
                     params,
                 });
                 commit("setAdmins", response.data);
@@ -108,6 +109,7 @@ export default {
         },
         async attempt({ commit, state }, token) {
 
+
             try {
                 if (token) {
                     commit("setToken", token);
@@ -118,7 +120,7 @@ export default {
 
                 }
 
-                const response = await axios.post(`auth/me?token=${token}`);
+                const response = await axios.post(`auth/me`);
 
                 commit("setAdmin", response.data.data);
 
@@ -155,7 +157,7 @@ export default {
         async signOut({ commit, state }) {
             try {
 
-                await axios.post(`auth/logout?token=${state.token}`).then(() => {
+                await axios.post('auth/logout').then(() => {
                     localStorage.removeItem("token");
                     commit("setAdmin", null);
                     commit("setToken", null);

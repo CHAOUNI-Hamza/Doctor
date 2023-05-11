@@ -95,13 +95,13 @@ const routes = [
       import(
         /* webpackChunkName: "loginadmin" */ "../views/FrontEnd/LoginAdmin"
       ),
-    /*beforeEnter: (to, from, next) => {
+    beforeEnter: (to, from, next) => {
       if (store.getters["Auth/authenticated"]) {
         return next({ name: "appointments" });
       }
 
       next();
-    }*/
+    }
   },
   {
     path: "/forgot-password",
@@ -173,92 +173,95 @@ const routes = [
   },
   {
     path: "/admin",
-    name: "dashboard",
-    component: () =>
+    //name: "dashboard",
+    /*component: () =>
       import(
-        /* webpackChunkName: "dashboard" */ "../views/BackEnd/DashboardBack"
-      ),
-  },
-  {
-    path: "/admin/appointments",
-    name: "appointments",
-    component: () =>
-      import(
-        /* webpackChunkName: "appointments" */ "../views/BackEnd/AppointmentsBack"
-      ),
-    /*beforeEnter: (to, from, next) => {
-      if (store.getters["Auth/authenticated"]) {
-        return next({ name: "loginadmin" });
-      }
+        /* webpackChunkName: "dashboard" */ //"../views/BackEnd/DashboardBack"
+    //)
 
-      next();
-    }*/
-  },
-  {
-    path: "/admin/specialities",
-    name: "specialities",
-    component: () =>
-      import(
-        /* webpackChunkName: "specialities" */ "../views/BackEnd/SpecialitiesBack"
-      ),
-  },
-  {
-    path: "/admin/patients",
-    name: "patients",
-    component: () =>
-      import(
-        /* webpackChunkName: "patients" */ "../views/BackEnd/PatientsBack"
-      ),
-  },
-  {
-    path: "/admin/doctors",
-    name: "doctors",
-    component: () =>
-      import(/* webpackChunkName: "doctors" */ "../views/BackEnd/DoctorsBack"),
-  },
-  {
-    path: "/admin/settings",
-    name: "settings",
-    component: () =>
-      import(
-        /* webpackChunkName: "settings" */ "../views/BackEnd/SettingsBack"
-      ),
-  },
-  {
-    path: "/admin/reviews",
-    name: "reviews",
-    component: () =>
-      import(/* webpackChunkName: "settings" */ "../views/BackEnd/ReviewsBack"),
-  },
-  {
-    path: "/admin/transactions",
-    name: "transactions",
-    component: () =>
-      import(
-        /* webpackChunkName: "settings" */ "../views/BackEnd/TransactionsBack"
-      ),
-  },
-  {
-    path: "/admin/pharmacies",
-    name: "pharmacies",
-    component: () =>
-      import(
-        /* webpackChunkName: "settings" */ "../views/BackEnd/PharmaciesBack"
-      ),
-  },
-  {
-    path: "/admin/pharmacies/category",
-    name: "categorypharmacies",
-    component: () =>
-      import(
-        /* webpackChunkName: "settings" */ "../views/BackEnd/CategoryPharmaciesBack"
-      ),
-  },
-  {
-    path: "/admin/profile",
-    name: "profile",
-    component: () =>
-      import(/* webpackChunkName: "profile" */ "../views/BackEnd/ProfileBack"),
+    children: [
+      {
+        path: "appointments",
+        name: "appointments",
+        component: () =>
+          import(
+              /* webpackChunkName: "appointments" */ "../views/BackEnd/AppointmentsBack"
+          ),
+        beforeEnter: (to, from, next) => {
+          if (!store.getters["Auth/authenticated"]) {
+            return next({ name: "loginadmin" });
+          }
+
+          next();
+        }
+      },
+      {
+        path: "specialities",
+        name: "specialities",
+        component: () =>
+          import(
+              /* webpackChunkName: "specialities" */ "../views/BackEnd/SpecialitiesBack"
+          ),
+      },
+      {
+        path: "patients",
+        name: "patients",
+        component: () =>
+          import(
+              /* webpackChunkName: "patients" */ "../views/BackEnd/PatientsBack"
+          ),
+      },
+      {
+        path: "doctors",
+        name: "doctors",
+        component: () =>
+          import(/* webpackChunkName: "doctors" */ "../views/BackEnd/DoctorsBack"),
+      },
+      {
+        path: "settings",
+        name: "settings",
+        component: () =>
+          import(
+              /* webpackChunkName: "settings" */ "../views/BackEnd/SettingsBack"
+          ),
+      },
+      {
+        path: "reviews",
+        name: "reviews",
+        component: () =>
+          import(/* webpackChunkName: "settings" */ "../views/BackEnd/ReviewsBack"),
+      },
+      {
+        path: "transactions",
+        name: "transactions",
+        component: () =>
+          import(
+              /* webpackChunkName: "settings" */ "../views/BackEnd/TransactionsBack"
+          ),
+      },
+      {
+        path: "pharmacies",
+        name: "pharmacies",
+        component: () =>
+          import(
+              /* webpackChunkName: "settings" */ "../views/BackEnd/PharmaciesBack"
+          ),
+      },
+      {
+        path: "pharmacies/category",
+        name: "categorypharmacies",
+        component: () =>
+          import(
+              /* webpackChunkName: "settings" */ "../views/BackEnd/CategoryPharmaciesBack"
+          ),
+      },
+      {
+        path: "profile",
+        name: "profile",
+        component: () =>
+          import(/* webpackChunkName: "profile" */ "../views/BackEnd/ProfileBack"),
+      },
+    ]
   },
   {
     path: "/about",

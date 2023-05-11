@@ -1,4 +1,4 @@
-import axios from "../../axios.config";
+import axios from 'axios';
 import router from "@/router";
 
 export default {
@@ -116,11 +116,11 @@ export default {
           return;
         }
 
-        const response = await axios.post(`doctors/me?token=${token}`);
+        const response = await axios.post('doctors/me');
 
         commit("setUser", response.data.data);
 
-        console.log("success");
+        console.log(response);
       } catch (error) {
         commit("setUser", null);
         commit("setToken", null);
@@ -150,11 +150,11 @@ export default {
 
       }
     },
-    async signOut({ commit, state }) {
+    async signOut({ commit }) {
       try {
 
-        await axios.post(`doctors/logout?token=${state.token}`).then(() => {
-          localStorage.removeItem("token");
+        await axios.post('doctors/logout').then(() => {
+          localStorage.removeItem("tokenDoctor");
           commit("setUser", null);
           commit("setToken", null);
           router.replace({ name: "homefront" });

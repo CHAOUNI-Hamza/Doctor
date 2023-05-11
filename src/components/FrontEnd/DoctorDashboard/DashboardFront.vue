@@ -223,10 +223,10 @@
             <div class="owl-carousel report-card-slider owl-theme owl-loaded owl-drag">
               <div class="owl-stage-outer">
                 <div class="owl-stage" style="
-                                                transform: translate3d(-645px, 0px, 0px);
-                                                transition: all 0s ease 0s;
-                                                width: 2260px;
-                                              ">
+                                                  transform: translate3d(-645px, 0px, 0px);
+                                                  transition: all 0s ease 0s;
+                                                  width: 2260px;
+                                                ">
                 </div>
               </div>
               <div class="owl-nav">
