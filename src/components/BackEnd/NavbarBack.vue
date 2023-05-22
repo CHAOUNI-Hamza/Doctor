@@ -43,9 +43,7 @@
                 <a href="#" class="dropdown-item">
                   <div class="media d-flex">
                     <span class="avatar">
-                      <img class="avatar-img" alt=""
-                        src="https://doccure-react.dreamguystech.com/template/32b8469a75322a6ba6b15343e65f1072.jpg"
-                        width="40" height="40">
+                      <img class="avatar-img" alt="Avatar" src="" width="40" height="40">
                     </span>
                     <div class="media-body">
                       <h6>Travis Tremble <span class="notification-time">18.30 PM</span>

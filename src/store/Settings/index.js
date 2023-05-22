@@ -130,6 +130,7 @@ export default {
           params.google_rechaptcha_secret
         );
         formData.append("cookies_agreement", params.cookies_agreement);
+        formData.append("type", params.type);
 
         const response = await axios.post("/settings/1", formData);
         Swal.fire({

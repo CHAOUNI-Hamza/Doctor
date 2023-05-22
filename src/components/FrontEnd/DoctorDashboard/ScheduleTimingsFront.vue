@@ -26,9 +26,9 @@
                     <div class="schedule-nav">
                       <ul class="nav nav-tabs nav-justified p-3">
                         <li class="nav-item" v-for="tab in tabs" :key="tab" :class="[
-                          'tab-button ml-2',
-                          { active: currentTab === tab },
-                        ]" @click="currentTab = tab">
+                            'tab-button ml-2',
+                            { active: currentTab === tab },
+                          ]" @click="currentTab = tab">
                           <a class="nav-link active">{{ tab }}</a>
                         </li>
                       </ul>
@@ -228,15 +228,19 @@ export default {
     };
   },
   methods: {
+    // Méthode pour ajouter un champ de saisie
     addInput() {
       this.inputs.push(this.valueInput);
     },
+    // Méthode pour supprimer un champ de saisie
     deleteInput(index) {
       this.inputs.splice(index, 1);
     },
+    // Méthode pour supprimer un créneau horaire
     deleteSlot(index) {
       this.slots.splice(index, 1);
     },
+    // Méthode pour ajouter des créneaux horaires
     addslots() {
       this.slots.push(this.inputs);
     },

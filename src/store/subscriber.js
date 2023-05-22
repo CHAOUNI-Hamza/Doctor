@@ -28,10 +28,10 @@ store.subscribe(mutation => {
       localStorage.removeItem('tokenDoctor');
     }
   }
-});
+});*/
 
 
-store.subscribe((mutation) => {
+/*store.subscribe((mutation) => {
   if (mutation.type === "Auth/setToken") {
     if (mutation.payload) {
       axios.defaults.headers.common['Authorization'] = `Bearer ${mutation.payload}`

@@ -7,7 +7,7 @@
             <h2>What are you looking for?</h2>
           </div>
           <div class="row">
-            <div class="col-lg-4 mb-3">
+            <div class="col-md-4 mb-3">
               <div class="card text-center doctor-book-card">
                 <img
                   src="https://media.istockphoto.com/photos/pharmacist-filling-prescription-in-pharmacy-store-picture-id1154962393?b=1&k=20&m=1154962393&s=612x612&w=0&h=lnWDwjfqAAsjO0KZOfoB4l-cULAuohN9pa-yog7ePrc="
@@ -22,7 +22,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-lg-4 mb-3">
+            <div class="col-md-4 mb-3">
               <div class="card text-center doctor-book-card">
                 <img
                   src="https://media.istockphoto.com/photos/pharmacist-filling-prescription-in-pharmacy-store-picture-id1154962393?b=1&k=20&m=1154962393&s=612x612&w=0&h=lnWDwjfqAAsjO0KZOfoB4l-cULAuohN9pa-yog7ePrc="
@@ -37,7 +37,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-lg-4 mb-3">
+            <div class="col-md-4 mb-3">
               <div class="card text-center doctor-book-card">
                 <img
                   src="https://media.istockphoto.com/photos/scientists-in-laboratory-working-on-research-picture-id1012405368?b=1&k=20&m=1012405368&s=612x612&w=0&h=H-gU_s8DnSh2QPQeZIKePGSyRMtF_cn5BmiblreMt0s="
@@ -118,5 +118,33 @@
   width: 100%;
   height: 100%;
   background: #0000008c;
+}
+
+/* start media */
+@media (min-width: 0px) and (max-width: 428px) {
+  .home-tile-section[data-v-fb4dd3d0] {
+    padding: 10px 19px;
+  }
+
+  .section-header h2 {
+    font-size: 32px;
+    margin-top: 34px;
+  }
+
+}
+
+@media (min-width: 429px) and (max-width: 834px) {
+  .home-tile-section {
+    padding: 10px 0;
+  }
+
+  .doctor-book-card h3 {
+    font-size: 18px;
+  }
+
+  .book-btn1[data-v-fb4dd3d0] {
+    font-size: 9px;
+  }
+
 }
 </style>

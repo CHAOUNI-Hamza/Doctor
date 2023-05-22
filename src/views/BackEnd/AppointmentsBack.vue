@@ -48,9 +48,6 @@ export default {
             currentTab: 'UpcomingAppointments',
             tabs: ['UpcomingAppointments', 'PastAppointments']
         }
-    },
-    methods: {
-
     }
 }
 </script>

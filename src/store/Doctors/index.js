@@ -13,52 +13,67 @@ export default {
     overLay: false
   },
   mutations: {
+    // Définit les médecins
     setDoctors(state, doctors) {
       state.doctors = doctors;
     },
+    // Définit le total des médecins
     setTotalDoctor(state, LastPage) {
       state.doctorsTotal = LastPage;
     },
+    // Définit la dernière page des médecins
     setDoctorsLastPage(state, total) {
       state.doctorsLastPage = total;
     },
+    // Définit le jeton d'authentification
     setToken(state, token) {
       state.token = token;
     },
+    // Définit l'utilisateur connecté
     setUser(state, data) {
       state.user = data;
     },
+    // Définit le message d'erreur
     setErrorMessage(state, data) {
       state.errorMessage = data;
     },
+    // Définit l'indicateur d'affichage en superposition
     setOverLay(state, data) {
       state.overLay = data;
     },
   },
   getters: {
+    // Retourne les médecins
     getDoctors(state) {
       return state.doctors;
     },
+    // Retourne le total des médecins
     getDoctorsTotal(state) {
       return state.doctorsTotal;
     },
+    // Retourne la dernière page des médecins
     getDoctorsLastPage(state) {
       return state.doctorsLastPage;
     },
+    // Indique si l'utilisateur est authentifié
     authenticated(state) {
       return state.token && state.user;
     },
+    // Retourne l'utilisateur connecté
     getUser(state) {
       return state.user;
     },
+    // Retourne le message d'erreur
     getErrorMessage(state) {
       return state.errorMessage;
     },
+    // Retourne l'indicateur d'affichage en superposition
     getOverLay(state) {
       return state.overLay;
     },
   },
   actions: {
+    // Récupère les médecins
     async fetchDoctors({ commit }, params) {
       try {
         const response = await axios.get("/doctors", {
@@ -71,6 +86,7 @@ export default {
         console.error(error);
       }
     },
+    // Connexion de l'utilisateur
     async signIn({ commit, dispatch }, credentials) {
       try {
         const response = await axios.post("doctors/login", credentials);
@@ -106,6 +122,17 @@ export default {
 
       }
     },
+    // Met à jour le statut d'un médecin
+    async updateStatus({ dispatch }, info) {
+      try {
+        const response = await axios.post(`/doctors/${info.id}/update-status`, {
+          status: info.status,
+        });
+        return dispatch("fetchDoctors")
+      } catch (error) {
+        console.error(error);
+      }
+    },
     async attempt({ commit, state }, token) {
       try {
         if (token) {
@@ -126,6 +153,7 @@ export default {
         commit("setToken", null);
       }
     },
+    // Inscription d'un nouvel utilisateur
     async signUp({ commit }, credentials) {
       try {
         const response = await axios
@@ -150,6 +178,7 @@ export default {
 
       }
     },
+    // Déconnexion de l'utilisateur
     async signOut({ commit }) {
       try {
 
@@ -162,6 +191,34 @@ export default {
 
       } catch (error) {
         console.log(error)
+      }
+    },
+    // Change Password de l'utilisateur
+    async changePasswordDoctor({ commit, dispatch }, credentials) {
+      try {
+        const response = await axios.post("doctors/change_password", credentials);
+        commit("setErrorMessage", null);
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'The password has been changed successfully.',
+          showConfirmButton: false,
+          timer: 3000
+        })
+        return dispatch("attempt", response.data.access_token);
+      } catch (error) {
+        // Si la connexion échoue, afficher le message d'erreur
+        if (error.response.status === 422) {
+          commit("setErrorMessage", "The current password is incorrect.");
+          Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: 'The current password is incorrect.',
+            showConfirmButton: false,
+            timer: 3000
+          })
+        }
+
       }
     },
   },

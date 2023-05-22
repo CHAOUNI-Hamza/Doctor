@@ -13,12 +13,15 @@ export default {
         };
     },
     created() {
+        // Ajouter un écouteur d'événement de défilement à la fenêtre lors de la création du composant
         window.addEventListener("scroll", this.handleScroll);
     },
     destroyed() {
+        // Supprimer l'écouteur d'événement de défilement de la fenêtre lors de la destruction du composant
         window.removeEventListener("scroll", this.handleScroll);
     },
     methods: {
+        // Fonction pour gérer l'événement de défilement
         handleScroll() {
             if (window.pageYOffset > 300) {
                 this.isShow = true;
@@ -26,6 +29,7 @@ export default {
                 this.isShow = false;
             }
         },
+        // Fonction pour faire défiler jusqu'en haut de la page
         scrollToTop() {
             window.scrollTo({
                 top: 0,
@@ -70,6 +74,15 @@ export default {
 
 .go-to-top-button.is-show {
     opacity: 1;
+}
+
+/* start media */
+@media (min-width: 0px) and (max-width: 428px),
+(min-width: 429px) and (max-width: 834px) {
+    .go-to-top-button {
+        bottom: 40px;
+        right: 43px;
+    }
 }
 </style>
   

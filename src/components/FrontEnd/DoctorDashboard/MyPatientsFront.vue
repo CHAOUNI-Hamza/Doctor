@@ -5,15 +5,15 @@
         <div class="card-body">
           <div class="pro-widget-content">
             <div class="profile-info-widget text-center">
-              <a class="booking-doc-img" href="/template/doctor/patient-profile">
+              <a class="booking-doc-img" href="#">
                 <img :src="appointment.patient.photo" alt="User">
               </a>
               <div class="profile-det-info">
                 <h3 class="mt-2">
-                  <a href="/template/doctor/patient-profile">{{ appointment.patient.name }}</a>
+                  <a href="#">{{ appointment.patient.name }}</a>
                 </h3>
                 <div class="patient-details">
-                  <h5><b>Patient ID :</b> {{ appointment.patient.id }}</h5>
+                  <h5><b>Patient ID :</b> #{{ appointment.patient.id }}</h5>
                   <h5 class="mb-0"><i class="fas fa-map-marker-alt"></i>{{ appointment.patient.address }}</h5>
                 </div>
               </div>
@@ -24,27 +24,29 @@
               <li>Phone <span>{{ appointment.patient.phone }}</span></li>
               <li>Age <span>{{ calculateAge(appointment.patient.date_of_birth) }} Years, {{ appointment.patient.sex
               }}</span></li>
-              <li>Blood Group <span>AB+</span></li>
+              <li>Blood Group <span>{{ appointment.patient.blood_group }}</span></li>
             </ul>
           </div>
         </div>
       </div>
     </div>
-    <nav v-if="getAppointmentsLastPage > 1" aria-label="Page navigation example">
-      <ul class="pagination">
-        <li class="page-item">
-          <a class="page-link" @click="params.page = LastPage - 1" href="#">Previous</a>
-        </li>
-        <li v-for="LastPage in getAppointmentsLastPage" :key="LastPage" class="page-item">
-          <a @click="params.page = LastPage" class="page-link" href="#">{{
-            LastPage
-          }}</a>
-        </li>
-        <li class="page-item">
-          <a class="page-link" @click="params.page = LastPage + 1" href="#">Next</a>
-        </li>
-      </ul>
-    </nav>
+    <div class="col-md-12">
+      <nav v-if="getAppointmentsLastPage > 1" aria-label="Page navigation example">
+        <ul class="pagination">
+          <li class="page-item">
+            <a class="page-link" @click="params.page = LastPage - 1" href="#">Previous</a>
+          </li>
+          <li v-for="LastPage in getAppointmentsLastPage" :key="LastPage" class="page-item">
+            <a @click="params.page = LastPage" class="page-link" href="#">{{
+              LastPage
+            }}</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" @click="params.page = LastPage + 1" href="#">Next</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
   </div>
 </template>
   
@@ -98,6 +100,7 @@ export default {
 
 .card-body {
   padding: 1.5rem;
+  height: 440px;
 }
 
 .patient-details h5 {

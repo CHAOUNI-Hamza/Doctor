@@ -8,6 +8,7 @@ export default {
     appointmentsLastPage: null,
   },
   mutations: {
+    // Mutation pour définir la liste des rendez-vous
     setAppointments(state, appointments) {
       state.appointments = appointments;
     },
@@ -19,22 +20,34 @@ export default {
     },
   },
   getters: {
-    getAppointments(state) {
-      return state.appointments;
-    },
-    getAppointmentsTotal(state) {
-      return state.appointmentsTotal;
-    },
-    getAppointmentsLastPage(state) {
-      return state.appointmentsLastPage;
-    },
+    // Getter pour obtenir la liste des rendez-vous
+    getAppointments: state => state.appointments,
+    // Getter pour obtenir le total des rendez-vous
+    getAppointmentsTotal: state => state.appointmentsTotal,
+    // Getter pour obtenir la dernière page de rendez-vous
+    getAppointmentsLastPage: state => state.appointmentsLastPage,
   },
   actions: {
+    // Action pour récupérer les rendez-vous
     async fetchAppointments({ commit }, params) {
       try {
         const response = await axios.get("/appointements/upcomming_past", {
           params,
         });
+        commit("setAppointments", response.data);
+        commit("setTotalAppointment", response.data.meta.total);
+        commit("setAppointmentsLastPage", response.data.meta.last_page);
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    // Action pour récupérer les rendez-vous par doctor connecté
+    async fetchAppointmentsDoctor({ commit }, params) {
+      try {
+        const response = await axios.get("/appointements/appointement_doctor", {
+          params,
+        });
+        console.log(response.data);
         commit("setAppointments", response.data);
         commit("setTotalAppointment", response.data.meta.total);
         commit("setAppointmentsLastPage", response.data.meta.last_page);

@@ -3,48 +3,28 @@
     <div class="col-md-6">
       <div class="card">
         <div class="card-body">
-          <div
-            class="card-header mb-3 d-flex justify-content-between align-items-center">
+          <div class="card-header mb-3 d-flex justify-content-between align-items-center">
             <h5 class="card-title">PHP Mail</h5>
-            <div
-              class="status-toggle d-flex justify-content-between align-items-center">
+            <div class="status-toggle d-flex justify-content-between align-items-center">
               <input id="s2" type="checkbox" class="switch" />
             </div>
           </div>
           <form @submit.prevent="updateForm">
             <div class="settings-form">
               <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label"
-                  >Email From Address</label
-                >
-                <input
-                  v-model="data.php_mail_email"
-                  type="email"
-                  class="form-control"
-                  id="exampleFormControlInput1"
+                <label for="exampleFormControlInput1" class="form-label">Email From Address</label>
+                <input v-model="data.php_mail_email" type="email" class="form-control" id="exampleFormControlInput1"
                   placeholder="Email From Address..." />
               </div>
               <div class="mb-3">
-                <label for="exampleFormControlInput2" class="form-label"
-                  >Email Password</label
-                >
-                <input
-                  v-model="data.php_mail_password"
-                  type="password"
-                  class="form-control"
-                  id="exampleFormControlInput2"
+                <label for="exampleFormControlInput2" class="form-label">Email Password</label>
+                <input v-model="data.php_mail_password" type="password" class="form-control" id="exampleFormControlInput2"
                   placeholder="Email Password..." />
               </div>
               <div class="mb-3">
-                <label for="exampleFormControlInput3" class="form-label"
-                  >Emails From Name</label
-                >
-                <input
-                  v-model="data.php_mail_email_from_name"
-                  type="text"
-                  class="form-control"
-                  id="exampleFormControlInput3"
-                  placeholder="Emails From Name..." />
+                <label for="exampleFormControlInput3" class="form-label">Emails From Name</label>
+                <input v-model="data.php_mail_email_from_name" type="text" class="form-control"
+                  id="exampleFormControlInput3" placeholder="Emails From Name..." />
               </div>
               <div class="mb-3">
                 <div class="form-group mb-0">
@@ -64,58 +44,32 @@
     <div class="col-md-6">
       <div class="card">
         <div class="card-body">
-          <div
-            class="card-header mb-3 d-flex justify-content-between align-items-center">
+          <div class="card-header mb-3 d-flex justify-content-between align-items-center">
             <h5 class="card-title">SMTP</h5>
-            <div
-              class="status-toggle d-flex justify-content-between align-items-center">
+            <div class="status-toggle d-flex justify-content-between align-items-center">
               <input id="s2" type="checkbox" class="switch" />
             </div>
           </div>
           <form @submit.prevent="updateForm">
             <div class="settings-form">
               <div class="mb-3">
-                <label for="exampleFormControlInput4" class="form-label"
-                  >Email From Address</label
-                >
-                <input
-                  v-model="data.smtp_email"
-                  type="email"
-                  class="form-control"
-                  id="exampleFormControlInput4"
+                <label for="exampleFormControlInput4" class="form-label">Email From Address</label>
+                <input v-model="data.smtp_email" type="email" class="form-control" id="exampleFormControlInput4"
                   placeholder="Email From Address..." />
               </div>
               <div class="mb-3">
-                <label for="exampleFormControlInput5" class="form-label"
-                  >Email Password</label
-                >
-                <input
-                  v-model="data.smtp_password"
-                  type="password"
-                  class="form-control"
-                  id="exampleFormControlInput5"
+                <label for="exampleFormControlInput5" class="form-label">Email Password</label>
+                <input v-model="data.smtp_password" type="password" class="form-control" id="exampleFormControlInput5"
                   placeholder="Email Password..." />
               </div>
               <div class="mb-3">
-                <label for="exampleFormControlInput6" class="form-label"
-                  >Email Host</label
-                >
-                <input
-                  v-model="data.smtp_email_host"
-                  type="email"
-                  class="form-control"
-                  id="exampleFormControlInput6"
+                <label for="exampleFormControlInput6" class="form-label">Email Host</label>
+                <input v-model="data.smtp_email_host" type="email" class="form-control" id="exampleFormControlInput6"
                   placeholder="Email Host..." />
               </div>
               <div class="mb-3">
-                <label for="exampleFormControlInput7" class="form-label"
-                  >Email Port</label
-                >
-                <input
-                  v-model="data.smtp_email_port"
-                  type="text"
-                  class="form-control"
-                  id="exampleFormControlInput7"
+                <label for="exampleFormControlInput7" class="form-label">Email Port</label>
+                <input v-model="data.smtp_email_port" type="text" class="form-control" id="exampleFormControlInput7"
                   placeholder="Email Port..." />
               </div>
               <div class="mb-3">
@@ -137,7 +91,7 @@
 </template>
 <script>
 import { mapActions } from "vuex";
-import axios from "../../axios.config";
+import axios from "axios";
 
 export default {
   data() {
@@ -155,15 +109,13 @@ export default {
     };
   },
   computed: {
-    /* ...mapGetters({
-      get: "Settings/get",
-    }),*/
+    //
   },
   methods: {
+    // Récupère les données de configuration depuis le serveur
     async fetch() {
       try {
         const response = await axios.get(`/settings/1`);
-        console.log(response.data.data);
         this.data = {
           php_mail_email: response.data.data.php_mail_email,
           php_mail_password: response.data.data.php_mail_password,
@@ -172,15 +124,18 @@ export default {
           smtp_password: response.data.data.smtp_password,
           smtp_email_host: response.data.data.smtp_email_host,
           smtp_email_port: response.data.data.smtp_email_port,
+          type: 'email'
         };
       } catch (error) {
         console.log(error);
       }
     },
+    // Met à jour le fichier sélectionné pour le téléversement
     onFileSelected(event) {
       this.data.photo = event.target.files[0];
       this.previewImage();
     },
+    // Affiche l'image sélectionnée en prévisualisation
     previewImage() {
       const reader = new FileReader();
       reader.readAsDataURL(this.data.photo);
@@ -188,13 +143,16 @@ export default {
         this.imageUrl = event.target.result;
       };
     },
+    // Mappe l'action "update" de Vuex à la méthode du composant
     ...mapActions({
       update: "Settings/update",
     }),
+    // Met à jour le formulaire en utilisant l'action "update"
     updateForm() {
       this.update(this.data);
     },
   },
+  // Récupère les données lors du montage du composant
   mounted() {
     this.fetch();
   },

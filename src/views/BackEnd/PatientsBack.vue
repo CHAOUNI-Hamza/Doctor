@@ -76,7 +76,10 @@
                         </td>
                         <td>300.00 DH</td>
                         <td class="text-left">
-                          <input id="s1" type="checkbox" class="switch" />
+                          <button style="padding: 0 10px;" v-if="patient.status == 'active'" class="btn btn-success"
+                            @click="updateDoctorStatus(patient.id, 'inactive')">Active</button>
+                          <button style="padding: 0 10px;" v-if="patient.status == 'inactive'" class="btn btn-danger"
+                            @click="updateDoctorStatus(patient.id, 'active')">InActive</button>
                         </td>
                       </tr>
                     </tbody>
@@ -118,17 +121,21 @@ import axios from "../../axios.config";
 export default {
   data() {
     return {
-      status: "active",
       params: {
         search_by: "Search by...",
         value: "",
         specialty: "",
         page: 1,
+        UpdateStatus: {
+          id: '',
+          status: ''
+        }
       },
     };
   },
   watch: {
     params: {
+      // Surveiller les changements des paramètres de recherche
       handler() {
         this.fetchPatients(this.params);
       },
@@ -137,28 +144,29 @@ export default {
   },
   computed: {
     ...mapGetters({
+      // Récupérer les données des patients depuis le store
       getPatients: "Patients/getPatients",
       getPatientsTotal: "Patients/getPatientsTotal",
       getPatientsLastPage: "Patients/getPatientsLastPage",
     }),
   },
   methods: {
-    async updateStatus(id) {
-      try {
-        const response = await axios.post(`/patients/${id}/update-status`, {
-          status: this.status,
-        });
-        //this.status = response.data.status;
-        console.error(response);
-      } catch (error) {
-        console.error(error);
+    // Mettre à jour le statut du médecin
+    updateDoctorStatus(id, status) {
+      this.UpdateStatus = {
+        id: id,
+        status: status
       }
+      this.updateStatus(this.UpdateStatus)
     },
     ...mapActions({
+      // Actions Vuex pour récupérer les patients et mettre à jour le statut
       fetchPatients: "Patients/fetchPatients",
+      updateStatus: "Patients/updateStatus",
     }),
   },
   mounted() {
+    // Au chargement du composant, récupérer les patients
     this.fetchPatients(this.params);
   },
 };

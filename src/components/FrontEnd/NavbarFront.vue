@@ -6,8 +6,7 @@
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/The_Good_Doctor_logo_2.svg/2560px-The_Good_Doctor_logo_2.svg.png"
           alt="">
       </router-link>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" @click="showNavbaResponsive = !showNavbaResponsive">
         <span class="navbar-toggler-icon"></span>
       </button>
 
@@ -67,6 +66,23 @@
         </ul>
       </div>
     </nav>
+    <!-- start navbar responsive -->
+    <div class="navbar-responsive" :class="{ active: showNavbaResponsive }">
+      <div class="closemmn" @click="showNavbaResponsive = !showNavbaResponsive">
+        <font-awesome-icon style="margin-left: 7px;" icon="fa-regular fa-circle-xmark" />
+      </div>
+      <div style="box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19) !important;">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+          <li class="nav-item" v-for="nav in listsNav" :key="nav.id">
+            <router-link :to="{ name: nav.link }" class="nav-link">
+              <h6 :class="{ 'admin': nav.title === 'Admin' }">{{ nav.title }}</h6>
+            </router-link>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- end navbar responsive -->
   </header>
 </template>
   
@@ -77,6 +93,7 @@ export default {
   components: {},
   data() {
     return {
+      showNavbaResponsive: false,
       show: false,
       listsNav: [
         {
@@ -181,6 +198,9 @@ export default {
   padding-left: 10px;
 }
 
+.navbar-light .navbar-toggler {
+  border-color: rgb(0 0 0 / 0%);
+}
 
 .header-login {
   border: 2px solid #00bcd4;
@@ -199,6 +219,7 @@ export default {
   color: white !important;
   border-radius: 37px;
   transition: 1s;
+  padding: 5px 17px;
 }
 
 .admin:hover {
@@ -284,5 +305,308 @@ export default {
 .v-leave-to {
   opacity: 0;
 }
+
+/* Navbar Responsive */
+.navbar-responsive {
+  display: flex;
+  position: fixed;
+  z-index: 999;
+  background: #ffffff;
+  height: 100%;
+  justify-content: left;
+  top: 0;
+  left: -419px;
+  transition: all 1s ease-in-out;
+  font-family: "Poppins", sans-serif;
+}
+
+.navbar-responsive .closemmn {
+  color: #73d0f3;
+  background-color: #fff;
+  position: absolute;
+  top: 15px;
+  right: -27px;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  font-size: 34px;
+  border-radius: 50%;
+}
+
+.navbar-responsive .navbar-brand {
+  margin-right: 110px;
+}
+
+.navbar-responsive .navbar-nav {
+  width: 215px;
+  padding: 10px;
+}
+
+.navbar-responsive .collapse .nav-link {
+  font-weight: 600;
+  text-transform: capitalize;
+  transition: 0.5s;
+}
+
+.navbar-responsive .collapse .nav-link:hover {
+  background: #75d0f3;
+  color: black;
+}
+
+.navbar-responsive .icons-col a {
+  position: relative;
+  color: black;
+  display: inherit;
+  font-size: 25px;
+}
+
+.navbar-responsive .icons-col button {
+  background: none;
+  border: none;
+  font-size: 23px;
+}
+
+.navbar-responsive .icons-col a .cart {
+  position: absolute;
+  background: black;
+  color: white;
+  min-width: 16px;
+  height: 16px;
+  border-radius: 16px;
+  line-height: 17px;
+  right: 40px;
+  top: 0px;
+  font-size: 11px;
+}
+
+.navbar-responsive .navbar-nav a {
+  position: relative;
+  color: black;
+  font-size: 13px;
+  font-weight: 400;
+  text-transform: uppercase;
+  position: relative;
+  line-height: 40px;
+  /*padding: 0 15px;*/
+  display: flex;
+  align-items: center;
+  margin-left: 12px;
+}
+
+.navbar-responsive .navbar-nav a span {
+  position: absolute;
+  top: -10px;
+  left: 55%;
+  font-size: 8px;
+  background-color: green;
+  display: inline-block;
+  padding: 3px 4px;
+  vertical-align: middle;
+  color: white;
+  line-height: 1;
+  z-index: 4;
+}
+
+.navbar-responsive .navbar-nav a span::after {
+  content: "";
+  width: 0;
+  height: 0;
+  position: absolute;
+  display: inline-block;
+  height: 0;
+  width: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-left: 6px solid green;
+  top: 7px;
+  left: 3px;
+}
+
+.navbar-responsive .search-popup {
+  width: 100%;
+  padding: 40px 50px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  background-color: white;
+  text-align: left;
+  opacity: 0;
+  display: none;
+  transform: translateY(100%);
+}
+
+.navbar-responsive .search-popup button {
+  background: none;
+  border: none;
+}
+
+.navbar-responsive .search-popup .closeSearch {
+  position: absolute;
+  color: black;
+  font-size: 17px;
+  top: 10px;
+  right: 20px;
+}
+
+.navbar-responsive .search-popup h4 {
+  font-weight: 800;
+  color: black;
+  font-size: 16px;
+}
+
+.navbar-responsive .input-group .form-control {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-radius: 0;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.navbar-responsive .input-group .btn {
+  border: none;
+}
+
+.navbar-responsive .input-group .form-control::placeholder {
+  font-size: 12px;
+}
+
+.navbar-responsive .search-popup-none {
+  opacity: 1;
+  display: block;
+  transform: translateY(0);
+}
+
+/* start media */
+@media (min-width: 0px) and (max-width: 428px) {
+
+  .banner .navbar-brand {
+    margin: initial;
+  }
+
+  h2 {
+    font-size: 2em;
+  }
+
+  p {
+    font-size: 1em;
+  }
+
+  .sci {
+    bottom: 105px;
+    gap: 70px;
+  }
+
+  .img-logo {
+    max-width: 72%;
+  }
+
+  .content {
+
+    margin-bottom: 110px;
+  }
+
+  .banner header {
+    padding: 16px 19px;
+  }
+
+  .banner {
+    padding: 26px;
+  }
+
+  .banner .checkbtn {
+    display: block;
+  }
+
+  .banner .link {
+    display: none;
+  }
+
+  .navbar-responsive.active {
+    left: 0;
+  }
+
+  .navbar-responsive .navbar-nav .nav-link {
+    line-height: 0;
+  }
+
+  .navbar-responsive .navbar-nav {
+    padding: 53px 10px;
+  }
+}
+
+@media (min-width: 429px) and (max-width: 834px) {
+  .navbar-responsive .navbar-nav .nav-link {
+    line-height: 0;
+  }
+
+  .navbar-responsive .navbar-nav {
+    padding: 53px 10px;
+  }
+
+  .banner .navbar-brand {
+    margin: initial;
+  }
+
+  h2 {
+    font-size: 3em;
+  }
+
+  p {
+    font-size: 1.5em;
+    margin-top: 57px;
+  }
+
+  .sci {
+    bottom: 157px;
+    gap: 131px;
+  }
+
+  .content {
+
+    margin-bottom: 420px;
+  }
+
+  .banner header {
+    padding: 44px 66px;
+  }
+
+  .banner {
+    padding: 87px;
+  }
+
+  .banner .checkbtn {
+    display: block;
+  }
+
+  .banner .link {
+    display: none;
+  }
+
+  .navbar-responsive.active {
+    left: 0;
+  }
+
+  .sci li a {
+    font-size: 3.5em;
+  }
+
+  .men {
+    max-width: 635px;
+
+  }
+
+  .logo {
+
+    font-size: 2.5em;
+
+  }
+
+  label .fa {
+    font-size: 2em;
+  }
+}
+
+/* end media */
 </style>
   

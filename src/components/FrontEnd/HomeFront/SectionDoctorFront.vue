@@ -2,7 +2,7 @@
   <section class="section section-doctor">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-lg-4">
+        <div class="col-lg-4 top-res">
           <div class="section-header aos aos-init aos-animate mb-3" data-aos="fade-up">
             <h2>Book Our Doctor</h2>
             <p>Lorem Ipsum is simply dummy text</p>
@@ -24,7 +24,7 @@
         </div>
         <div class="col-lg-8">
           <div class="row">
-            <div class="col-md-3" v-for="item in getDoctors.data" :key="item">
+            <div class="col-md-6 col-lg-4" v-for="item in getDoctors.data" :key="item">
               <div class="card" style="width: 100%">
                 <img src="https://www.pngitem.com/pimgs/m/515-5158817_telemedicine-doctor-hd-png-download.png"
                   class="card-img-top p-3" alt="..." />
@@ -115,13 +115,14 @@ export default {
     return {
       status: "active",
       params: {
-        limit_doctors: 4,
+        limit_doctors: 3,
       },
     };
   },
   watch: {
     params: {
       handler() {
+        // Appeler la méthode "fetchDoctors" avec les paramètres mis à jour
         this.fetchDoctors(this.params);
       },
       deep: true,
@@ -138,6 +139,7 @@ export default {
     }),
   },
   mounted() {
+    // Appeler la méthode "fetchDoctors" lors du montage du composant
     this.fetchDoctors(this.params);
   },
 };
@@ -159,6 +161,10 @@ p.speciality {
   color: #757575;
   margin-bottom: 5px;
   min-height: 40px;
+}
+
+.pro-content .title {
+  font-size: 20px;
 }
 
 .available-info {
@@ -242,5 +248,41 @@ p.speciality {
 
 .about-content a:hover {
   background-color: #17a2b8;
+}
+
+
+/* start media */
+@media (min-width: 0px) and (max-width: 428px) {
+  .section-doctor {
+    padding: 20px 0;
+    text-align: center;
+  }
+
+  .about-content a {
+    margin-bottom: 37px;
+  }
+
+  .card-body {
+    text-align: left;
+  }
+
+  .card-img-top {
+    height: 296px;
+  }
+}
+
+@media (min-width: 429px) and (max-width: 834px) {
+  .top-res {
+    text-align: center;
+    margin-bottom: 35px;
+  }
+
+  .card-img-top {
+    height: 297px;
+  }
+
+  p.speciality {
+    margin-top: 0;
+  }
 }
 </style>

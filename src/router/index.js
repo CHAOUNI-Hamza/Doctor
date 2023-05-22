@@ -1,8 +1,13 @@
 import { createRouter, createWebHistory } from "vue-router";
-import HomeView from "../views/HomeView.vue";
 import store from "@/store";
 
 const routes = [
+  {
+    path: '/:pathMatch(.*)*', component: () =>
+      import(
+    /* webpackChunkName: "PageNotFound" */ "../views/FrontEnd/PageNotFound"
+      ),
+  },
   {
     path: "/doctor-dashboard",
     name: "doctordashboard",
@@ -142,7 +147,7 @@ const routes = [
     }
   },
   {
-    path: "/Doctors/:id",
+    path: "/doctors/:id",
     name: "invoicesOneFront",
     component: () =>
       import(
@@ -173,13 +178,23 @@ const routes = [
   },
   {
     path: "/admin",
-    //name: "dashboard",
-    /*component: () =>
-      import(
-        /* webpackChunkName: "dashboard" */ //"../views/BackEnd/DashboardBack"
-    //)
-
     children: [
+      {
+        path: "reset-password-admin/:token",
+        name: "resetpasswordadmin",
+        component: () =>
+          import(
+            /* webpackChunkName: "forgot-password" */ "../views/FrontEnd/ResetPasswordAdmin"
+          ),
+      },
+      {
+        path: "forgot-password-admin",
+        name: "forgotpasswordadmin",
+        component: () =>
+          import(
+            /* webpackChunkName: "forgot-password" */ "../views/FrontEnd/ForgoutPasswordAdmin"
+          ),
+      },
       {
         path: "appointments",
         name: "appointments",
@@ -202,6 +217,13 @@ const routes = [
           import(
               /* webpackChunkName: "specialities" */ "../views/BackEnd/SpecialitiesBack"
           ),
+        beforeEnter: (to, from, next) => {
+          if (!store.getters["Auth/authenticated"]) {
+            return next({ name: "loginadmin" });
+          }
+
+          next();
+        }
       },
       {
         path: "patients",
@@ -210,12 +232,26 @@ const routes = [
           import(
               /* webpackChunkName: "patients" */ "../views/BackEnd/PatientsBack"
           ),
+        beforeEnter: (to, from, next) => {
+          if (!store.getters["Auth/authenticated"]) {
+            return next({ name: "loginadmin" });
+          }
+
+          next();
+        }
       },
       {
         path: "doctors",
         name: "doctors",
         component: () =>
           import(/* webpackChunkName: "doctors" */ "../views/BackEnd/DoctorsBack"),
+        beforeEnter: (to, from, next) => {
+          if (!store.getters["Auth/authenticated"]) {
+            return next({ name: "loginadmin" });
+          }
+
+          next();
+        }
       },
       {
         path: "settings",
@@ -224,12 +260,26 @@ const routes = [
           import(
               /* webpackChunkName: "settings" */ "../views/BackEnd/SettingsBack"
           ),
+        beforeEnter: (to, from, next) => {
+          if (!store.getters["Auth/authenticated"]) {
+            return next({ name: "loginadmin" });
+          }
+
+          next();
+        }
       },
       {
         path: "reviews",
         name: "reviews",
         component: () =>
           import(/* webpackChunkName: "settings" */ "../views/BackEnd/ReviewsBack"),
+        beforeEnter: (to, from, next) => {
+          if (!store.getters["Auth/authenticated"]) {
+            return next({ name: "loginadmin" });
+          }
+
+          next();
+        }
       },
       {
         path: "transactions",
@@ -238,6 +288,13 @@ const routes = [
           import(
               /* webpackChunkName: "settings" */ "../views/BackEnd/TransactionsBack"
           ),
+        beforeEnter: (to, from, next) => {
+          if (!store.getters["Auth/authenticated"]) {
+            return next({ name: "loginadmin" });
+          }
+
+          next();
+        }
       },
       {
         path: "pharmacies",
@@ -246,6 +303,13 @@ const routes = [
           import(
               /* webpackChunkName: "settings" */ "../views/BackEnd/PharmaciesBack"
           ),
+        beforeEnter: (to, from, next) => {
+          if (!store.getters["Auth/authenticated"]) {
+            return next({ name: "loginadmin" });
+          }
+
+          next();
+        }
       },
       {
         path: "pharmacies/category",
@@ -254,13 +318,27 @@ const routes = [
           import(
               /* webpackChunkName: "settings" */ "../views/BackEnd/CategoryPharmaciesBack"
           ),
+        beforeEnter: (to, from, next) => {
+          if (!store.getters["Auth/authenticated"]) {
+            return next({ name: "loginadmin" });
+          }
+
+          next();
+        }
       },
       {
         path: "profile",
         name: "profile",
         component: () =>
           import(/* webpackChunkName: "profile" */ "../views/BackEnd/ProfileBack"),
-      },
+        beforeEnter: (to, from, next) => {
+          if (!store.getters["Auth/authenticated"]) {
+            return next({ name: "loginadmin" });
+          }
+
+          next();
+        }
+      }
     ]
   },
   {

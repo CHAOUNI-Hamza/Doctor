@@ -74,23 +74,10 @@
                         <td>{{ doctor.appointments_count }}</td>
                         <td>300.00 DH</td>
                         <td class="text-left">
-                          <span @click="status = 'inactive'">
-                            <input id="s1" type="checkbox" class="switch" />
-                          </span>
-
-                          <!--  <div>
-                            <label>
-                              <input type="radio" value="active" v-model="doctor.status" />
-                              Active
-                            </label>
-                            <label>
-                              <input type="radio" value="inactive" v-model="doctor.status" />
-                              Inactive
-                            </label>
-                            <button @click="updateStatus(doctor.id)">Update</button>
-                          </div>
-
-                          <toggle-button @click="handleChange" />-->
+                          <button style="padding: 0 10px;" v-if="doctor.status == 'active'" class="btn btn-success"
+                            @click="updateDoctorStatus(doctor.id, 'inactive')">Active</button>
+                          <button style="padding: 0 10px;" v-if="doctor.status == 'inactive'" class="btn btn-danger"
+                            @click="updateDoctorStatus(doctor.id, 'active')">InActive</button>
                         </td>
                       </tr>
                       <tr v-if="getDoctors.data?.length <= 0">
@@ -131,7 +118,7 @@
 </template>
 <script>
 import { mapGetters, mapActions } from "vuex";
-import axios from "../../axios.config";
+import axios from "axios";
 import ToggleButton from "vue-js-toggle-button";
 export default {
   components: {
@@ -139,17 +126,21 @@ export default {
   },
   data() {
     return {
-      status: "active",
       params: {
         search_by: "Search by...",
         value: "",
         page: 1,
       },
       value: true,
+      UpdateStatus: {
+        id: '',
+        status: ''
+      }
     };
   },
   watch: {
     params: {
+      // Surveiller les changements des paramètres de recherche
       handler() {
         this.fetchDoctors(this.params);
       },
@@ -158,32 +149,35 @@ export default {
   },
   computed: {
     ...mapGetters({
+      // Récupérer les données des médecins depuis le store
       getDoctors: "Doctors/getDoctors",
       getDoctorsTotal: "Doctors/getDoctorsTotal",
       getDoctorsLastPage: "Doctors/getDoctorsLastPage",
     }),
   },
   methods: {
-    handleChange() {
-      console.log("Toggle button value:");
-    },
-    test() {
-      console.log("ggfdgf");
-    },
-    async updateStatus(id) {
-      try {
-        const response = await axios.post(`/doctors/${id}/update-status`, {
-          status: this.status,
-        });
-      } catch (error) {
-        console.error(error);
-      }
-    },
     ...mapActions({
+      // Actions Vuex pour récupérer les médecins et mettre à jour le statut
       fetchDoctors: "Doctors/fetchDoctors",
+      updateStatus: "Doctors/updateStatus",
     }),
+    handleChange() {
+      //
+    },
+    // Mettre à jour les informations du statut
+    updateDoctorStatus(id, status) {
+      // Mettre à jour les informations du statut
+      this.UpdateStatus = {
+        id: id,
+        status: status
+      }
+      // Appeler l'action Vuex pour mettre à jour le statut du médecin
+      this.updateStatus(this.UpdateStatus)
+    }
+
   },
   mounted() {
+    // Au chargement du composant, récupérer les médecins
     this.fetchDoctors(this.params);
   },
 };

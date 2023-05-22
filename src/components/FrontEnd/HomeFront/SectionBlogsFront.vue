@@ -11,7 +11,7 @@
       <div class="row">
         <div class="col-lg-12">
           <div class="row">
-            <div class="col-md-3" v-for="item in 4" :key="item">
+            <div class="col-lg-3 col-md-6" v-for="item in 4" :key="item">
               <div class="card" style="width: 100%">
                 <img src="https://www.pngitem.com/pimgs/m/515-5158817_telemedicine-doctor-hd-png-download.png"
                   class="card-img-top p-3" alt="..." />
@@ -176,4 +176,22 @@ p.speciality {
 
 .about-content a:hover {
   background-color: #17a2b8;
-}</style>
+}
+
+/* start media */
+@media (min-width: 0px) and (max-width: 428px) {
+  .section-doctor {
+    padding: 20px 0;
+  }
+}
+
+@media (min-width: 429px) and (max-width: 834px) {
+  p.speciality {
+    margin-top: 0;
+  }
+
+  .pro-content p {
+    margin-top: 17px;
+  }
+}
+</style>

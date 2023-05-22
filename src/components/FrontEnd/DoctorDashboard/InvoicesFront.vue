@@ -62,6 +62,7 @@ export default {
   watch: {
     params: {
       handler() {
+        // Appelle la fonction 'fetchAppointments' avec les paramètres mis à jour
         this.fetchAppointments(this.params);
       },
       deep: true,
@@ -80,6 +81,7 @@ export default {
     })
   },
   mounted() {
+    // Appelle la fonction 'fetchAppointments' avec les paramètres initiaux lors du montage du composant
     this.fetchAppointments(this.params);
 
   },

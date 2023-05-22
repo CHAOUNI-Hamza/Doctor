@@ -2,12 +2,12 @@
   <div class="appointment">
     <div class="appointment-list d-flex align-items-center mb-3" v-for="appointment in getAppointments.data" :key="item">
       <div class="profile-info-widget d-flex align-items-center">
-        <a class="booking-doc-img" href="/template/doctor/patient-profile">
+        <a class="booking-doc-img" href="#">
           <img :src="appointment.patient.photo" alt="User" />
         </a>
         <div class="profile-det-info">
           <h3>
-            <a href="/template/doctor/patient-profile">{{ appointment.patient.name }}</a>
+            <a href="#">{{ appointment.patient.name }}</a>
           </h3>
           <div class="patient-details">
             <h5>
@@ -30,22 +30,22 @@
         </div>
       </div>
       <div class="appointment-action">
-        <a class="btn btn-sm bg-success" data-toggle="modal" data-target="#exampleModal"
-          href="/template/doctor/appointments#0">
+        <a class="btn btn-sm bg-success" data-toggle="modal" :data-target="'#exampleModal' + appointment.id" href="#">
           <font-awesome-icon icon="fa-solid fa-eye" class="mr-1" />
           View
         </a>
-        <a class="btn btn-sm bg-info ml-2" href="/template/doctor/appointments#0">
+        <a class="btn btn-sm bg-info ml-2" href="#">
           <font-awesome-icon icon="fa-solid fa-clipboard-check" class="mr-1" />
           Accept
         </a>
-        <a class="btn btn-sm bg-warning ml-2" href="/template/doctor/appointments#0">
+        <a class="btn btn-sm bg-warning ml-2" href="#">
           <font-awesome-icon icon="fa-solid fa-xmark" class="mr-1" />
           Cancel
         </a>
       </div>
       <!-- Modal -->
-      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal fade" :id="'exampleModal' + appointment.id" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
@@ -77,15 +77,15 @@
                 </li>
                 <li>
                   <span class="title">Status:</span>
-                  <span class="text d-block">Completed</span>
+                  <span class="text d-block">{{ appointment.status }}</span>
                 </li>
                 <li>
                   <span class="title">Confirm Date:</span>
-                  <span class="text d-block">29 Jun 2019</span>
+                  <span class="text d-block">{{ appointment.created_at }}</span>
                 </li>
                 <li>
                   <span class="title">Paid Amount</span>
-                  <span class="text d-block">$450</span>
+                  <span class="text d-block">{{ appointment.amount }}</span>
                 </li>
               </ul>
             </div>
@@ -117,34 +117,37 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   data() {
     return {
-      params: {
-        app_to_doctor: 1,
-
-      },
+      params: {},
     };
   },
   watch: {
+    // Surveillance de la propriété "params"
     params: {
       handler() {
-        this.fetchAppointments(this.params);
+        // Appel de la fonction fetchAppointments lorsque la propriété "params" change
+        this.fetchAppointmentsDoctor(this.params);
       },
       deep: true,
     },
   },
   computed: {
+    // Utilisation des getters du store
     ...mapGetters({
       getAppointments: "Appointments/getAppointments",
       getAppointmentsTotal: "Appointments/getAppointmentsTotal",
       getAppointmentsLastPage: "Appointments/getAppointmentsLastPage",
+      getUser: "Doctors/getUser"
     }),
   },
   methods: {
+    // Utilisation des actions du store
     ...mapActions({
-      fetchAppointments: "Appointments/fetchAppointments",
-    })
+      fetchAppointmentsDoctor: "Appointments/fetchAppointmentsDoctor",
+    }),
   },
   mounted() {
-    this.fetchAppointments(this.params);
+    // Appel initial de la fonction fetchAppointments avec les paramètres actuels
+    this.fetchAppointmentsDoctor(this.params);
   },
 };
 </script>

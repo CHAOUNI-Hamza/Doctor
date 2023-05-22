@@ -8,28 +8,35 @@ export default {
     specialitiesLastPage: null,
   },
   mutations: {
+    // Mutation pour définir la dernière page des spécialités
     setspecialitiesLastPage(state, LastPage) {
       state.specialitiesLastPage = LastPage;
     },
+    // Mutation pour définir la liste des spécialités
     setSpecialities(state, specialities) {
       state.specialities = specialities;
     },
+    // Mutation pour définir le total des spécialités
     setTotalSpecialitie(state, total) {
       state.specialitiesTotal = total;
     },
   },
   getters: {
+    // Getter pour obtenir la liste des spécialités
     getSpecialities(state) {
       return state.specialities;
     },
+    // Getter pour obtenir le total des spécialités
     getSpecialitiesTotal(state) {
       return state.specialitiesTotal;
     },
+    // Getter pour obtenir la dernière page des spécialités
     getSpecialitiesLastPage(state) {
       return state.specialitiesLastPage;
     },
   },
   actions: {
+    // Action pour récupérer les spécialités
     async fetchSpecialities({ commit }, params) {
       try {
         const response = await axios.get("/specialties", { params });
@@ -40,6 +47,7 @@ export default {
         console.log(error);
       }
     },
+    // Action pour créer une spécialité
     async createSpecialitie({ dispatch }, params) {
       try {
         const formData = new FormData();
@@ -63,7 +71,8 @@ export default {
         console.log(error);
       }
     },
-    async updateSpecialitie({ _ }, params) {
+    // Action pour mettre à jour une spécialité
+    async updateSpecialitie({ dispatch }, params) {
       try {
         const formData = new FormData();
         formData.append("photo", params.photo);
@@ -80,11 +89,18 @@ export default {
           showConfirmButton: false,
           timer: 1500,
         });
+        return dispatch("fetchSpecialities", params = {
+          order_by: "id",
+          name: "",
+          page: 1,
+          pagination: 10,
+        })
       } catch (error) {
         console.error(error);
       }
     },
-    async deleteSpecialitie({ _ }, id) {
+    // Action pour supprimer une spécialité
+    async deleteSpecialitie({ dispatch }, params) {
       try {
         const result = await Swal.fire({
           title: "Are you sure?",
@@ -96,9 +112,15 @@ export default {
           confirmButtonText: "Yes, delete it!",
         });
         if (result.isConfirmed) {
-          await axios.delete(`/specialties/${id}`);
+          await axios.delete(`/specialties/${params}`, params);
           Swal.fire("Deleted!", "Your file has been deleted.", "success");
         }
+        return dispatch("fetchSpecialities", params = {
+          order_by: "id",
+          name: "",
+          page: 1,
+          pagination: 10,
+        })
       } catch (error) {
         console.log(error);
       }

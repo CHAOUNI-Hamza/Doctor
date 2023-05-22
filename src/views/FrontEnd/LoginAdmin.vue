@@ -24,7 +24,8 @@
                                     </div>
                                     <div class="error-message" v-if="getErrorMessage">{{ getErrorMessage }}</div>
                                     <div class="text-end">
-                                        <router-link :to="{ name: 'forgotpassword' }" class="forgot-link">Forgot Password
+                                        <router-link :to="{ name: 'forgotpasswordadmin' }" class="forgot-link">Forgot
+                                            Password
                                             ?</router-link>
                                     </div>
                                     <button v-if="v$.$invalid" type="submit"

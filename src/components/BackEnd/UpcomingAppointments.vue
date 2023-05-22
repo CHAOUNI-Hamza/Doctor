@@ -90,7 +90,7 @@
               <td>{{ appointment.amount }} DH</td>
               <td>
                 <span class="badge bg-badge-grey" :class="[
-                  { 'text-danger': appointment.status == 'cancelled' },
+                  { 'text-danger': appointment.status == 'cancelled', 'text-warning': appointment.status == 'pending' },
                   'text-success',
                 ]"><font-awesome-icon icon="fa-solid fa-circle" class="mr-1" />
                   {{ appointment.status }}</span>
@@ -132,14 +132,17 @@ export default {
     };
   },
   watch: {
+    // Surveillance de la propriété "params"
     params: {
       handler() {
+        // Appel de la fonction fetchAppointments lorsque la propriété "params" change
         this.fetchAppointments(this.params);
       },
       deep: true,
     },
   },
   computed: {
+    // Utilisation des getters du store
     ...mapGetters({
       getAppointments: "Appointments/getAppointments",
       getAppointmentsTotal: "Appointments/getAppointmentsTotal",
@@ -147,11 +150,13 @@ export default {
     }),
   },
   methods: {
+    // Utilisation des actions du store
     ...mapActions({
       fetchAppointments: "Appointments/fetchAppointments",
     }),
   },
   mounted() {
+    // Appel initial de la fonction fetchAppointments avec les paramètres actuels
     this.fetchAppointments(this.params);
   },
 };

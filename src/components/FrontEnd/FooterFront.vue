@@ -5,7 +5,7 @@
       <footer class="site-footer">
         <div class="footer-top">
           <div class="row">
-            <div class="col-lg-3 col-md-6 lign">
+            <div class="col-lg-3 col-md-3 lign">
               <div class="footer-block">
                 <p class="footer-logo" style="font-size: 20px;">
                   <img class="img-logo"
@@ -32,7 +32,7 @@
                 </ul>
               </div>
             </div>
-            <div class="col-lg-3 col-md-6 lign">
+            <div class="col-lg-3 col-md-3 lign">
               <div class="footer-links">
                 <h4 @click="showInformation = !showInformation" class="font-weight-bold">For Patients</h4>
                 <Transition>
@@ -45,7 +45,7 @@
                 </Transition>
               </div>
             </div>
-            <div class="col-lg-3 col-md-6 lign">
+            <div class="col-lg-3 col-md-3 lign">
               <div class="footer-links">
                 <h4 class="font-weight-bold" @click="showQuickShop = !showQuickShop">For Doctors</h4>
                 <Transition>
@@ -58,7 +58,7 @@
                 </Transition>
               </div>
             </div>
-            <div class="col-lg-3 col-md-6 lign">
+            <div class="col-lg-3 col-md-3 lign">
               <div class="footer-newletter">
                 <h4 class="font-weight-bold">Contact Us</h4>
                 <div class="footer-contact-info">
@@ -196,6 +196,7 @@ export default {
     }
   },
   methods: {
+    // Fonction pour rendre le pied de page réactif
     footerResponsive() {
       if (window.innerWidth <= 562) {
         this.showInformation = false
@@ -205,6 +206,7 @@ export default {
     }
   },
   mounted() {
+    // Appeler la fonction pour rendre le pied de page réactif lors du montage du composant
     this.footerResponsive()
   }
 }
@@ -262,6 +264,37 @@ a {
 
 .links:hover a {
   margin-left: 10px;
+}
+
+/* start media */
+@media (min-width: 0px) and (max-width: 428px) {
+  .footer {
+    text-align: center;
+  }
+
+  .social-icons {
+    margin-left: 105px;
+    margin-bottom: 10px;
+  }
+
+  .img-logo {
+    margin-bottom: 27px;
+  }
+
+  .footer-contact-info {
+    margin-top: 30px;
+  }
+
+  .footer-address {
+    margin-top: 0;
+  }
+}
+
+@media (min-width: 429px) and (max-width: 834px) {
+  .footer p {
+    margin-top: 0;
+    font-size: 12px;
+  }
 }
 </style>
     

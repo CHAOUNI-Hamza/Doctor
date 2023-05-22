@@ -129,7 +129,7 @@
 </template>
 <script>
 import { mapActions } from "vuex";
-import axios from "../../axios.config";
+import axios from "axios";
 
 export default {
   data() {
@@ -149,16 +149,12 @@ export default {
       },
     };
   },
-  computed: {
-    /* ...mapGetters({
-      get: "Settings/get",
-    }),*/
-  },
   methods: {
+    // Récupérer les données depuis l'API en utilisant axios
     async fetch() {
       try {
+        // Affecter les données récupérées à la propriété data
         const response = await axios.get(`/settings/1`);
-        console.log(response.data.data);
         this.data = {
           paypal_tokenization_key: response.data.data.paypal_tokenization_key,
           paypal_merchant_id: response.data.data.paypal_merchant_id,
@@ -175,10 +171,12 @@ export default {
         console.log(error);
       }
     },
+    // Gérer la sélection d'un fichier
     onFileSelected(event) {
       this.data.photo = event.target.files[0];
       this.previewImage();
     },
+    // Prévisualiser l'image sélectionnée
     previewImage() {
       const reader = new FileReader();
       reader.readAsDataURL(this.data.photo);
@@ -186,10 +184,13 @@ export default {
         this.imageUrl = event.target.result;
       };
     },
+    // Utiliser l'action update pour mettre à jour les données
     ...mapActions({
       update: "Settings/update",
     }),
+    // Appeler l'action update avec les données actuelles
     updateForm() {
+      // Appeler la fonction fetch pour récupérer les données
       this.update(this.data);
     },
   },

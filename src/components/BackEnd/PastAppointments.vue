@@ -124,6 +124,7 @@ export default {
     };
   },
   watch: {
+    // Observer les changements dans les paramètres et appeler la fonction fetchAppointments
     params: {
       handler() {
         this.fetchAppointments(this.params);
@@ -132,6 +133,7 @@ export default {
     },
   },
   computed: {
+    // Récupérer les données depuis le store via les getters
     ...mapGetters({
       getAppointments: "Appointments/getAppointments",
       getAppointmentsTotal: "Appointments/getAppointmentsTotal",
@@ -139,11 +141,13 @@ export default {
     }),
   },
   methods: {
+    // Récupérer les rendez-vous en utilisant l'action fetchAppointments
     ...mapActions({
       fetchAppointments: "Appointments/fetchAppointments",
     }),
   },
   mounted() {
+    // Appeler la fonction fetchAppointments avec les paramètres actuels
     this.fetchAppointments(this.params);
   },
 };

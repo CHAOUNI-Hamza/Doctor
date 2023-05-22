@@ -81,6 +81,7 @@ export default {
     }),
   },
   mounted() {
+    // Appeler la méthode "fetchSpecialities" lors du montage du composant
     this.fetchSpecialities();
   },
 };
@@ -141,4 +142,13 @@ export default {
   width: 150px;
   height: 150px;
 }
+
+/* start media */
+@media (min-width: 0px) and (max-width: 428px) {
+  .section-specialities {
+    padding: 12px 0;
+  }
+}
+
+@media (min-width: 429px) and (max-width: 834px) {}
 </style>

@@ -1,18 +1,13 @@
 <template>
-    <NavbarFront />
     <div class="content">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-8 offset-md-2">
                     <div class="account-content">
-                        <div class="row align-items-center justify-content-center">
-                            <div class="col-md-7 col-lg-6 login-left">
-                                <img src="https://img.freepik.com/free-vector/doctors-concept-illustration_114360-1515.jpg?w=2000"
-                                    class="img-fluid" alt="Doccure Login">
-                            </div>
+                        <div class="row justify-content-center">
                             <div class="col-md-12 col-lg-6 login-right">
                                 <div class="login-header">
-                                    <h3>Login <span>Doctor</span></h3>
+                                    <h3>Login <span style="font-weight: 300;">Admin</span></h3>
                                 </div>
                                 <form @submit.prevent="submit()">
                                     <div class="form-group form-focus">
@@ -27,41 +22,27 @@
                                             v-model="user.password" type="password" class="form-control floating">
                                         <label class="focus-label">Password</label>
                                     </div>
+                                    <div class="form-group form-focus">
+                                        <input @blur="v$.user.password_confirmation.$touch"
+                                            :class="{ 'text-fields-error': v$.user.password_confirmation.$error === true }"
+                                            v-model="user.password_confirmation" type="password"
+                                            class="form-control floating">
+                                        <label class="focus-label">Password Confirmation</label>
+                                    </div>
                                     <div class="error-message" v-if="getErrorMessage">{{ getErrorMessage }}</div>
                                     <div class="text-end">
-                                        <router-link :to="{ name: 'forgotpassword' }" class="forgot-link">Forgot Password
+                                        <router-link :to="{ name: 'forgotpasswordadmin' }" class="forgot-link">Forgot
+                                            Password
                                             ?</router-link>
                                     </div>
                                     <button v-if="v$.$invalid" type="submit"
                                         class="btn-primary w-100 btn-lg login-btn btn btn-save disable">
-                                        Login
+                                        Reset Password
                                     </button>
                                     <button v-if="!v$.$invalid" type="submit"
                                         class="tn-primary w-100 btn-lg login-btn btn btn-save">
-                                        Login
+                                        Reset Password
                                     </button>
-                                    <div class="login-or">
-                                        <span class="or-line"></span>
-                                        <span class="span-or">or</span>
-                                    </div>
-                                    <div class="row form-row social-login">
-                                        <div class="col-6">
-                                            <a href="#0" class="btn btn-facebook w-100">
-                                                <font-awesome-icon class="mr-1" icon="fa-brands fa-facebook-f" />
-                                                Login
-                                            </a>
-                                        </div>
-                                        <div class="col-6">
-                                            <a type="submit" class="btn btn-google w-100">
-                                                <font-awesome-icon class="mr-1" icon="fa-brands fa-google" />
-                                                Login
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="text-center dont-have">Don’t have an account?
-                                        <router-link :to="{ name: 'registerfront' }">
-                                            Register</router-link>
-                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -70,7 +51,6 @@
             </div>
         </div>
     </div>
-    <FooterFront />
     <div class="overlay" v-if="getOverLay">
         <div class="overlay__inner">
             <div class="overlay__content"><span class="spinner"></span></div>
@@ -92,9 +72,8 @@ export default {
             user: {
                 email: "",
                 password: "",
-            },
-            forgotpassword: {
-                email: "",
+                password_confirmation: "",
+                token: this.$route.params.token,
             },
             errorMessage: null,
         }
@@ -102,34 +81,35 @@ export default {
     validations() {
         return {
             user: {
-                password: {
+                email: {
                     required,
                     minLength: minLength(5),
                     maxLength: maxLength(30),
                     $autoDirty: true,
                 },
-                email: {
+                password: {
                     required,
-                    email,
-                    minLength: minLength(10),
-                    maxLength: maxLength(40),
                     $autoDirty: true,
                 },
+                password_confirmation: {
+                    required,
+                    $autoDirty: true,
+                }
             }
         };
     },
     methods: {
         ...mapActions({
-            signIn: "Doctors/signIn",
+            ResetPassword: "Auth/ResetPassword",
         }),
         submit() {
-            this.signIn(this.user);
+            this.ResetPassword(this.user);
         },
     },
     computed: {
         ...mapGetters({
-            getErrorMessage: "Doctors/getErrorMessage",
-            getOverLay: "Doctors/getOverLay"
+            getErrorMessage: "Auth/getErrorMessage",
+            getOverLay: "Auth/getOverLay"
         }),
     },
 }
@@ -182,7 +162,8 @@ export default {
 }
 
 .login-btn {
-    background: #00e7ff;
+    background: rgb(63, 237, 251);
+    background: radial-gradient(circle, rgba(63, 237, 251, 1) 0%, rgba(0, 0, 0, 1) 100%);
     border: none;
 }
 
@@ -313,6 +294,25 @@ form .error-message {
     100% {
         transform: rotate(360deg);
     }
+}
+
+.content {
+    background: rgb(63, 237, 251);
+    background: radial-gradient(circle, rgba(63, 237, 251, 1) 0%, rgba(0, 0, 0, 1) 100%);
+    height: 100vh;
+}
+
+.login-right {
+    background: white;
+    position: absolute;
+    top: 0%;
+    /* position the top  edge of the element at the middle of the parent */
+    left: 0%;
+    /* position the left edge of the element at the middle of the parent */
+
+    transform: translate(50%, 50%);
+    /* This is a shorthand of
+                                         translateX(-50%) and translateY(-50%) */
 }
 </style>
   

@@ -115,16 +115,17 @@
                     <div class="form-group">
                       <label for="exampleInputEmail1">Speciality Name</label>
                       <input @blur="v$.data.name.$touch" :class="{
-                        'text-fields-error': v$.data.name.$error === true,
-                      }" v-model="data.name" type="text" class="form-control" id="exampleInputEmail1"
+                            'text-fields-error': v$.data.name.$error === true,
+                          }" v-model="data.name" type="text" class="form-control" id="exampleInputEmail1"
                         aria-describedby="emailHelp" placeholder="Speciality Name..." />
                     </div>
                     <div class="form-group card-upload" :class="{
-                      'text-fields-error': v$.data.photo.$error === true,
-                    }">
+                          'text-fields-error': v$.data.photo.$error === true,
+                        }">
                       <input @blur="v$.data.photo.$touch" :class="{
-                        'text-fields-error': v$.data.photo.$error === true,
-                      }" @change="onFileSelected" type="file" class="form-control-file" id="exampleFormControlFile1" />
+                            'text-fields-error': v$.data.photo.$error === true,
+                          }" @change="onFileSelected" type="file" class="form-control-file"
+                        id="exampleFormControlFile1" />
                     </div>
                     <div class="form-group show-image" v-if="imageUrl">
                       <img :src="imageUrl" alt="uploaded photo" />
@@ -159,16 +160,17 @@
                     <div class="form-group">
                       <label for="exampleInputEmail1">Speciality Name</label>
                       <input @blur="v$.data.name.$touch" :class="{
-                        'text-fields-error': v$.data.name.$error === true,
-                      }" v-model="data.name" type="text" class="form-control" id="exampleInputEmail1"
+                            'text-fields-error': v$.data.name.$error === true,
+                          }" v-model="data.name" type="text" class="form-control" id="exampleInputEmail1"
                         aria-describedby="emailHelp" placeholder="Speciality Name..." />
                     </div>
                     <div class="form-group card-upload" :class="{
-                      'text-fields-error': v$.data.photo.$error === true,
-                    }">
+                          'text-fields-error': v$.data.photo.$error === true,
+                        }">
                       <input @blur="v$.data.photo.$touch" :class="{
-                        'text-fields-error': v$.data.photo.$error === true,
-                      }" @change="onFileSelected" type="file" class="form-control-file" id="exampleFormControlFile1" />
+                            'text-fields-error': v$.data.photo.$error === true,
+                          }" @change="onFileSelected" type="file" class="form-control-file"
+                        id="exampleFormControlFile1" />
                     </div>
                     <div class="form-group show-image" v-if="imageUrl">
                       <img :src="imageUrl" alt="uploaded photo" />
@@ -202,7 +204,7 @@
 import { mapGetters, mapActions } from "vuex";
 import { required } from "@vuelidate/validators";
 import { useVuelidate } from "@vuelidate/core";
-import axios from "../../axios.config";
+import axios from "axios";
 
 export default {
   data() {
@@ -237,17 +239,19 @@ export default {
   watch: {
     params: {
       handler() {
+        // Surveille les changements des paramètres et appelle la fonction fetchSpecialities avec les nouveaux paramètres
         this.fetchSpecialities(this.params);
       },
       deep: true,
     },
   },
-
   methods: {
+    // Appelé lorsqu'un fichier est sélectionné dans l'input de type file
     onFileSelected(event) {
       this.data.photo = event.target.files[0];
       this.previewImage();
     },
+    // Affiche une prévisualisation de l'image sélectionnée
     previewImage() {
       const reader = new FileReader();
       reader.readAsDataURL(this.data.photo);
@@ -261,6 +265,7 @@ export default {
       createSpecialitie: "Specialities/createSpecialitie",
       updateSpecialitie: "Specialities/updateSpecialitie",
     }),
+    // Soumet le formulaire de création de spécialité après validation
     submitForm() {
       this.v$.$touch();
       if (!this.v$.$invalid) {
@@ -269,6 +274,7 @@ export default {
         $("#exampleModal").modal('hide');
       }
     },
+    // Soumet le formulaire de mise à jour de spécialité après validation
     updateForm() {
       this.v$.$touch();
       if (!this.v$.$invalid) {
@@ -277,6 +283,7 @@ export default {
         $("#exampleModal1").modal('hide');
       }
     },
+    // Réinitialise le formulaire
     resetForm() {
       this.data = {
         name: "..",
@@ -284,6 +291,7 @@ export default {
       };
       this.imageUrl = null;
     },
+    // Récupère les données d'une spécialité spécifique à partir de son identifiant
     async fetchSpecialitie(id) {
       const response = await axios.get(`/specialties/${id}/edit`);
       const specialitie = response.data.data;
@@ -296,6 +304,7 @@ export default {
     },
   },
   mounted() {
+    // Charge les spécialités initiales au moment du montage du composant
     this.fetchSpecialities(this.params);
   },
 };

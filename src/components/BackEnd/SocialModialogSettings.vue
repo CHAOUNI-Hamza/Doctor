@@ -3,36 +3,22 @@
     <div class="col-md-6">
       <div class="card">
         <div class="card-body">
-          <div
-            class="card-header mb-3 d-flex justify-content-between align-items-center">
+          <div class="card-header mb-3 d-flex justify-content-between align-items-center">
             <h5 class="card-title">Google Login Credential</h5>
-            <div
-              class="status-toggle d-flex justify-content-between align-items-center">
+            <div class="status-toggle d-flex justify-content-between align-items-center">
               <input id="s2" type="checkbox" class="switch" />
             </div>
           </div>
           <form @submit.prevent="updateForm">
             <div class="settings-form">
               <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label"
-                  >Client ID</label
-                >
-                <input
-                  v-model="data.google_client_id"
-                  type="text"
-                  class="form-control"
-                  id="exampleFormControlInput1"
+                <label for="exampleFormControlInput1" class="form-label">Client ID</label>
+                <input v-model="data.google_client_id" type="text" class="form-control" id="exampleFormControlInput1"
                   placeholder="" />
               </div>
               <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label"
-                  >Client Secret</label
-                >
-                <input
-                  v-model="data.google_client_secret"
-                  type="text"
-                  class="form-control"
-                  id="exampleFormControlInput1"
+                <label for="exampleFormControlInput1" class="form-label">Client Secret</label>
+                <input v-model="data.google_client_secret" type="text" class="form-control" id="exampleFormControlInput1"
                   placeholder="" />
               </div>
               <div class="mb-3">
@@ -50,36 +36,22 @@
     <div class="col-md-6">
       <div class="card">
         <div class="card-body">
-          <div
-            class="card-header mb-3 d-flex justify-content-between align-items-center">
+          <div class="card-header mb-3 d-flex justify-content-between align-items-center">
             <h5 class="card-title">Facebook</h5>
-            <div
-              class="status-toggle d-flex justify-content-between align-items-center">
+            <div class="status-toggle d-flex justify-content-between align-items-center">
               <input id="s2" type="checkbox" class="switch" />
             </div>
           </div>
           <form @submit.prevent="updateForm">
             <div class="settings-form">
               <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label"
-                  >App ID</label
-                >
-                <input
-                  v-model="data.facebook_app_id"
-                  type="text"
-                  class="form-control"
-                  id="exampleFormControlInput1"
+                <label for="exampleFormControlInput1" class="form-label">App ID</label>
+                <input v-model="data.facebook_app_id" type="text" class="form-control" id="exampleFormControlInput1"
                   placeholder="" />
               </div>
               <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label"
-                  >App Secret</label
-                >
-                <input
-                  v-model="data.facebook_app_secret"
-                  type="text"
-                  class="form-control"
-                  id="exampleFormControlInput1"
+                <label for="exampleFormControlInput1" class="form-label">App Secret</label>
+                <input v-model="data.facebook_app_secret" type="text" class="form-control" id="exampleFormControlInput1"
                   placeholder="" />
               </div>
               <div class="mb-3">
@@ -97,36 +69,22 @@
     <div class="col-md-6">
       <div class="card">
         <div class="card-body">
-          <div
-            class="card-header mb-3 d-flex justify-content-between align-items-center">
+          <div class="card-header mb-3 d-flex justify-content-between align-items-center">
             <h5 class="card-title">Twiter Login Credential</h5>
-            <div
-              class="status-toggle d-flex justify-content-between align-items-center">
+            <div class="status-toggle d-flex justify-content-between align-items-center">
               <input id="s2" type="checkbox" class="switch" />
             </div>
           </div>
           <form @submit.prevent="updateForm">
             <div class="settings-form">
               <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label"
-                  >Client ID</label
-                >
-                <input
-                  v-model="data.twitter_client_id"
-                  type="text"
-                  class="form-control"
-                  id="exampleFormControlInput1"
+                <label for="exampleFormControlInput1" class="form-label">Client ID</label>
+                <input v-model="data.twitter_client_id" type="text" class="form-control" id="exampleFormControlInput1"
                   placeholder="" />
               </div>
               <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label"
-                  >Client Secret</label
-                >
-                <input
-                  v-model="data.twitter_client_secret"
-                  type="text"
-                  class="form-control"
-                  id="exampleFormControlInput1"
+                <label for="exampleFormControlInput1" class="form-label">Client Secret</label>
+                <input v-model="data.twitter_client_secret" type="text" class="form-control" id="exampleFormControlInput1"
                   placeholder="" />
               </div>
               <div class="mb-3">
@@ -145,7 +103,7 @@
 </template>
 <script>
 import { mapActions } from "vuex";
-import axios from "../../axios.config";
+import axios from "axios";
 
 export default {
   data() {
@@ -161,16 +119,11 @@ export default {
       },
     };
   },
-  computed: {
-    /* ...mapGetters({
-      get: "Settings/get",
-    }),*/
-  },
   methods: {
+    // Fonction pour récupérer les données depuis l'API
     async fetch() {
       try {
         const response = await axios.get(`/settings/1`);
-        console.log(response.data.data);
         this.data = {
           google_client_id: response.data.data.google_client_id,
           google_client_secret: response.data.data.google_client_secret,
@@ -180,15 +133,18 @@ export default {
           twitter_client_secret: response.data.data.twitter_client_secret,
           facebook: response.data.data.facebook,
           twitter: response.data.data.twitter,
+          type: 'socialmodialog'
         };
       } catch (error) {
         console.log(error);
       }
     },
+    // Fonction appelée lorsqu'un fichier est sélectionné
     onFileSelected(event) {
       this.data.photo = event.target.files[0];
       this.previewImage();
     },
+    // Fonction pour prévisualiser l'image sélectionnée
     previewImage() {
       const reader = new FileReader();
       reader.readAsDataURL(this.data.photo);
@@ -199,11 +155,13 @@ export default {
     ...mapActions({
       update: "Settings/update",
     }),
+    // Fonction pour mettre à jour le formulaire
     updateForm() {
       this.update(this.data);
     },
   },
   mounted() {
+    // Appel de la fonction fetch lors du montage du composant
     this.fetch();
   },
 };
@@ -213,9 +171,11 @@ export default {
   font-weight: 600;
   font-size: 20px;
 }
+
 label {
   font-weight: 100 !important;
 }
+
 .upload-images {
   background: rgba(255, 255, 255, 0.8);
   border: 1px solid #e4e4e4;
@@ -228,35 +188,43 @@ label {
   align-items: center;
   position: relative;
 }
+
 .upload-size {
   width: 89px !important;
   height: 78px !important;
 }
+
 .upload-images img {
   max-height: 45px;
   width: auto;
 }
+
 .remove {
   position: absolute;
   top: 5px;
   right: 5px;
   color: red;
 }
+
 .btn {
   color: white;
   font-weight: bold;
 }
+
 .btn-update {
   background: #03a9f470;
   transition: 0.2s;
 }
+
 .btn-cancel {
   background: #ff5722a8;
   transition: 0.2s;
 }
+
 .btn-update:hover {
   background: #03a9f4;
 }
+
 .btn-cancel:hover {
   background: #ff5722;
 }

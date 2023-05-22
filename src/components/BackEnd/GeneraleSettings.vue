@@ -9,65 +9,35 @@
           <form @submit.prevent="updateForm">
             <div class="settings-form">
               <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label"
-                  >Email address</label
-                >
-                <input
-                  v-model="data.email"
-                  type="email"
-                  class="form-control"
-                  id="exampleFormControlInput1"
+                <label for="exampleFormControlInput1" class="form-label">Email address</label>
+                <input v-model="data.email" type="email" class="form-control" id="exampleFormControlInput1"
                   placeholder="email..." />
               </div>
               <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label"
-                  >Logo</label
-                >
+                <label for="exampleFormControlInput1" class="form-label">Logo</label>
                 <div class="custom-file">
-                  <input
-                    @change="onFileSelectedOne"
-                    type="file"
-                    class="custom-file-input"
-                    id="inputGroupFile01"
+                  <input @change="onFileSelectedOne" type="file" class="custom-file-input" id="inputGroupFile01"
                     aria-describedby="inputGroupFileAddon01" />
-                  <label class="custom-file-label" for="inputGroupFile01"
-                    >Choose logo</label
-                  >
+                  <label class="custom-file-label" for="inputGroupFile01">Choose logo</label>
                 </div>
-                <span class="font-weight-bold"
-                  >Recommended image size is 150px x 150px</span
-                >
+                <span class="font-weight-bold">Recommended image size is 150px x 150px</span>
                 <div class="upload-images" v-if="logo">
                   <img :src="logo" alt="" />
-                  <font-awesome-icon
-                    icon="fa-regular fa-circle-xmark"
-                    class="remove" />
+                  <font-awesome-icon icon="fa-regular fa-circle-xmark" class="remove" />
                 </div>
               </div>
               <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label"
-                  >Favicon</label
-                >
+                <label for="exampleFormControlInput1" class="form-label">Favicon</label>
                 <div class="custom-file mb-1">
-                  <input
-                    @change="onFileSelectedTwo"
-                    type="file"
-                    class="custom-file-input"
-                    id="inputGroupFile01"
+                  <input @change="onFileSelectedTwo" type="file" class="custom-file-input" id="inputGroupFile01"
                     aria-describedby="inputGroupFileAddon01" />
-                  <label class="custom-file-label" for="inputGroupFile01"
-                    >Choose logo</label
-                  >
+                  <label class="custom-file-label" for="inputGroupFile01">Choose logo</label>
                 </div>
-                <span class="font-weight-bold"
-                  >Recommended image size is 16px x 16px or 32px x 32px<br />Accepted
-                  formats: only png and ico</span
-                >
+                <span class="font-weight-bold">Recommended image size is 16px x 16px or 32px x 32px<br />Accepted
+                  formats: only png and ico</span>
                 <div class="upload-images upload-size" v-if="favicon">
                   <img :src="favicon" alt="" />
-                  <font-awesome-icon
-                    icon="fa-regular fa-circle-xmark"
-                    class="remove" />
+                  <font-awesome-icon icon="fa-regular fa-circle-xmark" class="remove" />
                 </div>
               </div>
               <div class="mb-3">
@@ -100,46 +70,30 @@
           <form @submit.prevent="updateForm">
             <div class="settings-form">
               <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label"
-                  >Address Line 1
+                <label for="exampleFormControlInput1" class="form-label">Address Line 1
                 </label>
-                <input
-                  v-model="data.address_one"
-                  type="text"
-                  class="form-control"
-                  id="exampleFormControlInput1"
+                <input v-model="data.address_one" type="text" class="form-control" id="exampleFormControlInput1"
                   placeholder="Address Line 1..." />
               </div>
               <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label"
-                  >Address Line 2
+                <label for="exampleFormControlInput1" class="form-label">Address Line 2
                 </label>
-                <input
-                  v-model="data.address_two"
-                  type="text"
-                  class="form-control"
-                  id="exampleFormControlInput1"
+                <input v-model="data.address_two" type="text" class="form-control" id="exampleFormControlInput1"
                   placeholder="Address Line 2..." />
               </div>
               <div class="mb-3">
                 <div class="row">
                   <div class="col-md-6">
                     <div class="mb-3">
-                      <label for="exampleFormControlInput1" class="form-label"
-                        >City
+                      <label for="exampleFormControlInput1" class="form-label">City
                       </label>
-                      <input
-                        v-model="data.city"
-                        type="text"
-                        class="form-control"
-                        id="exampleFormControlInput1"
+                      <input v-model="data.city" type="text" class="form-control" id="exampleFormControlInput1"
                         placeholder="City..." />
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="mb-3">
-                      <label for="exampleFormControlInput1" class="form-label"
-                        >State/Province
+                      <label for="exampleFormControlInput1" class="form-label">State/Province
                       </label>
                       <select class="form-control" v-model="data.province">
                         <option>State/Province...</option>
@@ -152,21 +106,15 @@
                   </div>
                   <div class="col-md-6">
                     <div class="mb-3">
-                      <label for="exampleFormControlInput1" class="form-label"
-                        >Zip/Postal Code
+                      <label for="exampleFormControlInput1" class="form-label">Zip/Postal Code
                       </label>
-                      <input
-                        v-model="data.postal_code"
-                        type="text"
-                        class="form-control"
-                        id="exampleFormControlInput1"
+                      <input v-model="data.postal_code" type="text" class="form-control" id="exampleFormControlInput1"
                         placeholder="Zip/Postal Code..." />
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="mb-3">
-                      <label for="exampleFormControlInput1" class="form-label"
-                        >Country
+                      <label for="exampleFormControlInput1" class="form-label">Country
                       </label>
                       <select v-model="data.country" class="form-control">
                         <option>Country...</option>
@@ -198,7 +146,7 @@
 </template>
 <script>
 import { mapActions } from "vuex";
-import axios from "../../axios.config";
+import axios from 'axios';
 
 export default {
   data() {
@@ -206,6 +154,7 @@ export default {
       logo: null,
       favicon: null,
       data: {
+        id: "",
         email: "",
         logo: "",
         favicon: "",
@@ -224,11 +173,12 @@ export default {
     }),*/
   },
   methods: {
+    // Récupère les données à partir du backend
     async fetch() {
       try {
         const response = await axios.get(`/settings/1`);
-        console.log(response.data.data);
         this.data = {
+          id: response.data.data.id,
           email: response.data.data.email,
           logo: response.data.data.logo,
           favicon: response.data.data.favicon,
@@ -238,6 +188,7 @@ export default {
           province: response.data.data.province,
           postal_code: response.data.data.postal_code,
           country: response.data.data.country,
+          type: 'generale'
         };
         this.logo = response.data.data.logo;
         this.favicon = response.data.data.favicon;
@@ -245,14 +196,17 @@ export default {
         console.log(error);
       }
     },
+    // Gère la sélection d'un fichier pour le logo
     onFileSelectedOne(event) {
       this.data.logo = event.target.files[0];
       this.previewImageOne();
     },
+    // Gère la sélection d'un fichier pour le favicon
     onFileSelectedTwo(event) {
       this.data.favicon = event.target.files[0];
       this.previewImageTwo();
     },
+    // Prévisualise l'image sélectionnée pour le logo
     previewImageOne() {
       const reader = new FileReader();
       reader.readAsDataURL(this.data.logo);
@@ -260,6 +214,7 @@ export default {
         this.logo = event.target.result;
       };
     },
+    // Prévisualise l'image sélectionnée pour le favicon
     previewImageTwo() {
       const reader = new FileReader();
       reader.readAsDataURL(this.data.favicon);
@@ -270,11 +225,13 @@ export default {
     ...mapActions({
       update: "Settings/update",
     }),
+    // Soumet le formulaire de mise à jour
     updateForm() {
       this.update(this.data);
     },
   },
   mounted() {
+    // Appelle la méthode fetch lors du montage du composant
     this.fetch();
   },
 };
@@ -284,9 +241,11 @@ export default {
   font-weight: 600;
   font-size: 20px;
 }
+
 label {
   font-weight: 100 !important;
 }
+
 .upload-images {
   background: rgba(255, 255, 255, 0.8);
   border: 1px solid #e4e4e4;
@@ -299,35 +258,43 @@ label {
   align-items: center;
   position: relative;
 }
+
 .upload-size {
   width: 89px !important;
   height: 78px !important;
 }
+
 .upload-images img {
   max-height: 45px;
   width: auto;
 }
+
 .remove {
   position: absolute;
   top: 5px;
   right: 5px;
   color: red;
 }
+
 .btn {
   color: white;
   font-weight: bold;
 }
+
 .btn-update {
   background: #03a9f470;
   transition: 0.2s;
 }
+
 .btn-cancel {
   background: #ff5722a8;
   transition: 0.2s;
 }
+
 .btn-update:hover {
   background: #03a9f4;
 }
+
 .btn-cancel:hover {
   background: #ff5722;
 }

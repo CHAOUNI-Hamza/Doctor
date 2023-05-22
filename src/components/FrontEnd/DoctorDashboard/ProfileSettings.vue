@@ -407,22 +407,25 @@ export default {
         };
     },
     methods: {
+        // Méthode pour ajouter un service
         addService() {
             if (this.newService !== "") {
                 this.services.push(this.newService);
                 this.newService = "";
             }
         },
+        // Méthode pour supprimer un service
         removeService(index) {
             this.services.splice(index, 1);
         },
-
+        // Méthode pour ajouter une spécialisation
         addSpecialization() {
             if (this.newSpecialization !== "") {
                 this.specializations.push(this.newSpecialization);
                 this.newSpecialization = "";
             }
         },
+        // Méthode pour supprimer une spécialisation
         removeSpecialization(index) {
             this.specializations.splice(index, 1);
         }

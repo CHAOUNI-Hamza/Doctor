@@ -13,7 +13,7 @@
                     <img :src="getUser?.photo" alt="user-img" />
                   </a>
                   <div class="profile-info">
-                    <h3>Dr. {{ getUser.username }}</h3>
+                    <h3>Dr. {{ getUser?.username }}</h3>
                     <div class="patient-details">
                       <h5>{{ getUser.specialty?.name }}</h5>
                     </div>

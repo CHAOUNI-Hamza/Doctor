@@ -3,32 +3,19 @@
     <div class="col-md-6">
       <div class="card">
         <div class="card-body">
-          <div
-            class="card-header mb-3 d-flex justify-content-between align-items-center">
+          <div class="card-header mb-3 d-flex justify-content-between align-items-center">
             <h5 class="card-title">SEO Settings</h5>
           </div>
           <form @submit.prevent="updateForm">
             <div class="settings-form">
               <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label"
-                  >Meta Title</label
-                >
-                <input
-                  v-model="data.seo_title"
-                  type="text"
-                  class="form-control"
-                  id="exampleFormControlInput1"
+                <label for="exampleFormControlInput1" class="form-label">Meta Title</label>
+                <input v-model="data.seo_title" type="text" class="form-control" id="exampleFormControlInput1"
                   placeholder="Meta Title..." />
               </div>
               <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label"
-                  >Meta Description</label
-                >
-                <textarea
-                  v-model="data.seo_description"
-                  type="text"
-                  class="form-control"
-                  id="exampleFormControlInput1"
+                <label for="exampleFormControlInput1" class="form-label">Meta Description</label>
+                <textarea v-model="data.seo_description" type="text" class="form-control" id="exampleFormControlInput1"
                   placeholder="Meta Description..."></textarea>
               </div>
               <div class="mb-3">
@@ -50,7 +37,7 @@
 </template>
 <script>
 import { mapActions } from "vuex";
-import axios from "../../axios.config";
+import axios from "axios";
 
 export default {
   data() {
@@ -62,19 +49,15 @@ export default {
       },
     };
   },
-  computed: {
-    /* ...mapGetters({
-      get: "Settings/get",
-    }),*/
-  },
   methods: {
+    // Fonction pour récupérer les données depuis l'API
     async fetch() {
       try {
         const response = await axios.get(`/settings/1`);
-        console.log(response.data.data);
         this.data = {
           seo_title: response.data.data.seo_title,
           seo_description: response.data.data.seo_description,
+          type: 'seo'
         };
       } catch (error) {
         console.log(error);
@@ -84,6 +67,7 @@ export default {
       this.data.photo = event.target.files[0];
       this.previewImage();
     },
+    // Fonction pour prévisualiser l'image sélectionnée
     previewImage() {
       const reader = new FileReader();
       reader.readAsDataURL(this.data.photo);
@@ -94,11 +78,13 @@ export default {
     ...mapActions({
       update: "Settings/update",
     }),
+    // Fonction pour mettre à jour le formulaire
     updateForm() {
       this.update(this.data);
     },
   },
   mounted() {
+    // Appel de la fonction fetch lors du montage du composant
     this.fetch();
   },
 };
@@ -108,9 +94,11 @@ export default {
   font-weight: 600;
   font-size: 20px;
 }
+
 label {
   font-weight: 100 !important;
 }
+
 .upload-images {
   background: rgba(255, 255, 255, 0.8);
   border: 1px solid #e4e4e4;
@@ -123,35 +111,43 @@ label {
   align-items: center;
   position: relative;
 }
+
 .upload-size {
   width: 89px !important;
   height: 78px !important;
 }
+
 .upload-images img {
   max-height: 45px;
   width: auto;
 }
+
 .remove {
   position: absolute;
   top: 5px;
   right: 5px;
   color: red;
 }
+
 .btn {
   color: white;
   font-weight: bold;
 }
+
 .btn-update {
   background: #03a9f470;
   transition: 0.2s;
 }
+
 .btn-cancel {
   background: #ff5722a8;
   transition: 0.2s;
 }
+
 .btn-update:hover {
   background: #03a9f4;
 }
+
 .btn-cancel:hover {
   background: #ff5722;
 }

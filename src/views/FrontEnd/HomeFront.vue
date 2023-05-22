@@ -7,7 +7,6 @@
   <SectionFeaturesFront />
   <SectionBlogsFront />
   <FooterFront />
-  
 </template>
 
 <script>
@@ -33,6 +32,4 @@ export default {
   }
 }
 </script>
-<style>
-
-</style>
+<style></style>

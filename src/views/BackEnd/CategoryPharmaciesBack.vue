@@ -125,27 +125,28 @@
                     <div class="form-group">
                       <label for="exampleInputEmail1">Category Name</label>
                       <input @blur="v$.data.name.$touch" :class="{
-                        'text-fields-error': v$.data.name.$error === true,
-                      }" v-model="data.name" type="text" class="form-control" id="exampleInputEmail1"
+                            'text-fields-error': v$.data.name.$error === true,
+                          }" v-model="data.name" type="text" class="form-control" id="exampleInputEmail1"
                         aria-describedby="emailHelp" placeholder="Category Name..." />
                     </div>
                     <div class="form-group card-upload" :class="{
-                      'text-fields-error': v$.data.icone.$error === true,
-                    }">
+                          'text-fields-error': v$.data.icone.$error === true,
+                        }">
                       <input @blur="v$.data.icone.$touch" :class="{
-                        'text-fields-error': v$.data.icone.$error === true,
-                      }" @change="onFileSelectedIcone" type="file" class="form-control-file"
+                            'text-fields-error': v$.data.icone.$error === true,
+                          }" @change="onFileSelectedIcone" type="file" class="form-control-file"
                         id="exampleFormControlFile1" />
                     </div>
                     <div class="form-group show-image" v-if="icone">
                       <img :src="icone" alt="uploaded photo" />
                     </div>
                     <div class="form-group card-upload" :class="{
-                      'text-fields-error': v$.data.photo.$error === true,
-                    }">
+                          'text-fields-error': v$.data.photo.$error === true,
+                        }">
                       <input @blur="v$.data.photo.$touch" :class="{
-                        'text-fields-error': v$.data.photo.$error === true,
-                      }" @change="onFileSelected" type="file" class="form-control-file" id="exampleFormControlFile1" />
+                            'text-fields-error': v$.data.photo.$error === true,
+                          }" @change="onFileSelected" type="file" class="form-control-file"
+                        id="exampleFormControlFile1" />
                     </div>
                     <div class="form-group show-image" v-if="imageUrl">
                       <img :src="imageUrl" alt="uploaded photo" />
@@ -179,27 +180,28 @@
                     <div class="form-group">
                       <label for="exampleInputEmail1">Category Name</label>
                       <input @blur="v$.data.name.$touch" :class="{
-                        'text-fields-error': v$.data.name.$error === true,
-                      }" v-model="data.name" type="text" class="form-control" id="exampleInputEmail1"
+                            'text-fields-error': v$.data.name.$error === true,
+                          }" v-model="data.name" type="text" class="form-control" id="exampleInputEmail1"
                         aria-describedby="emailHelp" placeholder="Category Name..." />
                     </div>
                     <div class="form-group card-upload" :class="{
-                      'text-fields-error': v$.data.icone.$error === true,
-                    }">
+                          'text-fields-error': v$.data.icone.$error === true,
+                        }">
                       <input @blur="v$.data.icone.$touch" :class="{
-                        'text-fields-error': v$.data.icone.$error === true,
-                      }" @change="onFileSelectedIcone" type="file" class="form-control-file"
+                            'text-fields-error': v$.data.icone.$error === true,
+                          }" @change="onFileSelectedIcone" type="file" class="form-control-file"
                         id="exampleFormControlFile1" />
                     </div>
                     <div class="form-group show-image" v-if="icone">
                       <img :src="icone" alt="uploaded photo" />
                     </div>
                     <div class="form-group card-upload" :class="{
-                      'text-fields-error': v$.data.photo.$error === true,
-                    }">
+                          'text-fields-error': v$.data.photo.$error === true,
+                        }">
                       <input @blur="v$.data.photo.$touch" :class="{
-                        'text-fields-error': v$.data.photo.$error === true,
-                      }" @change="onFileSelected" type="file" class="form-control-file" id="exampleFormControlFile1" />
+                            'text-fields-error': v$.data.photo.$error === true,
+                          }" @change="onFileSelected" type="file" class="form-control-file"
+                        id="exampleFormControlFile1" />
                     </div>
                     <div class="form-group show-image" v-if="imageUrl">
                       <img :src="imageUrl" alt="uploaded photo" />
@@ -233,7 +235,7 @@
 import { mapGetters, mapActions } from "vuex";
 import { required } from "@vuelidate/validators";
 import { useVuelidate } from "@vuelidate/core";
-import axios from "../../axios.config";
+import axios from "axios";
 
 export default {
   data() {
@@ -248,6 +250,7 @@ export default {
         pagination: 10,
       },
       data: {
+        id: "",
         name: "",
         photo: "",
         icone: "",
@@ -342,6 +345,7 @@ export default {
       const response = await axios.get(`/categories/${id}/edit`);
       const categorie = response.data.data;
       this.data = {
+        id: categorie.id,
         name: categorie.name,
         photo: categorie.photo,
         icone: categorie.photo,
@@ -350,6 +354,7 @@ export default {
     },
   },
   mounted() {
+    // Récupérer les données une fois le composant monté
     this.fetch(this.params);
   },
 };

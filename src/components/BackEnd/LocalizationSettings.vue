@@ -57,7 +57,7 @@
 </template>
 <script>
 import { mapActions } from "vuex";
-import axios from "../../axios.config";
+import axios from "axios";
 
 export default {
   data() {
@@ -77,24 +77,27 @@ export default {
     }),*/
   },
   methods: {
+    // Récupère les données à partir du backend
     async fetch() {
       try {
         const response = await axios.get(`/settings/1`);
-        console.log(response.data.data);
         this.data = {
           time_zone: response.data.data.time_zone,
           date_format: response.data.data.date_format,
           time_format: response.data.data.time_format,
           currency: response.data.data.currency,
+          type: 'localization'
         };
       } catch (error) {
         console.log(error);
       }
     },
+    // Gère la sélection d'un fichier
     onFileSelected(event) {
       this.data.photo = event.target.files[0];
       this.previewImage();
     },
+    // Prévisualise l'image sélectionnée
     previewImage() {
       const reader = new FileReader();
       reader.readAsDataURL(this.data.photo);
@@ -105,11 +108,13 @@ export default {
     ...mapActions({
       update: "Settings/update",
     }),
+    // Soumet le formulaire de mise à jour
     updateForm() {
       this.update(this.data);
     },
   },
   mounted() {
+    // Appelle la méthode fetch lors du montage du composant
     this.fetch();
   },
 };
