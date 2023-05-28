@@ -36,6 +36,11 @@
                                         class="tn-primary w-100 btn-lg login-btn btn btn-save">
                                         Login
                                     </button>
+                                    <a type="submit" href="http://localhost:8000/api/auth/sociale/google" target="_blank"
+                                        class="tn-primary w-100 btn-lg mt-2 btn btn-save btn-google">
+                                        <font-awesome-icon class="mr-1" icon="fa-brands fa-google" />
+                                        Login
+                                    </a>
                                 </form>
                             </div>
                         </div>
@@ -124,6 +129,13 @@ export default {
 
 .form-focus {
     position: relative;
+}
+
+.btn-google {
+    background-color: #dd4b39;
+    color: #fff;
+    font-size: 13px;
+    padding: 8px 12px;
 }
 
 .focus-label {
