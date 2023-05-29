@@ -9,7 +9,7 @@
         </p>
       </div>
       <div class="row justify-content-center mt-5">
-        <div class="col-md-9">
+        <div class="col-md-9 web">
           <div class="specialities-slider slider">
             <swiper :slides-per-view="6" :space-between="50" @swiper="onSwiper" @slideChange="onSlideChange"
               :pagination="true" :modules="modules" class="mySwiper">
@@ -29,6 +29,23 @@
             </swiper>
           </div>
         </div>
+        <div class="container-fluid cards-responsive">
+    <div class="col-lg-12 col-lg-offset-0 col-md-6 col-md-offset-0 col-sm-10 col-sm-offset-1 col-xs-12" v-for="item in getSpecialities.data" :key="item">
+        <figure>
+            <div class="media" style="background-image:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/584938/bg_15.png)"></div>
+            <figcaption><svg viewBox="0 0 200 200" version="1.1" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <mask id="mask" x="0" y="0" width="100%" height="100%">
+                            <rect id="alpha" x="0" y="0" width="100%" height="100%"></rect><text class="title" dx="50%" dy="2.5em">ENJOY</text><text class="title" dx="50%" dy="3.5em">EVERY</text><text class="title" dx="50%" dy="4.5em">MOMENT</text>
+                        </mask>
+                    </defs>
+                    <rect id="base" x="0" y="0" width="100%" height="100%"></rect>
+                </svg>
+            </figcaption><a href="#"></a>
+        </figure>
+    </div>
+</div>
+
       </div>
     </div>
   </section>
@@ -143,12 +160,100 @@ export default {
   height: 150px;
 }
 
+
+
+
+
+
+
+@import url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/584938/library.less");
+ @import url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/584938/variables.less");
+ .media {
+	 background-position: center;
+	 background-size: cover;
+	 height: 100%;
+	 position: absolute;
+	 transition: all 0.3s ease;
+	 width: 100%;
+}
+ figure {
+	 height: 370px;
+	 overflow: hidden;
+	 position: relative;
+}
+ figure a {
+	 height: 100%;
+	 left: 0;
+	 position: absolute;
+	 top: 0;
+	 width: 100%;
+	 z-index: 3;
+}
+ figure:hover .media {
+	 transform: scale(1.25);
+}
+figcaption {
+    color: #252830;
+    height: calc(100% - 105px);
+    margin: 15px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 50%;
+}
+
+ svg {
+	 height: inherit;
+	 width: 100%;
+}
+ svg text {
+	 text-anchor: middle;
+}
+ svg #alpha {
+	 fill: white;
+}
+ svg .title {
+	 font-size: 28px;
+	 font-family: "Montserrat";
+	 letter-spacing: 5px;
+}
+ svg #base {
+	 fill: white;
+	 -webkit-mask: url(#mask);
+	 mask: url(#mask);
+}
+
+
+.cards-responsive {
+    display: none;
+  }
+
+  .web {
+    display: block;
+  }
+
+
 /* start media */
 @media (min-width: 0px) and (max-width: 428px) {
   .section-specialities {
     padding: 12px 0;
   }
+  .web {
+    display: none;
+  }
+
+  .cards-responsive {
+    display: block;
+  }
 }
 
-@media (min-width: 429px) and (max-width: 834px) {}
+@media (min-width: 429px) and (max-width: 834px) {
+  .web {
+    display: none;
+  }
+
+  .cards-responsive {
+    display: block;
+  }
+}
 </style>
