@@ -290,5 +290,17 @@ form .error-message {
     /* This is a shorthand of
                                          translateX(-50%) and translateY(-50%) */
 }
+
+/* start media */
+@media (min-width: 0px) and (max-width: 428px) {
+    .login-right {
+        background: white;
+        position: relative;
+        margin: 28px;
+        transform: unset;
+    }
+}
+
+@media (min-width: 429px) and (max-width: 834px) {}
 </style>
   
