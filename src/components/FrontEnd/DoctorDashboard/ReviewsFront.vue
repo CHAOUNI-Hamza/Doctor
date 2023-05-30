@@ -1,5 +1,5 @@
 <template>
-  <div class="row">
+  <div class="row mt-3">
     <div v-for="item in 10" :key="item.id" class="col-md-12 reviews mb-2">
       <div class="doc-review review-listing">
         <ul class="comments-list list-unstyled">
@@ -190,4 +190,5 @@ span.comment-date {
   border: 1px solid #33333314;
   border-radius: 5px;
   padding: 14px;
-}</style>
+}
+</style>

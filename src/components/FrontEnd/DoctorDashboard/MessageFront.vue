@@ -1,11 +1,9 @@
 <template>
-  <div>
+  <div class="mt-3">
     <div class="row justify-content-between">
       <div class="col-md-4 border-right">
         <div class="settings-tray">
-          <img
-            class="profile-image"
-            src="https://www.clarity-enhanced.net/wp-content/uploads/2020/06/filip.jpg"
+          <img class="profile-image" src="https://www.clarity-enhanced.net/wp-content/uploads/2020/06/filip.jpg"
             alt="Profile img" />
           <!--<span class="settings-tray--right">
             <font-awesome-icon
@@ -24,9 +22,7 @@
           </div>
         </div>
         <div class="friend-drawer friend-drawer--onhover">
-          <img
-            class="profile-image"
-            src="https://www.clarity-enhanced.net/wp-content/uploads/2020/06/robocop.jpg"
+          <img class="profile-image" src="https://www.clarity-enhanced.net/wp-content/uploads/2020/06/robocop.jpg"
             alt="" />
           <div class="text">
             <h6>Robo Cop</h6>
@@ -36,9 +32,7 @@
         </div>
         <hr />
         <div class="friend-drawer friend-drawer--onhover">
-          <img
-            class="profile-image"
-            src="https://www.clarity-enhanced.net/wp-content/uploads/2020/06/optimus-prime.jpeg"
+          <img class="profile-image" src="https://www.clarity-enhanced.net/wp-content/uploads/2020/06/optimus-prime.jpeg"
             alt="" />
           <div class="text">
             <h6>Optimus</h6>
@@ -48,9 +42,7 @@
         </div>
         <hr />
         <div class="friend-drawer friend-drawer--onhover">
-          <img
-            class="profile-image"
-            src="https://www.clarity-enhanced.net/wp-content/uploads/2020/06/real-terminator.png"
+          <img class="profile-image" src="https://www.clarity-enhanced.net/wp-content/uploads/2020/06/real-terminator.png"
             alt="" />
           <div class="text">
             <h6>Skynet</h6>
@@ -60,10 +52,7 @@
         </div>
         <hr />
         <div class="friend-drawer friend-drawer--onhover">
-          <img
-            class="profile-image"
-            src="https://www.clarity-enhanced.net/wp-content/uploads/2020/06/termy.jpg"
-            alt="" />
+          <img class="profile-image" src="https://www.clarity-enhanced.net/wp-content/uploads/2020/06/termy.jpg" alt="" />
           <div class="text">
             <h6>Termy</h6>
             <p class="text-muted">Im studying spanish...</p>
@@ -72,10 +61,7 @@
         </div>
         <hr />
         <div class="friend-drawer friend-drawer--onhover">
-          <img
-            class="profile-image"
-            src="https://www.clarity-enhanced.net/wp-content/uploads/2020/06/rick.jpg"
-            alt="" />
+          <img class="profile-image" src="https://www.clarity-enhanced.net/wp-content/uploads/2020/06/rick.jpg" alt="" />
           <div class="text">
             <h6>Richard</h6>
             <p class="text-muted">I'm not sure...</p>
@@ -84,9 +70,7 @@
         </div>
         <hr />
         <div class="friend-drawer friend-drawer--onhover">
-          <img
-            class="profile-image"
-            src="https://www.clarity-enhanced.net/wp-content/uploads/2020/06/rachel.jpeg"
+          <img class="profile-image" src="https://www.clarity-enhanced.net/wp-content/uploads/2020/06/rachel.jpeg"
             alt="" />
           <div class="text">
             <h6>XXXXX</h6>
@@ -98,9 +82,7 @@
       <div class="col-md-8">
         <div class="settings-tray">
           <div class="friend-drawer no-gutters friend-drawer--grey">
-            <img
-              class="profile-image"
-              src="https://www.clarity-enhanced.net/wp-content/uploads/2020/06/robocop.jpg"
+            <img class="profile-image" src="https://www.clarity-enhanced.net/wp-content/uploads/2020/06/robocop.jpg"
               alt="" />
             <div class="text">
               <h6>Robo Cop</h6>
@@ -109,21 +91,11 @@
               </p>
             </div>
             <span class="settings-tray--right">
-              <font-awesome-icon
-                icon="fa-solid fa-video"
-                class="material-icons mr-2" />
-              <font-awesome-icon
-                icon="fa-solid fa-phone"
-                class="material-icons mr-2" />
-              <font-awesome-icon
-                icon="fa-solid fa-repeat"
-                class="material-icons mr-2" />
-              <font-awesome-icon
-                icon="fa-regular fa-comment-dots"
-                class="material-icons mr-2" />
-              <font-awesome-icon
-                icon="fa-solid fa-bars"
-                class="material-icons mr-2" />
+              <font-awesome-icon icon="fa-solid fa-video" class="material-icons mr-2" />
+              <font-awesome-icon icon="fa-solid fa-phone" class="material-icons mr-2" />
+              <font-awesome-icon icon="fa-solid fa-repeat" class="material-icons mr-2" />
+              <font-awesome-icon icon="fa-regular fa-comment-dots" class="material-icons mr-2" />
+              <font-awesome-icon icon="fa-solid fa-bars" class="material-icons mr-2" />
             </span>
           </div>
         </div>
@@ -194,28 +166,34 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
 }
+
 .container {
   margin: 60px auto;
   background: #fff;
   padding: 0;
   border-radius: 7px;
 }
+
 .profile-image {
   width: 50px;
   height: 50px;
   border-radius: 40px;
 }
+
 .settings-tray {
   background: #eee;
   padding: 10px 15px;
   border-radius: 7px;
 }
+
 .settings-tray .no-gutters {
   padding: 0;
 }
+
 .settings-tray--right {
   float: right;
 }
+
 .settings-tray--right i {
   margin-top: 10px;
   font-size: 25px;
@@ -223,36 +201,44 @@ body {
   margin-left: 14px;
   transition: 0.3s;
 }
+
 .settings-tray--right i:hover {
   color: #74b9ff;
   cursor: pointer;
 }
+
 .search-box {
   background: #fafafa;
   padding: 10px 13px;
 }
+
 .search-box .input-wrapper {
   background: #fff;
   border-radius: 40px;
 }
+
 .search-box .input-wrapper i {
   color: grey;
   margin-left: 7px;
   vertical-align: middle;
 }
+
 input {
   border: none;
   border-radius: 30px;
   width: 80%;
 }
+
 input::placeholder {
   color: #e3e3e3;
   font-weight: 300;
   margin-left: 20px;
 }
+
 input:focus {
   outline: none;
 }
+
 .friend-drawer {
   padding: 10px 15px;
   display: flex;
@@ -260,36 +246,45 @@ input:focus {
   background: #fff;
   transition: 0.3s ease;
 }
+
 .friend-drawer--grey {
   background: #eee;
 }
+
 .friend-drawer .text {
   margin-left: 12px;
   width: 70%;
 }
+
 .friend-drawer .text h6 {
   margin-top: 6px;
   margin-bottom: 0;
 }
+
 .friend-drawer .text p {
   margin: 0;
 }
+
 .friend-drawer .time {
   color: grey;
 }
+
 .friend-drawer--onhover:hover {
   background: #74b9ff;
   cursor: pointer;
 }
+
 .friend-drawer--onhover:hover p,
 .friend-drawer--onhover:hover h6,
 .friend-drawer--onhover:hover .time {
   color: #fff !important;
 }
+
 hr {
   margin: 5px auto;
   width: 60%;
 }
+
 .chat-bubble {
   padding: 10px 14px;
   background: #eee;
@@ -298,6 +293,7 @@ hr {
   position: relative;
   animation: fadeIn 1s ease-in;
 }
+
 .chat-bubble:after {
   content: "";
   position: absolute;
@@ -308,30 +304,36 @@ hr {
   border-bottom: 0;
   margin-top: -10px;
 }
+
 .chat-bubble--left:after {
   left: 0;
   border-right-color: #eee;
   border-left: 0;
   margin-left: -20px;
 }
+
 .chat-bubble--right:after {
   right: 0;
   border-left-color: #74b9ff;
   border-right: 0;
   margin-right: -20px;
 }
+
 @keyframes fadeIn {
   0% {
     opacity: 0;
   }
+
   100% {
     opacity: 1;
   }
 }
+
 .offset-md-9 .chat-bubble {
   background: #74b9ff;
   color: #fff;
 }
+
 .chat-box-tray {
   background: #eee;
   display: flex;
@@ -341,18 +343,22 @@ hr {
   margin-top: 19px;
   bottom: 0;
 }
+
 .chat-box-tray input {
   margin: 0 10px;
   padding: 6px 2px;
 }
+
 .chat-box-tray i {
   color: grey;
   font-size: 30px;
   vertical-align: middle;
 }
+
 .chat-box-tray i:last-of-type {
   margin-left: 25px;
 }
+
 .settings-tray--right[data-v-6dd2ae8e] {
   float: right;
   align-items: center;

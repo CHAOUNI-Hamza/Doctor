@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="row">
+    <div class="row mt-3">
       <div v-for="item in 3" :key="item.index" class="col-lg-4 col-md-12">
         <div class="card dash-cards">
           <div class="card-body">

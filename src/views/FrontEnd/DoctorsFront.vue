@@ -4,7 +4,7 @@
   <div class="content">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-5 col-lg-4 col-xl-3 sidebar">
+        <div class="col-md-5 col-lg-4 col-xl-3 sidebar mb-10">
           <div class="sticksidebar">
             <div class="profile-sidebar">
               <div class="widget-profile">

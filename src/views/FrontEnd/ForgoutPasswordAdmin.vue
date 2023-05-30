@@ -301,6 +301,13 @@ form .error-message {
     }
 }
 
-@media (min-width: 429px) and (max-width: 834px) {}
+@media (min-width: 429px) and (max-width: 834px) {
+    .login-right {
+        background: white;
+        position: relative;
+        margin: 28px;
+        transform: unset;
+    }
+}
 </style>
   

@@ -1,6 +1,7 @@
 <template>
-  <div class="appointment">
-    <div class="appointment-list d-flex align-items-center mb-3" v-for="appointment in getAppointments.data" :key="item">
+  <div class="appointment mt-3">
+    <div class="appointment-list d-flex align-items-center mb-3 web" v-for="appointment in getAppointments.data"
+      :key="item">
       <div class="profile-info-widget d-flex align-items-center">
         <a class="booking-doc-img" href="#">
           <img :src="appointment.patient.photo" alt="User" />
@@ -92,6 +93,85 @@
           </div>
         </div>
       </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12 cards-responsive mt-3" v-for="appointment in getAppointments.data" :key="item">
+        <div class="card z-depth-2">
+          <div class="card-image">
+            <img :src="appointment.patient.photo">
+          </div>
+          <div class="card-content">
+            <h6 class="card-titlee">Card Title</h6>
+            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the
+              blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics.</p>
+          </div>
+          <div class="card-action">
+            <a class="btn btn-sm bg-success" data-toggle="modal" :data-target="'#exampleModal' + appointment.id" href="#">
+              <font-awesome-icon icon="fa-solid fa-eye" class="mr-1" />
+              View
+            </a>
+            <a class="btn btn-sm bg-info ml-2" href="#">
+              <font-awesome-icon icon="fa-solid fa-clipboard-check" class="mr-1" />
+              Accept
+            </a>
+            <a class="btn btn-sm bg-warning ml-2" href="#">
+              <font-awesome-icon icon="fa-solid fa-xmark" class="mr-1" />
+              Cancel
+            </a>
+          </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" :id="'exampleModal' + appointment.id" tabindex="-1" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                  Appointment Details
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <ul class="info-details list-unstyled">
+                  <li>
+                    <div class="details-header">
+                      <div class="row justify-content-between">
+                        <div class="col-md-6">
+                          <span class="title">#APT0001</span>
+                          <span class="text d-block">21 Oct 2019 10:00 AM</span>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="text-right">
+                            <button type="button" class="btn bg-success btn-sm" id="topup_status">
+                              Completed
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <span class="title">Status:</span>
+                    <span class="text d-block">{{ appointment.status }}</span>
+                  </li>
+                  <li>
+                    <span class="title">Confirm Date:</span>
+                    <span class="text d-block">{{ appointment.created_at }}</span>
+                  </li>
+                  <li>
+                    <span class="title">Paid Amount</span>
+                    <span class="text d-block">{{ appointment.amount }}</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
 
     <nav v-if="getAppointmentsLastPage > 1" aria-label="Page navigation example">
@@ -208,5 +288,70 @@ export default {
   display: block;
   font-size: 18px;
   overflow: hidden;
+}
+
+
+.web {
+  display: block;
+}
+
+.cards-responsive {
+  display: none;
+}
+
+/* start media */
+@media (min-width: 0px) and (max-width: 428px) {
+  .card-image img {
+    width: 100% !important;
+    height: 360px;
+  }
+
+  .card .card-content {
+    padding: 20px;
+    border-radius: 0 0 2px 2px;
+  }
+
+  .card .card-content p {
+    margin: 0;
+    color: inherit;
+  }
+
+  .card .card-action {
+    position: relative;
+    background-color: inherit;
+    border-top: 1px solid rgba(160, 160, 160, 0.2);
+    padding: 20px;
+  }
+
+  .card .card-content .card-titlee {
+    line-height: 48px;
+    font-size: 24px;
+    font-weight: 300;
+  }
+}
+
+@media (min-width: 0px) and (max-width: 428px) {
+  .web {
+    display: none !important;
+  }
+
+  .cards-responsive {
+    display: block;
+  }
+
+}
+
+@media (min-width: 429px) and (max-width: 834px) {
+  .btn {
+    font-size: 11px;
+    margin-left: 0 !important;
+    margin-top: 3px;
+    width: 92px;
+  }
+
+  .patient-details h5 {
+    margin-right: 7px;
+  }
+
 }
 </style>

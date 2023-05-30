@@ -1,5 +1,5 @@
 <template>
-  <div class="row row-grid">
+  <div class="row row-grid mt-3">
     <div class="col-md-6 col-lg-4 col-xl-3" v-for="appointment in getAppointments.data" :key="item">
       <div class="card widget-profile pat-widget-profile">
         <div class="card-body">
